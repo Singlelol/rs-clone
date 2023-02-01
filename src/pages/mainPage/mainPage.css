@@ -1,0 +1,49 @@
+/* body {
+     background-image: url(../../components/background/8714ae6ce6ff.png);
+    background-color: black;
+    background-repeat: no-repeat; }*/
+
+.App {
+    text-align: center;
+  }
+  
+  .App-header {
+    background-color: #df7c0a;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    height: 300px;
+    position: relative;
+  }
+  .App-logo {
+    height: 100%;
+  }
+  .App-link {
+    color: #61dafb;
+  }
+  .list_link {
+    left: 43%;
+    position: absolute;
+    text-transform: uppercase;
+    background-color: #241005ef;
+    border: ridge 5px #a64304;
+    border-radius: 15px;
+    padding: 10px;
+    font: bold 24px/34px Helvetica, Sans-Serif;
+  }
+  ul {
+    list-style-type:none;
+    padding: 0%;
+  }
+  a:active, /* активная/посещенная ссылка */
+a:hover{
+    color: rgba(165, 79, 18, 0.92);
+} /* при наведении */
+a {
+  text-decoration: none;
+  color: rgba(222, 106, 23, 0.97);
+}

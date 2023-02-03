@@ -1,11 +1,11 @@
-export type IPlayer = {
+export type PlayerType = {
   id: number;
   name: string;
   isHuman?: boolean;
 };
 
 export type PlayerProps = {
-  player: IPlayer;
+  player: PlayerType;
   decrease: () => void;
 };
 
@@ -16,10 +16,10 @@ export type CounterProps = {
 };
 
 export type PopupProps = {
-  hero: IHero;
+  hero: HeroType;
 };
 
-export type IHero = {
+export type HeroType = {
   id: number;
   name: string;
   health: number;

@@ -2,7 +2,7 @@ import { PlayerProps } from '../../pages/PlayerSettings-interface';
 import Slyder from '../Slider/Slyder';
 import './players.scss';
 
-export default function Player({ player, decrease }: PlayerProps) {
+const Player = ({ player, decrease }: PlayerProps) => {
   return (
     <div className='player'>
       <span className='player__id'>{player.id}</span>
@@ -16,4 +16,6 @@ export default function Player({ player, decrease }: PlayerProps) {
       <input type='button' className='player__btn-delete' onClick={decrease} />
     </div>
   );
-}
+};
+
+export default Player;

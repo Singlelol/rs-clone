@@ -20,9 +20,9 @@
         margin-left: -6rem;
         padding: 0;
         list-style-type: none;
-        -moz-box-shadow:0 0 10px #a64304;
-        -webkit-box-shadow:0 0 10px #a64304;
-        box-shadow:0 0 10px #a64304;
+        -moz-box-shadow:0 0 1rem #a64304;
+        -webkit-box-shadow:0 0 1rem #a64304;
+        box-shadow: 0 0 1rem #a64304;
       }
 
       .icons-hide{
@@ -36,19 +36,19 @@
       .icon{
         width: 3rem;
         height: 3rem;
-        border: 1px solid black;
-        box-shadow: 0 0px 4px rgb(0 0 0 / 25%);
+        border: .1rem solid black;
+        box-shadow: 0 0 .4rem rgb(0 0 0 / 25%);
 
         &:hover{
-          box-shadow:0 0 10px #a64304;
+          box-shadow:0 0 1rem #a64304;
         } 
       }
     } 
 
     &__btn-delete {
         display: inline-block;
-        width: 26px;
-        height: 26px;
+        width: 2.6rem;
+        height: 2.6rem;
         background-color: transparent;
         border: none;
         background: url('../../images/close.png') no-repeat center center / contain;
@@ -65,7 +65,7 @@ input[type="checkbox"] {
     outline: none;
     border-radius: 2rem;
     cursor: pointer;
-    box-shadow: inset 0 0 5px rgb(0 0 0 / 50%);
+    box-shadow: inset 0 0 .5rem rgb(0 0 0 / 50%);
   }
   
   input[type="checkbox"]::before {
@@ -90,8 +90,8 @@ input[type="checkbox"] {
   }
 
   input[type="text"] {
-    border: 1px solid #cccccc;
+    border: .1rem solid #cccccc;
     outline: none;
-    height: 30px;
+    height: 1.5rem;
     width: 30%;
  }

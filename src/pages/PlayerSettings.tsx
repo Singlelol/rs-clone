@@ -1,13 +1,17 @@
 import { useState } from 'react';
+import { PlayerType } from './PlayerSettings-interface';
 import Counter from '../component/Counter/Counter';
 import Player from '../component/Players/Player';
-import { IPlayer } from './PlayerSettings-interface';
 import './player-settings.scss';
 
-export default function PlayerSettings() {
+const PlayerSettings = () => {
   const maxPlayers = 5;
-  const startplayers: IPlayer[] = [{ id: 1, name: 'Player1', isHuman: true }];
-  const [players, setPlayers] = useState<IPlayer[]>(startplayers);
+  const title = 'Выберите количество игроков:';
+  const list = 'Список игроков';
+  const startplayers: PlayerType[] = [
+    { id: 1, name: 'Player1', isHuman: true },
+  ];
+  const [players, setPlayers] = useState<PlayerType[]>(startplayers);
 
   const increase = () => {
     if (players.length >= 1 && players.length < maxPlayers) {
@@ -30,14 +34,14 @@ export default function PlayerSettings() {
   return (
     <div className='wrapper'>
       <div className='settings-menu'>
-        <h1>Выберите количество игроков:</h1>
+        <h1>{title}</h1>
         <Counter
           counter={players.length}
           increase={increase}
           decrease={decrease}
         />
         <div className='players'>
-          <h3 className='player__subtitle'>Список игроков</h3>
+          <h3 className='player__subtitle'>{list}</h3>
           {players.map((player) => (
             <Player key={player.id} player={player} decrease={decrease} />
           ))}
@@ -45,4 +49,6 @@ export default function PlayerSettings() {
       </div>
     </div>
   );
-}
+};
+
+export default PlayerSettings;

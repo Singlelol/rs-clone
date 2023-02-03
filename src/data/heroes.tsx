@@ -3,9 +3,9 @@ import img2 from '../images/nastya.png';
 import img3 from '../images/max.png';
 import img4 from '../images/nadya.png';
 import img5 from '../images/boris.png';
-import { IHero } from '../pages/PlayerSettings-interface';
+import { HeroType } from '../pages/PlayerSettings-interface';
 
-export const heroes: IHero[] = [
+export const heroes: HeroType[] = [
   {
     id: 1,
     name: 'Саша',

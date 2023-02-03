@@ -29,7 +29,7 @@ export default function Slyder() {
   return (
     <div className='slider-wrapper'>
       <div className={popupClasses.join(' ')}>
-        <Popup />
+        <Popup hero={heroes[activeIndex]} />
       </div>
       <button
         type='button'

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Counter from '../component/Counter/Counter';
 import Player from '../component/Players/Player';
 import { IPlayer } from './PlayerSettings-interface';
-import '../style.scss';
+import './player-settings.scss';
 
 export default function PlayerSettings() {
   const maxPlayers = 5;
@@ -24,7 +24,6 @@ export default function PlayerSettings() {
   const decrease = () => {
     if (players.length > 1 && players.length <= maxPlayers) {
       players.pop();
-      console.log(players);
       setPlayers([...players]);
     }
   };

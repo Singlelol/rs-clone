@@ -3,17 +3,7 @@ import img2 from '../images/nastya.png';
 import img3 from '../images/max.png';
 import img4 from '../images/nadya.png';
 import img5 from '../images/boris.png';
-
-export interface IHero {
-  id: number;
-  name: string;
-  health: number;
-  description: string;
-  image: string;
-  inventory: [];
-  skill: number;
-  profession: string;
-}
+import { IHero } from '../pages/PlayerSettings-interface';
 
 export const heroes: IHero[] = [
   {
@@ -32,7 +22,7 @@ export const heroes: IHero[] = [
     name: 'Настя',
     health: 3,
     description:
-      'девушка-полицейский. С самого начала игры у нее в запасе есть пистолет. И какое бы ей далее оружие не выпало, своим законным она может пользоваться неограниченное количество раз.',
+      'медсестра, а значит, что ее аптечка дает не 1 дополнительную жизнь, а сразу две.',
     image: img2,
     inventory: [],
     skill: 1,
@@ -54,7 +44,7 @@ export const heroes: IHero[] = [
     name: 'Надя',
     health: 3,
     description:
-      'медсестра, а значит, что ее аптечка дает не 1 дополнительную жизнь, а сразу две.',
+      'девушка-полицейский. С самого начала игры у нее в запасе есть пистолет. И какое бы ей далее оружие не выпало, своим законным она может пользоваться неограниченное количество раз.',
     image: img4,
     inventory: [],
     skill: 1,

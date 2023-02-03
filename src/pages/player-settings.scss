@@ -1,0 +1,36 @@
+.wrapper{
+    position: absolute;
+    background-image: url('../../public/background.jpg');
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.settings-menu{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    background-color: antiquewhite;
+    opacity: 0.9;
+    margin: 3rem auto 0;
+    border: 1px solid black;
+    border-radius: .5rem;
+    box-shadow: 0 0px 4px #a64304;
+}
+
+.players{
+    display: flex;
+    flex-direction: column;
+    padding: 0 2rem;
+    border-bottom: 1px solid gray;
+
+    .player__subtitle{
+        margin: 0;
+    }
+}
+
+h1{
+    text-align: center;
+}

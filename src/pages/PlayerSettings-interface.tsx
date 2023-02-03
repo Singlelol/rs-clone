@@ -14,3 +14,18 @@ export type CounterProps = {
   increase: () => void;
   decrease: () => void;
 };
+
+export type PopupProps = {
+  hero: IHero;
+};
+
+export type IHero = {
+  id: number;
+  name: string;
+  health: number;
+  description: string;
+  image: string;
+  inventory: [];
+  skill: number;
+  profession: string;
+};

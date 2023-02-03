@@ -9,7 +9,8 @@ export default function Popup({ hero }: PopupProps) {
         <h3 className='popup__name'>{hero.name}</h3>
       </div>
       <div className='popup__health'>
-        <span>Здоровье:{hero.health}</span>
+        <span>Здоровье:</span>
+        {Array(hero.health).fill(<div className=' popup__heart-image' />)}
       </div>
       <span className='popup__subtitle'>Описание:</span>
       <p className='popup__description'>{hero.description}</p>

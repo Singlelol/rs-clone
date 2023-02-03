@@ -31,11 +31,7 @@ export default function Slyder() {
       <div className={popupClasses.join(' ')}>
         <Popup hero={heroes[activeIndex]} />
       </div>
-      <button
-        type='button'
-        className='control__btn'
-        onClick={() => changeHero()}
-      >
+      <button type='button' className='control__btn' onClick={changeHero}>
         <img src={arr} className='prev' alt='удалить игрока' />
       </button>
       <div className='slider'>

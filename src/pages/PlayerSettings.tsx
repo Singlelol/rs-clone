@@ -19,7 +19,6 @@ export default function PlayerSettings() {
       setPlayers([...players, newPlayer]);
     }
   };
-  console.log(players);
 
   const decrease = () => {
     if (players.length > 1 && players.length <= maxPlayers) {

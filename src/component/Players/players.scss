@@ -52,7 +52,6 @@
         background-color: transparent;
         border: none;
         background: url('../../images/close.png') no-repeat center center / contain;
-        // background: url('https://i.stack.imgur.com/cLnMQ.png') no-repeat center center / contain;
     }
 }
 
@@ -91,11 +90,8 @@ input[type="checkbox"] {
   }
 
   input[type="text"] {
-    border: 1px solid #cccccc; //цвет рамки
+    border: 1px solid #cccccc;
     outline: none;
     height: 30px;
     width: 30%;
  }
-
-// #a64304
-// #DF7C0A

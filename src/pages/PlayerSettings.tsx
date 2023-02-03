@@ -39,7 +39,7 @@ export default function PlayerSettings() {
           decrease={decrease}
         />
         <div className='players'>
-          <h3>Список игроков</h3>
+          <h3 className='player__subtitle'>Список игроков</h3>
           {players.map((player) => (
             <Player key={player.id} player={player} decrease={decrease} />
           ))}

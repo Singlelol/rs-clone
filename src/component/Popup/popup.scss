@@ -1,0 +1,17 @@
+.popup-wrapper{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: -200px;
+    top: -100px;
+    width: 200px;
+    background-color: antiquewhite;
+
+}
+
+.popup-wrapper--active{
+    display: flex;
+}
+.popup-wrapper--inactive{
+    display: none;
+}

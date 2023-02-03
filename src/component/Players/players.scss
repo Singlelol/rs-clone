@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    padding: 1rem 0;
+    padding: .5rem 0;
 
     &__toogle{
         display: flex;
@@ -10,13 +10,49 @@
         gap: 0.5rem;
     }
 
+    &__icons{
+      position: relative;
+
+      .icons{
+        position: absolute;
+        height: 3rem;
+        margin-top: -3.5rem;
+        margin-left: -6rem;
+        padding: 0;
+        list-style-type: none;
+        -moz-box-shadow:0 0 10px #a64304;
+        -webkit-box-shadow:0 0 10px #a64304;
+        box-shadow:0 0 10px #a64304;
+      }
+
+      .icons-hide{
+        display: none;
+      }
+
+      .icons-show{
+        display: flex;
+      }
+  
+      .icon{
+        width: 3rem;
+        height: 3rem;
+        border: 1px solid black;
+        box-shadow: 0 0px 4px rgb(0 0 0 / 25%);
+
+        &:hover{
+          box-shadow:0 0 10px #a64304;
+        } 
+      }
+    } 
+
     &__btn-delete {
         display: inline-block;
-        width: 16px;
-        height: 16px;
+        width: 26px;
+        height: 26px;
         background-color: transparent;
         border: none;
-        background: url('https://i.stack.imgur.com/cLnMQ.png') no-repeat center center / contain;
+        background: url('../../images/close.png') no-repeat center center / contain;
+        // background: url('https://i.stack.imgur.com/cLnMQ.png') no-repeat center center / contain;
     }
 }
 
@@ -26,7 +62,7 @@ input[type="checkbox"] {
     height: 2rem;
     -webkit-appearance: none;
     appearance: none;
-    background: red;
+    background: #DF7C0A;
     outline: none;
     border-radius: 2rem;
     cursor: pointer;
@@ -51,7 +87,7 @@ input[type="checkbox"] {
   }
   
   input[type="checkbox"]:checked {
-    background: #00ed64;
+    background:  #a64304;
   }
 
   input[type="text"] {
@@ -61,4 +97,5 @@ input[type="checkbox"] {
     width: 30%;
  }
 
- 
+// #a64304
+// #DF7C0A

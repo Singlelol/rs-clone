@@ -11,17 +11,21 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 60%;
     background-color: antiquewhite;
     opacity: 0.9;
-    margin: 5rem auto 0;
+    margin: 3rem auto 0;
 }
 
 .players{
     display: flex;
     flex-direction: column;
-    padding: 1rem 2rem;
+    padding: 0 2rem;
     border-bottom: 1px solid gray;
+
+    .player__subtitle{
+        margin: 0;
+    }
 }
 
 h1{

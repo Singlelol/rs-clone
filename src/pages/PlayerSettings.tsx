@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { PlayerType } from './PlayerSettings-interface';
-import Counter from '../component/Counter/Counter';
-import Player from '../component/Players/Player';
+import Counter from '../components/Counter/Counter';
+import Player from '../components/Players/Player';
 import './player-settings.scss';
 
 const PlayerSettings = () => {

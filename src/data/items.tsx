@@ -24,7 +24,7 @@ export type ItemType = {
   image: string;
 };
 
-export const heroes: ItemType[] = [
+export const items: ItemType[] = [
   {
     id: 'Zombi',
     name: 'Зомби',

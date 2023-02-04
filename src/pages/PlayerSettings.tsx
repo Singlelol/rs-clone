@@ -9,7 +9,7 @@ const PlayerSettings = () => {
   const title = 'Выберите количество игроков:';
   const list = 'Список игроков';
   const startplayers: PlayerType[] = [
-    { id: 1, name: 'Player1', isHuman: true },
+    { id: 1, name: 'Player1', isHuman: true, hero: '' },
   ];
   const [players, setPlayers] = useState<PlayerType[]>(startplayers);
 
@@ -19,6 +19,7 @@ const PlayerSettings = () => {
         id: Number(players.length + 1),
         name: `Player${players.length + 1}`,
         isHuman: false,
+        hero: '',
       };
       setPlayers([...players, newPlayer]);
     }

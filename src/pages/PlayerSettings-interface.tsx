@@ -2,6 +2,7 @@ export type PlayerType = {
   id: number;
   name: string;
   isHuman?: boolean;
+  hero: string;
 };
 
 export type PlayerProps = {
@@ -25,7 +26,16 @@ export type HeroType = {
   health: number;
   description: string;
   image: string;
-  inventory: [];
+  inventory: ItemType[];
   skill: number;
   profession: string;
+};
+
+type ItemType = {
+  id: string;
+  name: string;
+  type: string;
+  count: number;
+  description: string;
+  image: string;
 };

@@ -1,8 +1,8 @@
-import img1 from '../images/alex.png';
-import img2 from '../images/nastya.png';
-import img3 from '../images/max.png';
-import img4 from '../images/nadya.png';
-import img5 from '../images/boris.png';
+import img1 from '../images/Pers/Alex.png';
+import img2 from '../images/Pers/Nastya.png';
+import img3 from '../images/Pers/Max.png';
+import img4 from '../images/Pers/Nadya.png';
+import img5 from '../images/Pers/Boris.png';
 import { HeroType } from '../pages/PlayerSettings-interface';
 
 export const heroes: HeroType[] = [

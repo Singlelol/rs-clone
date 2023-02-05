@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { MainPage } from './pages/mainPage/mainPage';
-import reportWeb from './reportWebVitals';
 import './index.css';
-// import App from './App';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import App from './App';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -13,8 +13,3 @@ root.render(
     <MainPage />
   </React.StrictMode>,
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWeb();

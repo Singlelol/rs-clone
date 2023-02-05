@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import gameField from './gameFieldJSON';
 import './style.css';
 import '../../assets/img/gameField.webp';
@@ -12,17 +13,21 @@ interface GameFieldItem {
   start?: string;
 }
 
+type Type = {
+  [index: string]: string;
+};
+
 function GridContainer() {
   return (
-    <div className="grid-container">
-      {gameField.map((item : GameFieldItem) => {
-        return (
-          <div
-            className="grid-item" id={item.id.toString()}
-            {Object.entries(item).filter((key, value) => key !== 'id').map((key) => data-key + "=" + item[key])}
-          >
-          </div>
-        );
+    <div className='grid-container'>
+      {gameField.map((item: GameFieldItem) => {
+        const attr: Type = {};
+        Object.keys(item).forEach((key) => {
+          if (key !== 'id') {
+            attr[`data-${key}`] = `${item[key as keyof typeof item]}`;
+          }
+        });
+        return <div className='grid-item' id={item.id.toString()} {...attr} />;
       })}
     </div>
   );

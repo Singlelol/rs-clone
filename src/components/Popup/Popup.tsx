@@ -1,7 +1,7 @@
 import { PopupProps } from '../../pages/PlayerSettings-interface';
 import './popup.scss';
 
-const Popup = ({ hero }: PopupProps) => {
+export const Popup = ({ hero }: PopupProps) => {
   const health = 'Здоровье:';
   const description = 'Описание:';
   return (
@@ -19,5 +19,3 @@ const Popup = ({ hero }: PopupProps) => {
     </div>
   );
 };
-
-export default Popup;

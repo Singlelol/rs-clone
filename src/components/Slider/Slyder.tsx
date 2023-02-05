@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import Popup from '../Popup/Popup';
+import { Popup } from '../Popup/Popup';
 import { heroes } from '../../data/heroes';
 import './slyder.scss';
 import arr from '../../images/arror.png';
 
-const Slyder = () => {
+export const Slyder = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const prevImgIndex = activeIndex ? activeIndex - 1 : heroes.length - 1;
   const nextImgIndex = activeIndex === heroes.length - 1 ? 0 : activeIndex + 1;
@@ -59,5 +59,3 @@ const Slyder = () => {
     </div>
   );
 };
-
-export default Slyder;

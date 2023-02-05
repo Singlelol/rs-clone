@@ -1,12 +1,10 @@
 import { PlayerProps } from './Players-card-interface';
+import { findHeroName } from '../../utilities/utilities';
 import './PlayerCard.scss';
-import { heroes } from '../../data/heroes';
 
-const PlayerChip = ({ player }: PlayerProps) => {
-  const hero = heroes.filter((elem) => elem.name === player.hero);
+export const PlayerChip = ({ player }: PlayerProps) => {
+  const hero = findHeroName(player);
   return (
-    <img className='players-card__img' src={hero[0].image} alt='player-img' />
+    <img className='players-card__img' src={hero?.image} alt='player-img' />
   );
 };
-
-export default PlayerChip;

@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import image from '../../components/background/8714ae6ce6ff.png';
+import { Button } from '../../components/buttons/button_on_mainPage';
 import './mainPage.scss';
-// eslint-disable-next-line spaced-comment
-import Button from '../../components/buttons/button_on_mainPage';
-
-function mainPage() {
+import '../../components/buttons/button_style_mainPage.scss';
+// eslint-disable-next-line import/prefer-default-export, react/function-component-definition
+export const MainPage = () => {
   return (
     <div className='App'>
       <header className='App-header'>
@@ -17,41 +17,29 @@ function mainPage() {
             </li>
             <li>
               <Button
-                color='rgba(222, 106, 23, 0.97)'
-                background='#241005ef'
-                height='34px'
-                onClick={() => console.log('!')}
-                width='200px'
+                background={Button.defaultProps?.background}
+                height={Button.defaultProps?.height}
+                width={Button.defaultProps?.width}
                 // eslint-disable-next-line react/no-children-prop
                 children='Load'
-                font_weight='bold'
-                font_size='24px'
               />
             </li>
             <li>
               <Button
-                color='rgba(222, 106, 23, 0.97)'
-                background='#241005ef'
-                height='34px'
-                onClick={() => console.log('!')}
-                width='200px'
+                background={Button.defaultProps?.background}
+                height={Button.defaultProps?.height}
+                width={Button.defaultProps?.width}
                 // eslint-disable-next-line react/no-children-prop
                 children='Statistic'
-                font_weight='bold'
-                font_size='24px'
               />
             </li>
             <li>
               <Button
-                color='rgba(222, 106, 23, 0.97)'
-                background='#241005ef'
-                height='34px'
-                onClick={() => console.log('!')}
-                width='200px'
+                background={Button.defaultProps?.background}
+                height={Button.defaultProps?.height}
+                width={Button.defaultProps?.width}
                 // eslint-disable-next-line react/no-children-prop
                 children='Credits'
-                font_weight='bold'
-                font_size='24px'
               />
             </li>
           </ul>
@@ -59,5 +47,4 @@ function mainPage() {
       </header>
     </div>
   );
-}
-export default mainPage;
+};

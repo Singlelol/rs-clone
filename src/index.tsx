@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 // import App from './App';
-import Main from './pages/mainPage/mainPage';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { MainPage } from './pages/mainPage/mainPage';
 import reportWeb from './reportWebVitals';
 
 const root = ReactDOM.createRoot(
@@ -10,7 +11,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <Main />
+    <MainPage />
   </React.StrictMode>,
 );
 

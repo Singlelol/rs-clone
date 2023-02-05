@@ -39,6 +39,10 @@
     list-style-type:none;
     padding: 0%;
   }
+  a {
+    text-decoration: none;
+    color: rgba(222, 106, 23, 0.97);
+  }
   a:active, /* активная/посещенная ссылка */
 a:hover{
     color: rgba(165, 79, 18, 0.92);

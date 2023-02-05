@@ -29,6 +29,7 @@ export const Button: React.FC<Props> = ({
     </button>
   );
 };
+
 Button.defaultProps = {
   background: '#241005ef',
   height: '2.3rem',

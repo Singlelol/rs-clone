@@ -1,8 +1,3 @@
-/* body {
-     background-image: url(../../components/background/8714ae6ce6ff.png);
-    background-color: black;
-    background-repeat: no-repeat; }*/
-
 .App {
   text-align: center;
 
@@ -31,9 +26,9 @@
       padding: 10px;
       font: bold 24px/34px Helvetica, Sans-Serif;
 
-      ul {
+      .list_li {
         list-style-type:none;
-        padding: 0%;
+        padding: 0;
   
         a {
           text-decoration: none;
@@ -44,10 +39,6 @@
           color: rgba(165, 79, 18, 0.92);
         } 
       }
-
     }
   }
 }
-
- 
-  

@@ -15,14 +15,38 @@ export const MainPage = () => {
         <div className='list_link'>
           <ul className='list_li'>
             <li>
-              <a href='#'>New Game</a>
+              <Button
+                onClick={() => {
+                  console.log('!');
+                }}
+                children='New Game'
+              />
             </li>
-            <Button>Load</Button>
             <li>
-              <Button>Statistic</Button>
+              <Button
+                disabled
+                onClick={() => {
+                  console.log('!');
+                }}
+                children='Load'
+              />
             </li>
             <li>
-              <Button>Credits</Button>
+              <Button
+                disabled
+                onClick={() => {
+                  console.log('!');
+                }}
+                children='Statistic'
+              />
+            </li>
+            <li>
+              <Button
+                onClick={() => {
+                  console.log('!');
+                }}
+                children='Credits'
+              />
             </li>
           </ul>
         </div>

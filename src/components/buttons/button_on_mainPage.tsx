@@ -8,6 +8,8 @@ interface Props {
   children: React.ReactNode;
   height?: string;
   width?: string;
+  onClick: () => void;
+  disabled?: boolean;
 }
 
 // eslint-disable-next-line import/prefer-default-export
@@ -16,19 +18,21 @@ export const Button: React.FC<Props> = ({
   children,
   height,
   width,
-}) => {
-  return (
-    <button
-      style={{
-        backgroundColor: background,
-        height,
-        width,
-      }}
-    >
-      {children}
-    </button>
-  );
-};
+  onClick,
+  disabled,
+}) => (
+  <button
+    disabled={disabled}
+    onClick={onClick}
+    style={{
+      backgroundColor: background,
+      height,
+      width,
+    }}
+  >
+    {children}
+  </button>
+);
 
 Button.defaultProps = {
   background: '#241005ef',

@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import image from '../../components/background/8714ae6ce6ff.png';
-import './mainPage.css';
+import './mainPage.scss';
 // eslint-disable-next-line spaced-comment
 import Button from '../../components/buttons/button_on_mainPage';
 

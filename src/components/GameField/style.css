@@ -15,7 +15,3 @@ body {
 .grid-container > div {
   aspect-ratio: 1 / 1;
 }
-
-.grid-item {
-  background-color: none;
-}

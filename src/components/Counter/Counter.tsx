@@ -2,7 +2,7 @@ import { CounterProps } from '../../pages/PlayerSettings-interface';
 import arrowImage from '../../images/arror.png';
 import './counter.scss';
 
-const Counter = ({ counter, increase, decrease }: CounterProps) => {
+export const Counter = ({ counter, increase, decrease }: CounterProps) => {
   return (
     <div className='counter'>
       <div className='btn__container'>
@@ -25,5 +25,3 @@ const Counter = ({ counter, increase, decrease }: CounterProps) => {
     </div>
   );
 };
-
-export default Counter;

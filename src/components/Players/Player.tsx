@@ -1,8 +1,8 @@
 import { PlayerProps } from '../../pages/PlayerSettings-interface';
-import Slyder from '../Slider/Slyder';
+import { Slyder } from '../Slider/Slyder';
 import './players.scss';
 
-const Player = ({ player, decrease }: PlayerProps) => {
+export const Player = ({ player, decrease }: PlayerProps) => {
   return (
     <div className='player'>
       <span className='player__id'>{player.id}</span>
@@ -17,5 +17,3 @@ const Player = ({ player, decrease }: PlayerProps) => {
     </div>
   );
 };
-
-export default Player;

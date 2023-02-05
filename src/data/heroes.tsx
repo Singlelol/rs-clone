@@ -1,9 +1,10 @@
-import img1 from '../images/alex.png';
-import img2 from '../images/nastya.png';
-import img3 from '../images/max.png';
-import img4 from '../images/nadya.png';
-import img5 from '../images/boris.png';
+import img1 from '../images/Pers/Alex.png';
+import img2 from '../images/Pers/Nastya.png';
+import img3 from '../images/Pers/Max.png';
+import img4 from '../images/Pers/Nadya.png';
+import img5 from '../images/Pers/Boris.png';
 import { HeroType } from '../pages/PlayerSettings-interface';
+import { items } from './items';
 
 export const heroes: HeroType[] = [
   {
@@ -13,7 +14,7 @@ export const heroes: HeroType[] = [
     description:
       'Увлекается боевыми искусствами. Вне зависимости от того, какие предметы выпадут в процессе игры, у него всегда есть в запасе нож, которым он может воспользоваться при необходимости.',
     image: img1,
-    inventory: [],
+    inventory: [items[11]],
     skill: 1,
     profession: 'кунгфу мастер',
   },
@@ -24,7 +25,7 @@ export const heroes: HeroType[] = [
     description:
       'Работает медсестрой, а значит, что ее аптечка дает не 1 дополнительную жизнь, а сразу две.',
     image: img2,
-    inventory: [],
+    inventory: [items[4]],
     skill: 1,
     profession: 'полицейский',
   },
@@ -46,18 +47,18 @@ export const heroes: HeroType[] = [
     description:
       'Работает в полиции. С самого начала игры у нее в запасе есть пистолет. И какое бы ей далее оружие не выпало, своим законным она может пользоваться неограниченное количество раз.',
     image: img4,
-    inventory: [],
+    inventory: [items[9]],
     skill: 1,
     profession: 'медсестра',
   },
   {
     id: 5,
     name: 'Борис',
-    health: 5,
+    health: 8,
     description:
       'Невероятно здоровый и выносливый. В начале игры у него на две жизни большеб чем у остальных',
     image: img5,
-    inventory: [],
+    inventory: [items[5]],
     skill: 1,
     profession: '',
   },

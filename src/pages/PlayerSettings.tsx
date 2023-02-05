@@ -4,11 +4,11 @@ import { Counter } from '../components/Counter/Counter';
 import { Player } from '../components/Players/Player';
 import './player-settings.scss';
 
+const maxPlayers = 5;
+const title = 'Выберите количество игроков:';
+const list = 'Список игроков';
+const startText = 'Начать игру';
 export const PlayerSettings = () => {
-  const maxPlayers = 5;
-  const title = 'Выберите количество игроков:';
-  const list = 'Список игроков';
-  const startText = 'Начать игру';
   const startplayers: PlayerType[] = [
     { id: 1, name: 'Player1', isHuman: true, hero: '' },
   ];

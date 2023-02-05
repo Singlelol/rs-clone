@@ -1,21 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import gameField from './gameFieldJSON';
+import { GameFieldItem, Type } from './GameFieldTypes';
 import './style.css';
 import '../../assets/img/gameField.webp';
-
-interface GameFieldItem {
-  id: number;
-  left?: string;
-  top?: string;
-  right?: string;
-  finish?: string;
-  bottom?: string;
-  start?: string;
-}
-
-type Type = {
-  [index: string]: string;
-};
 
 function GridContainer() {
   return (

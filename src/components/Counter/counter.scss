@@ -1,0 +1,31 @@
+.counter{
+  display: flex;
+  justify-content: center;
+  
+  .btn__container{
+    display: flex;
+  }
+
+  .counter__output{
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 2.4rem;
+  }
+
+  .control__btn{
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 0 4rem;
+
+    .control__btn-next{
+      width: 2.5rem;
+    }
+
+    .control__btn-prev{
+      width: 2.5rem;
+      transform: rotate(180deg);
+    }
+  }
+}

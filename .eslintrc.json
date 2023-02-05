@@ -35,6 +35,10 @@
         "arrow-body-style": "off",
         "prefer-arrow-callback": "off",
         "quotes": "off",
-        "@typescript-eslint/quotes": "warn"
+        "@typescript-eslint/quotes": "warn",
+        "import/prefer-default-export": "off",
+        "react/function-component-definition": "off",
+        "jsx-a11y/no-static-element-interactions": "off",
+        "jsx-a11y/click-events-have-key-events": "off"
     }
 }

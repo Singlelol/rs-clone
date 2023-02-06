@@ -1,4 +1,4 @@
-import { PopupProps } from '../../pages/PlayerSettings-interface';
+import { PopupProps } from '../../pages/playersPage/PlayerSettings-interface';
 import './popup.scss';
 
 export const Popup = ({ hero }: PopupProps) => {

@@ -1,12 +1,8 @@
 import React from 'react';
-import { GameFieldPage } from './pages/gameField/GameFieldPage';
+// import { GameFieldPage } from './pages/gamePage/GameFieldPage';
 
 function App() {
-  return (
-    <div className='grid-container'>
-      <GameFieldPage />
-    </div>
-  );
+  return <div>{/* <GameFieldPage /> */}</div>;
 }
 
 export default App;

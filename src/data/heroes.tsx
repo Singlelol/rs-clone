@@ -3,7 +3,7 @@ import img2 from '../images/Pers/Nastya.png';
 import img3 from '../images/Pers/Max.png';
 import img4 from '../images/Pers/Nadya.png';
 import img5 from '../images/Pers/Boris.png';
-import { HeroType } from '../pages/PlayerSettings-interface';
+import { HeroType } from '../pages/playersPage/PlayerSettings-interface';
 import { items } from './items';
 
 export const heroes: HeroType[] = [

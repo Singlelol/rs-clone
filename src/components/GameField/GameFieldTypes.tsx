@@ -1,4 +1,4 @@
-export type GameFieldItem = {
+export type GameFieldItemType = {
   id: number;
   left?: string;
   top?: string;
@@ -8,11 +8,11 @@ export type GameFieldItem = {
   start?: string;
 };
 
-export type Type = {
+export type GridItemsType = {
   [index: string]: string;
 };
 
 export type GameFieldProps = {
-  item: GameFieldItem;
+  item: GameFieldItemType;
   index: number;
 };

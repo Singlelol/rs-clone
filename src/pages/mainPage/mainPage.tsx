@@ -15,16 +15,14 @@ export const MainPage = () => {
         <img src={image} className='App-logo' alt='img' />
         <div className='list_link'>
           <ul className='list_li'>
-            {btnName.map((btn) => {
-              return (
-                <li>
-                  <Button
-                    children={btn}
-                    disabled={btn === 'Statistic' || btn === 'Credits'}
-                  />
-                </li>
-              );
-            })}
+            {btnName.map((btn) => (
+              <li>
+                <Button
+                  children={btn}
+                  disabled={btn === 'Statistic' || btn === 'Credits'}
+                />
+              </li>
+            ))}
           </ul>
         </div>
       </header>

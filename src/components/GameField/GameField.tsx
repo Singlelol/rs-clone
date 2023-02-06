@@ -1,14 +1,14 @@
 import './style.css';
 import '../../assets/img/gameField.webp';
-import { GameFieldItem, Type } from './GameFieldTypes';
+import { GameFieldItemType, GridItemsType } from './GameFieldTypes';
 
 type GameFieldItemProps = {
-  item: GameFieldItem;
+  item: GameFieldItemType;
   index: number;
 };
 
 export const GameField = ({ item, index }: GameFieldItemProps) => {
-  const attr: Type = {};
+  const attr: GridItemsType = {};
   Object.keys(item).forEach((key) => {
     if (key === 'id') attr.id = `${item[key as keyof typeof item]}`;
     if (key !== 'id') {

@@ -2,13 +2,13 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/function-component-definition */
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 interface Props {
   background?: string;
   children: React.ReactNode;
   height?: string;
   width?: string;
-  onClick: () => void;
   disabled?: boolean;
 }
 
@@ -18,21 +18,36 @@ export const Button: React.FC<Props> = ({
   children,
   height,
   width,
-  onClick,
   disabled,
-}) => (
-  <button
-    disabled={disabled}
-    onClick={onClick}
-    style={{
-      backgroundColor: background,
-      height,
-      width,
-    }}
-  >
-    {children}
-  </button>
-);
+}) => {
+  let mainLink: string = '';
+  if (children === 'New Game') {
+    mainLink = '/players';
+  }
+  if (children === 'Load') {
+    mainLink = '/load';
+  }
+  if (children === 'Statistic') {
+    mainLink = '/statistic';
+  }
+  if (children === 'Credits') {
+    mainLink = '/credits';
+  }
+  return (
+    <button
+      disabled={disabled}
+      style={{
+        backgroundColor: background,
+        height,
+        width,
+      }}
+    >
+      <Link to={mainLink} className='main-link'>
+        {children}
+      </Link>
+    </button>
+  );
+};
 
 Button.defaultProps = {
   background: '#241005ef',

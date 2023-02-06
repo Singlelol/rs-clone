@@ -7,6 +7,7 @@ import './mainPage.scss';
 import '../../components/buttons/button_style_mainPage.scss';
 
 // eslint-disable-next-line import/prefer-default-export, react/function-component-definition
+const btnName: string[] = ['New Game', 'Load', 'Statistic', 'Credits'];
 export const MainPage = () => {
   return (
     <div className='App'>
@@ -14,40 +15,16 @@ export const MainPage = () => {
         <img src={image} className='App-logo' alt='img' />
         <div className='list_link'>
           <ul className='list_li'>
-            <li>
-              <Button
-                onClick={() => {
-                  console.log('!');
-                }}
-                children='New Game'
-              />
-            </li>
-            <li>
-              <Button
-                disabled
-                onClick={() => {
-                  console.log('!');
-                }}
-                children='Load'
-              />
-            </li>
-            <li>
-              <Button
-                disabled
-                onClick={() => {
-                  console.log('!');
-                }}
-                children='Statistic'
-              />
-            </li>
-            <li>
-              <Button
-                onClick={() => {
-                  console.log('!');
-                }}
-                children='Credits'
-              />
-            </li>
+            {btnName.map((btn) => {
+              return (
+                <li>
+                  <Button
+                    children={btn}
+                    disabled={btn === 'Statistic' || btn === 'Credits'}
+                  />
+                </li>
+              );
+            })}
           </ul>
         </div>
       </header>

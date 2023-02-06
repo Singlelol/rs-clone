@@ -2,3 +2,16 @@ button {
     font: bold 1.8rem/1rem Helvetica, Sans-Serif;
     color: rgba(222, 106, 23, 0.97);
 }
+
+.main-link{
+    color: white;
+    text-decoration: none;
+    
+    &:hover{
+        color: rgba(222, 106, 23, 0.97);
+    }
+    
+    &:disabled{
+        color: #241005ef;
+    }
+}

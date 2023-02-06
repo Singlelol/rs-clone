@@ -1,4 +1,6 @@
-const gameField = [
+import { GameFieldItem } from './GameFieldTypes';
+
+export const gameField: GameFieldItem[] = [
   {
     id: 1,
     left: 'N',
@@ -566,5 +568,3 @@ const gameField = [
     right: 'N',
   },
 ];
-
-export default gameField;

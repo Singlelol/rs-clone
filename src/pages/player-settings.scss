@@ -1,9 +1,9 @@
 .wrapper{
   position: absolute;
-  background-image: url('../../public/background.jpg');
+  background-image: url('../../public/backgroundForPlayerSettings.png');
   height: 100%;
   width: 100%;
-  background-size: cover;
+  background-size: 100% 100%;
   background-position: center;
 }
 
@@ -15,22 +15,43 @@
   background-color: antiquewhite;
   opacity: 0.9;
   margin: 3rem auto 0;
-  border: .1rem solid black;
-  border-radius: .5rem;
-  box-shadow: 0 0 .4rem #a64304;
+  border: .1rem solid #B95A27;
+  border-radius: 5%;
+  box-shadow: 0 0 4rem rgba(185, 90, 39, .2);
+
+  &__title{
+    margin: 1rem 0;
+    text-align: center;
+    font-size: 1.8rem;
+    font-style: revert;
+    font-weight: 600;
+    line-height: 1.8rem;
+  }
 }
 
 .players{
   display: flex;
   flex-direction: column;
   padding: 0 2rem;
-  border-bottom: .1rem solid gray;
 
-  .player__subtitle{
+  &__subtitle{
     margin: 0;
+    font-size: 1.4rem;
+    font-style: revert;
+    font-weight: 500;
+    line-height: 1.2rem;
   }
-}
 
-h1{
-  text-align: center;
+  &__btn{
+    margin: 0.2rem auto 0.5rem;
+    padding: 0.4rem;
+    width: 20%;
+    text-align: center;
+    border: 0.05rem solid #B95A27;
+    background-color: #a64304;
+    color: antiquewhite;
+    border-radius: 10%;
+    box-shadow: 0 0 4rem rgb(185 90 39 / 20%);
+    cursor: pointer;
+  }
 }

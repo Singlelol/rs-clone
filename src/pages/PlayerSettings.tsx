@@ -4,10 +4,11 @@ import { Counter } from '../components/Counter/Counter';
 import { Player } from '../components/Players/Player';
 import './player-settings.scss';
 
-const PlayerSettings = () => {
-  const maxPlayers = 5;
-  const title = 'Выберите количество игроков:';
-  const list = 'Список игроков';
+const maxPlayers = 5;
+const title = 'Выберите количество игроков:';
+const list = 'Список игроков';
+const startText = 'Начать игру';
+export const PlayerSettings = () => {
   const startplayers: PlayerType[] = [
     { id: 1, name: 'Player1', isHuman: true, hero: '' },
   ];
@@ -35,21 +36,22 @@ const PlayerSettings = () => {
   return (
     <div className='wrapper'>
       <div className='settings-menu'>
-        <h1>{title}</h1>
+        <h2 className='settings-menu__title'>{title}</h2>
         <Counter
           counter={players.length}
           increase={increase}
           decrease={decrease}
         />
         <div className='players'>
-          <h3 className='player__subtitle'>{list}</h3>
+          <h3 className='players__subtitle'>{list}</h3>
           {players.map((player) => (
             <Player key={player.id} player={player} decrease={decrease} />
           ))}
         </div>
+        <button className='players__btn' type='button'>
+          {startText}
+        </button>
       </div>
     </div>
   );
 };
-
-export default PlayerSettings;

@@ -7,10 +7,11 @@
   }
 
   .counter__output{
-    font-size: 2rem;
-    font-style: normal;
+    text-align: center;
+    font-size: 1.8rem;
+    font-style: revert;
     font-weight: 600;
-    line-height: 2.4rem;
+    line-height: 1.8rem;
   }
 
   .control__btn{
@@ -20,11 +21,11 @@
     padding: 0 4rem;
 
     .control__btn-next{
-      width: 2.5rem;
+      width: 2rem;
     }
 
     .control__btn-prev{
-      width: 2.5rem;
+      width: 2rem;
       transform: rotate(180deg);
     }
   }

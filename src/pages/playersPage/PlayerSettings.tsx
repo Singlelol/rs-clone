@@ -50,7 +50,7 @@ export const PlayerSettings = () => {
           ))}
         </div>
         <button className='players__btn' type='button'>
-          <Link className='main-link' to='/game'>
+          <Link className='player-link' to='/game'>
             {startText}
           </Link>
         </button>

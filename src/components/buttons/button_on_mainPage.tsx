@@ -21,17 +21,21 @@ export const Button: React.FC<Props> = ({
   disabled,
 }) => {
   let mainLink: string = '';
-  if (children === 'New Game') {
-    mainLink = '/players';
-  }
-  if (children === 'Load') {
-    mainLink = '/load';
-  }
-  if (children === 'Statistic') {
-    mainLink = '/statistic';
-  }
-  if (children === 'Credits') {
-    mainLink = '/credits';
+
+  // eslint-disable-next-line default-case
+  switch (children) {
+    case 'New Game':
+      mainLink = '/players';
+      break;
+    case 'Load':
+      mainLink = '/load';
+      break;
+    case 'Statistic':
+      mainLink = '/statistic';
+      break;
+    case 'Credits':
+      mainLink = '/credits';
+      break;
   }
   return (
     <button

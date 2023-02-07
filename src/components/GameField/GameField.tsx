@@ -1,26 +1,22 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import gameField from './gameFieldJSON';
-import { GameFieldItem, Type } from './GameFieldTypes';
 import './style.css';
 import '../../assets/img/gameField.webp';
+import { GameFieldItemType, GridItemsType } from './GameFieldTypes';
 
-function GridContainer() {
-  return (
-    <div className='grid-container'>
-      {gameField.map((item: GameFieldItem, index: number) => {
-        const attr: Type = {};
-        Object.keys(item).forEach((key) => {
-          if (key === 'id') attr.id = `${item[key as keyof typeof item]}`;
-          if (key !== 'id') {
-            attr[`data-${key}`] = `${item[key as keyof typeof item]}`;
-          }
-          attr.className = 'grid-item';
-          attr.key = index.toString();
-        });
-        return <div {...attr} />;
-      })}
-    </div>
-  );
-}
+type GameFieldItemProps = {
+  item: GameFieldItemType;
+  index: number;
+};
 
-export default GridContainer;
+export const GameField = ({ item, index }: GameFieldItemProps) => {
+  const attr: GridItemsType = {};
+  Object.keys(item).forEach((key) => {
+    if (key === 'id') attr.id = `${item[key as keyof typeof item]}`;
+    if (key !== 'id') {
+      attr[`data-${key}`] = `${item[key as keyof typeof item]}`;
+    }
+    attr.className = 'grid-item';
+    attr.key = index.toString();
+  });
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  return <div {...attr} />;
+};

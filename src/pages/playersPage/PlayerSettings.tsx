@@ -1,7 +1,8 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { PlayerType } from './PlayerSettings-interface';
-import { Counter } from '../components/Counter/Counter';
-import { Player } from '../components/Players/Player';
+import { Counter } from '../../components/Counter/Counter';
+import { Player } from '../../components/Players/Player';
 import './player-settings.scss';
 
 const maxPlayers = 5;
@@ -49,7 +50,9 @@ export const PlayerSettings = () => {
           ))}
         </div>
         <button className='players__btn' type='button'>
-          {startText}
+          <Link className='player-link' to='/game'>
+            {startText}
+          </Link>
         </button>
       </div>
     </div>

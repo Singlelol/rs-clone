@@ -1,4 +1,4 @@
-interface GameFieldItem {
+export type GameFieldItemType = {
   id: number;
   left?: string;
   top?: string;
@@ -6,10 +6,13 @@ interface GameFieldItem {
   finish?: string;
   bottom?: string;
   start?: string;
-}
+};
 
-type Type = {
+export type GridItemsType = {
   [index: string]: string;
 };
 
-export type { GameFieldItem, Type };
+export type GameFieldProps = {
+  item: GameFieldItemType;
+  index: number;
+};

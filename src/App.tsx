@@ -1,10 +1,19 @@
 import React from 'react';
-import CreateGameField from './pages/gameField/gameField';
+import { Routes, Route } from 'react-router-dom';
+import { GameFieldPage } from './pages/gamePage/GameFieldPage';
+import { PlayerSettings } from './pages/playersPage/PlayerSettings';
+import { MainPage } from './pages/mainPage/MainPage';
+import { ErrorPage } from './pages/errorPage/ErrorPage';
 
 function App() {
   return (
-    <div className='grid-container'>
-      <CreateGameField />
+    <div>
+      <Routes>
+        <Route path='/' element={<MainPage />} />
+        <Route path='/players' element={<PlayerSettings />} />
+        <Route path='/game' element={<GameFieldPage />} />
+        <Route path='*' element={<ErrorPage />} />
+      </Routes>
     </div>
   );
 }

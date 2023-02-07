@@ -1,4 +1,4 @@
-import { CounterProps } from '../../pages/PlayerSettings-interface';
+import { CounterProps } from '../../pages/playersPage/PlayerSettings-interface';
 import arrowImage from '../../images/arror.png';
 import './counter.scss';
 

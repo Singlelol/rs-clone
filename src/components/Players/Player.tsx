@@ -1,4 +1,4 @@
-import { PlayerProps } from '../../pages/PlayerSettings-interface';
+import { PlayerProps } from '../../pages/playersPage/PlayerSettings-interface';
 import { Slyder } from '../Slider/Slyder';
 import './players.scss';
 

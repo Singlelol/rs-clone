@@ -3,21 +3,21 @@ import { Reset } from './Reset';
 
 type StateMove = {
   count: number;
-  move: number;
+  id: string;
   isString: boolean;
-}
+};
 
-export const MoveCounter = (props : string, state: StateMove) => {
-  const id = props,
-  count = state.count;
-  let move = state.move;
+export const MoveCounter = (props) => {
+  // const id = props;
+  const { id, state} = props
+  const { count, move, isString } = state as StateMove;
 
-  if(state.isString) move = 0; //and return id
+  if (isString) move = 0; // and return id
 
-  return {
+  return (
     <div>
       {`${move} for ${count}`}
       <Reset />
     </div>
-  }
+  );
 };

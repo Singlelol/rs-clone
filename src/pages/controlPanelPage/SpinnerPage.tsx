@@ -1,24 +1,11 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/jsx-no-comment-textnodes */
 import React, { Component } from 'react';
+import { Script } from './Script_Spinner';
 import './SpinnerPage.scss';
 import image from '../../components/background/Snipper.jpg';
-import { Script } from './spped';
 
-// export const SpinnerPage = () => {
-//   const scriptEl = new Script();
-//   return (
-//     <div className='deal-wheel'>
-//       <ul className='spinner' />
-//       <div className='ticker' />
-//       <button className='btn-spin' onClick={scriptEl.setupWheel}>
-//         Run
-//       </button>
-//     </div>
-//   );
-// };
-
-class SpinnerPage extends Component {
+export class SpinnerPage extends Component {
   workerScript: Script = new Script();
 
   render(): React.ReactNode {
@@ -39,5 +26,3 @@ class SpinnerPage extends Component {
     );
   }
 }
-
-export default SpinnerPage;

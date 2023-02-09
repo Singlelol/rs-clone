@@ -4,7 +4,7 @@ import { GameFieldPage } from './pages/gamePage/GameFieldPage';
 import { PlayerSettings } from './pages/playersPage/PlayerSettings';
 import { MainPage } from './pages/mainPage/mainPage';
 import { ErrorPage } from './pages/errorPage/ErrorPage';
-import SpinnerPage from './pages/controlPanelPage/SpinnerPage';
+import { SpinnerPage } from './pages/controlPanelPage/SpinnerPage';
 
 function App() {
   return (

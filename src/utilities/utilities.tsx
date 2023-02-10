@@ -32,20 +32,15 @@ export const createField = () => {
   return arrField;
 };
 
-export const checkAvailible = (gameField: ArrayFieldType[], id: number) => {
+export const checkAvailible = (
+  gameField: ArrayFieldType[],
+  id: number,
+): number[] => {
   const availibleSteps: number[] = [];
   if (!gameField[id].left) availibleSteps.push(id - 1);
   if (!gameField[id].right) availibleSteps.push(id + 1);
-  if (!gameField[id].bottom) availibleSteps.push(id - 12);
-  if (!gameField[id].top) availibleSteps.push(id + 12);
-  // console.log(availibleSteps);
-  if (availibleSteps) {
-    availibleSteps.forEach((item) => {
-      // eslint-disable-next-line no-param-reassign
-      gameField[item].availible = true;
-    });
-  }
-  // console.log(gameField);
+  if (!gameField[id].bottom) availibleSteps.push(id + 12);
+  if (!gameField[id].top) availibleSteps.push(id - 12);
 
-  return gameField;
+  return availibleSteps;
 };

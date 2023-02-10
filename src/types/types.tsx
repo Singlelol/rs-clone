@@ -1,4 +1,5 @@
 import { ItemType } from '../data/items';
+import { HeroType } from '../pages/playersPage/PlayerSettings-interface';
 
 export type ArrayFieldType = {
   id: number;
@@ -8,4 +9,5 @@ export type ArrayFieldType = {
   left?: boolean;
   item?: ItemType;
   availible: boolean;
+  pers?: HeroType;
 };

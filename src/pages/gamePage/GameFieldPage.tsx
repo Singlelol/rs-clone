@@ -1,16 +1,13 @@
 import { useState } from 'react';
 import { GameField } from '../../components/GameField/GameField';
 import { ArrayFieldType } from '../../types/types';
-// import { gameField } from '../../components/GameField/gameFieldJSON';
 import { createField, checkAvailible } from '../../utilities/utilities';
 
 export const GameFieldPage = () => {
-  const [gameField, setGameField] = useState(createField());
-
-  // checkAvailible(gameField, 43).forEach((item) => {
-  //   gameField[item].availible = true;
-  // });
-  console.log(gameField);
+  const gameField = createField();
+  const [availibleSteps, setAvailibleSteps] = useState(
+    checkAvailible(gameField, 133),
+  );
 
   return (
     <div className='grid-container'>
@@ -20,7 +17,8 @@ export const GameFieldPage = () => {
             key={item.id}
             item={item}
             index={index}
-            onClick={() => setGameField(checkAvailible(gameField, index))}
+            availibleSteps={availibleSteps}
+            onClick={() => setAvailibleSteps(checkAvailible(gameField, index))}
           />
         );
       })}

@@ -1,19 +1,19 @@
-import { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { PlayerType } from './PlayerSettings-interface';
 import { Counter } from '../../components/Counter/Counter';
 import { Player } from '../../components/Players/Player';
 import './player-settings.scss';
+import { Context } from '../../App';
 
 const maxPlayers = 5;
 const title = 'Выберите количество игроков:';
 const list = 'Список игроков';
 const startText = 'Начать игру';
+
 export const PlayerSettings = () => {
-  const startplayers: PlayerType[] = [
-    { id: 1, name: 'Player1', isHuman: true, hero: '' },
-  ];
-  const [players, setPlayers] = useState<PlayerType[]>(startplayers);
+  const { user, changePlayers } = useContext(Context);
+  const [players, setPlayers] = useState<PlayerType[]>(user);
 
   const increase = () => {
     if (players.length >= 1 && players.length < maxPlayers) {
@@ -21,11 +21,14 @@ export const PlayerSettings = () => {
         id: Number(players.length + 1),
         name: `Player${players.length + 1}`,
         isHuman: false,
-        hero: '',
+        hero: 'Саша',
       };
       setPlayers([...players, newPlayer]);
     }
+
+    changePlayers(user.concat(players));
   };
+  console.log(user);
 
   const decrease = () => {
     if (players.length > 1 && players.length <= maxPlayers) {

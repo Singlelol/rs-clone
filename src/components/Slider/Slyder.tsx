@@ -1,10 +1,15 @@
 import { useState } from 'react';
 import { Popup } from '../Popup/Popup';
 import { heroes } from '../../data/heroes';
+import { PlayerType } from '../../pages/playersPage/PlayerSettings-interface';
 import './slyder.scss';
 import arr from '../../images/arror.png';
 
-export const Slyder = () => {
+export type SliderProps = {
+  player: PlayerType;
+};
+
+export const Slyder = ({ player }: SliderProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const prevImgIndex = activeIndex ? activeIndex - 1 : heroes.length - 1;
   const nextImgIndex = activeIndex === heroes.length - 1 ? 0 : activeIndex + 1;
@@ -13,9 +18,21 @@ export const Slyder = () => {
     setActiveIndex(activeIndex === 0 ? heroes.length - 1 : activeIndex - 1);
   };
 
+  const addHero = () => {
+    // eslint-disable-next-line no-param-reassign
+    player.hero = heroes[activeIndex + 1].name;
+  };
+
   return (
     <div className='slider-wrapper'>
-      <button type='button' className='control__btn' onClick={changeHero}>
+      <button
+        type='button'
+        className='control__btn'
+        onClick={() => {
+          changeHero();
+          addHero();
+        }}
+      >
         <img src={arr} className='prev' alt='btn-prev' />
       </button>
       <div className='slider'>
@@ -45,11 +62,12 @@ export const Slyder = () => {
       <button
         type='button'
         className='control__btn'
-        onClick={() =>
+        onClick={() => {
           setActiveIndex(
             activeIndex === heroes.length - 1 ? 0 : activeIndex + 1,
-          )
-        }
+          );
+          addHero();
+        }}
       >
         <img src={arr} className='next' alt='btn-next' />
       </button>

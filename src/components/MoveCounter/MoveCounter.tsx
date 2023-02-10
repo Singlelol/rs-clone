@@ -1,23 +1,23 @@
-import React from 'react';
 import { Reset } from './Reset';
 
-type StateMove = {
-  count: number;
-  id: string;
-  isString: boolean;
-};
-
-export const MoveCounter = (props) => {
+export const MoveCounter = (
+  props: string,
+  state: { count?: number; moveId?: string; isString?: boolean },
+) => {
   // const id = props;
-  const { id, state} = props
-  const { count, move, isString } = state as StateMove;
-
-  if (isString) move = 0; // and return id
+  const { count, moveId, isString } = state;
+  const moveNow = 0;
+  if (isString) {
+    MoveCounter(props, { count: 0, moveId, isString: false });
+  }
 
   return (
     <div>
-      {`${move} for ${count}`}
-      <Reset />
+      {`${moveNow} for ${count}`}
+      <Reset
+{onclick(() => MoveCounter(props, {count: 0, moveId: moveId, isString: true}))}
+
+      />
     </div>
   );
 };

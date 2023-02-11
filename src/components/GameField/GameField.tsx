@@ -16,6 +16,7 @@ type GameFieldItemProps = {
   onClick: () => void;
   currentField: number;
   url: string | false;
+  // itemUrl: string | false;
 };
 
 export const GameField = ({
@@ -24,7 +25,8 @@ export const GameField = ({
   availibleSteps,
   onClick,
   url,
-}: GameFieldItemProps) => {
+}: // itemUrl,
+GameFieldItemProps) => {
   const attr: GridItemsType = {};
   Object.keys(item).forEach((key) => {
     if (key === 'id') attr.id = `${item[key as keyof typeof item]}`;
@@ -47,6 +49,19 @@ export const GameField = ({
       }}
       {...attr}
       onClick={() => availibleSteps.includes(item.id) && onClick()}
-    />
+    >
+      {item.item ? (
+        <div
+          style={{
+            backgroundImage: `url(${item.item.image})`,
+            backgroundSize: 'cover',
+            height: '-webkit-fill-available',
+            zIndex: 1,
+          }}
+        />
+      ) : (
+        <></>
+      )}
+    </div>
   );
 };

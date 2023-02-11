@@ -13,6 +13,9 @@ import {
   checkAvailible,
   startFields,
   findHeroName,
+  ItemsArr,
+  ShuffleItemsArr,
+  randomItemField,
 } from '../../utilities/utilities';
 import { Context } from '../../App';
 import '../../components/PlayersCard/PlayerCard.scss';
@@ -21,6 +24,7 @@ import '../../components/PlayersCard/PlayerCard.scss';
 const count = Math.round(Math.random() * 10);
 
 export const GameFieldPage = () => {
+  // const ItemArray = ShuffleItemsArr();
   const { play } = useContext(Context);
   // создание массива игроков для отслеживания номера ячейки, кол-во ходов, статуса активности
   const PlayersStatus: StateType[] = [];
@@ -62,6 +66,14 @@ export const GameFieldPage = () => {
     }
     return '';
   };
+
+  // картинкb айтемов
+  // const getItemImage = (id: number) => {
+  //   const itemImage = ItemArray[0] ? ItemArray[0].image : '';
+  //   ItemArray.shift();
+  //   console.log(itemImage, ItemArray);
+  //   return itemImage;
+  // };
 
   // слушатель кнопки(создает массив активных ячеек, меняет массив стартовых ячеек и currentPlayer.numberCell)
   const FieldHandler = (index: number) => {
@@ -107,16 +119,15 @@ export const GameFieldPage = () => {
       currentPlayer.numberCell = PlayersStatus[currentIndex].numberCell;
       currentPlayer.player = PlayersStatus[currentIndex].player;
       setCurrentPlayer(currentPlayer);
-      //
-      setAvailibleSteps(
-        checkAvailible(
-          gameField,
-          currentPlayer.numberCell,
-          currentPlayer.count,
-          currentPlayer.player,
-        ),
-      );
     }
+    setAvailibleSteps(
+      checkAvailible(
+        gameField,
+        currentPlayer.numberCell,
+        currentPlayer.count,
+        currentPlayer.player,
+      ),
+    );
   };
 
   return (
@@ -132,6 +143,9 @@ export const GameFieldPage = () => {
           return (
             <GameField
               url={startArr.includes(item.id) && getHeroImage(item.id)}
+              // itemUrl={
+              //   randomItemField.includes(item.id) && getItemImage(item.id)
+              // }
               key={item.id}
               item={item}
               index={index}

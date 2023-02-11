@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-param-reassign */
 /* eslint-disable consistent-return */
@@ -7,18 +8,14 @@ import { GridItemsType } from './GameFieldTypes';
 import { ArrayFieldType, StateType } from '../../types/types';
 import './GameFieldStyle.scss';
 import '../../assets/img/gameField.webp';
-import { PlayerType } from '../../pages/playersPage/PlayerSettings-interface';
-import { findHeroName } from '../../utilities/utilities';
-// import { heroes } from '../../data/heroes';
 
 type GameFieldItemProps = {
   item: ArrayFieldType;
   index: number;
   availibleSteps: number[];
   onClick: () => void;
-  players: PlayerType[];
   currentField: number;
-  State: StateType[];
+  url: string | false;
 };
 
 export const GameField = ({
@@ -26,13 +23,8 @@ export const GameField = ({
   index,
   availibleSteps,
   onClick,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  players,
-  State,
-  currentField,
-}: // State,
-GameFieldItemProps) => {
-  // console.log(players);
+  url,
+}: GameFieldItemProps) => {
   const attr: GridItemsType = {};
   Object.keys(item).forEach((key) => {
     if (key === 'id') attr.id = `${item[key as keyof typeof item]}`;
@@ -45,30 +37,16 @@ GameFieldItemProps) => {
     attr.key = index.toString();
   });
 
-  State.map((elem) => {
-    if (elem.numberCell === item.id) {
-      const hero = findHeroName(elem.player);
-      item.pers = hero;
-      return (
-        <div
-          style={{
-            backgroundImage: `url(${item.pers?.image})`,
-            backgroundSize: 'cover',
-            zIndex: 10,
-          }}
-          {...attr}
-          onClick={() => availibleSteps.includes(item.id) && onClick()}
-        >
-          {/* {item.id === 133 && <img src={heroes[0].image} alt='123' />} */}
-          {/* {item.pers ? console.log(item.pers) : console.log('null')} */}
-        </div>
-      );
-    }
-    return (
-      <div
-        {...attr}
-        onClick={() => availibleSteps.includes(item.id) && onClick()}
-      />
-    );
-  });
+  return (
+    <div
+      style={{
+        backgroundImage: `url(${url || ''})`,
+        backgroundSize: 'cover',
+        border: '.05rem solid #B95A27',
+        zIndex: 10,
+      }}
+      {...attr}
+      onClick={() => availibleSteps.includes(item.id) && onClick()}
+    />
+  );
 };

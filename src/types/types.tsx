@@ -16,7 +16,9 @@ export type ArrayFieldType = {
 };
 
 export type StateType = {
+  id: number;
   numberCell: number;
   player: PlayerType;
   count: number;
+  isActive: boolean;
 };

@@ -33,7 +33,7 @@ export type HeroType = {
 };
 
 type ItemType = {
-  id: string;
+  id: number;
   name: string;
   type: string;
   count: number;

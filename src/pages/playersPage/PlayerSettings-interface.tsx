@@ -1,5 +1,5 @@
 export type PlayerType = {
-  [x: string]: any;
+  // [x: string]: any;
   id: number;
   name: string;
   isHuman?: boolean;

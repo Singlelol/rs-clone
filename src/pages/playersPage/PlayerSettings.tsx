@@ -1,4 +1,5 @@
-import React, { useState, useContext } from 'react';
+/* eslint-disable import/no-cycle */
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PlayerType } from './PlayerSettings-interface';
 import { Counter } from '../../components/Counter/Counter';
@@ -12,8 +13,12 @@ const list = 'Список игроков';
 const startText = 'Начать игру';
 
 export const PlayerSettings = () => {
-  const { user, changePlayers } = useContext(Context);
-  const [players, setPlayers] = useState<PlayerType[]>(user);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { play, changePlayers } = useContext(Context);
+  const startplayers: PlayerType[] = [
+    { id: 1, name: 'Player1', isHuman: true, hero: 'Саша' },
+  ];
+  const [players, setPlayers] = useState<PlayerType[]>(startplayers);
 
   const increase = () => {
     if (players.length >= 1 && players.length < maxPlayers) {
@@ -25,10 +30,7 @@ export const PlayerSettings = () => {
       };
       setPlayers([...players, newPlayer]);
     }
-
-    changePlayers(user.concat(players));
   };
-  console.log(user);
 
   const decrease = () => {
     if (players.length > 1 && players.length <= maxPlayers) {
@@ -52,7 +54,13 @@ export const PlayerSettings = () => {
             <Player key={player.id} player={player} decrease={decrease} />
           ))}
         </div>
-        <button className='players__btn' type='button'>
+        <button
+          className='players__btn'
+          type='button'
+          onClick={() => {
+            changePlayers(players);
+          }}
+        >
           <Link className='player-link' to='/game'>
             {startText}
           </Link>

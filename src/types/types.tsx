@@ -1,5 +1,8 @@
 import { ItemType } from '../data/items';
-import { HeroType } from '../pages/playersPage/PlayerSettings-interface';
+import {
+  HeroType,
+  PlayerType,
+} from '../pages/playersPage/PlayerSettings-interface';
 
 export type ArrayFieldType = {
   id: number;
@@ -10,4 +13,10 @@ export type ArrayFieldType = {
   item?: ItemType;
   availible: boolean;
   pers?: HeroType;
+};
+
+export type StateType = {
+  numberCell: number;
+  player: PlayerType;
+  count: number;
 };

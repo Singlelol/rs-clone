@@ -1,35 +1,41 @@
-import React, { createContext, useState } from 'react';
+/* eslint-disable import/no-cycle */
+import React, { createContext, useMemo, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { GameFieldPage } from './pages/gamePage/GameFieldPage';
 import { PlayerSettings } from './pages/playersPage/PlayerSettings';
 import { MainPage } from './pages/mainPage/MainPage';
-import { ErrorPage } from './pages/errorPage/ErrorPage';
+// import { ErrorPage } from './pages/errorPage/ErrorPage';
 import { PlayerType } from './pages/playersPage/PlayerSettings-interface';
 
-const startplayers: PlayerType[] = [
-  { id: 1, name: 'Player1', isHuman: true, hero: 'Саша' },
-];
-
-// create context
 export const Context = createContext({
-  play: [startplayers],
-  changePlayers: () => void,
+  play: [
+    { id: 1, name: 'Player1', isHuman: true, hero: 'Саша' },
+  ] as PlayerType[],
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  changePlayers: (_arr: Array<PlayerType>) => {},
 });
-function App() {
-  const [play, setPlayers] = useState<PlayerType[]>([]);
 
-  const changePlayers = (arr: PlayerType[]) => {
-    setPlayers([...arr]);
-  };
+function App() {
+  const [play, setPlayers] = useState<PlayerType[]>([
+    { id: 1, name: 'Player1', isHuman: true, hero: 'Саша' },
+  ]);
+
+  const changePlayers = useMemo(
+    () => (arr: PlayerType[]) => {
+      setPlayers(arr);
+    },
+    [],
+  );
+
+  const pre = useMemo(() => ({ play, changePlayers }), [play, changePlayers]);
 
   return (
-    // eslint-disable-next-line react/jsx-no-constructed-context-values
-    <Context.Provider value={{ play, changePlayers }}>
+    <Context.Provider value={pre}>
       <Routes>
         <Route path='/' element={<MainPage />} />
         <Route path='/players' element={<PlayerSettings />} />
         <Route path='/game' element={<GameFieldPage />} />
-        <Route path='*' element={<ErrorPage />} />
+        <Route path='*' element={<MainPage />} />
       </Routes>
     </Context.Provider>
   );

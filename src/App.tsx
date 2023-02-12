@@ -27,10 +27,13 @@ function App() {
     [],
   );
 
-  const pre = useMemo(() => ({ play, changePlayers }), [play, changePlayers]);
+  const players = useMemo(
+    () => ({ play, changePlayers }),
+    [play, changePlayers],
+  );
 
   return (
-    <Context.Provider value={pre}>
+    <Context.Provider value={players}>
       <Routes>
         <Route path='/' element={<MainPage />} />
         <Route path='/players' element={<PlayerSettings />} />

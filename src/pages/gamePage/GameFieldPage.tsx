@@ -1,8 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-param-reassign */
-/* eslint-disable @typescript-eslint/no-use-before-define */
-/* eslint-disable array-callback-return */
-/* eslint-disable consistent-return */
 /* eslint-disable import/no-cycle */
 import { useContext, useState } from 'react';
 import { GameField } from '../../components/GameField/GameField';
@@ -24,6 +19,7 @@ export const GameFieldPage = () => {
   const { play } = useContext(Context);
   // создание массива игроков для отслеживания номера ячейки, кол-во ходов, статуса активности
   const PlayersStatus: StateType[] = [];
+  // eslint-disable-next-line array-callback-return
   play.map((pl, i) => {
     const activeStatus = i === 0;
     PlayersStatus.push({
@@ -62,22 +58,6 @@ export const GameFieldPage = () => {
     }
     return '';
   };
-
-  // слушатель кнопки(создает массив активных ячеек, меняет массив стартовых ячеек и currentPlayer.numberCell)
-  const FieldHandler = (index: number) => {
-    currentPlayer.count -= 1;
-    setAvailibleSteps(
-      checkAvailible(
-        gameField,
-        index,
-        currentPlayer.count,
-        currentPlayer.player,
-      ),
-    );
-    changeStartFields(currentPlayer.id, index);
-    checkCounter(currentPlayer.count);
-  };
-
   // изменения массива стартовых значений
   const changeStartFields = (id: number, index: number) => {
     currentPlayer.numberCell = index;
@@ -100,23 +80,37 @@ export const GameFieldPage = () => {
         indexPlayer + 1 < PlayersStatus.length ? indexPlayer + 1 : 0;
       PlayersStatus[indexPlayer].isActive = false;
       PlayersStatus[currentIndex].isActive = true;
-      // тупой кусок кода
+      // TODO: переделать
       currentPlayer.id = PlayersStatus[currentIndex].id;
       currentPlayer.count = count;
       currentPlayer.isActive = true;
       currentPlayer.numberCell = PlayersStatus[currentIndex].numberCell;
       currentPlayer.player = PlayersStatus[currentIndex].player;
       setCurrentPlayer(currentPlayer);
-      //
-      setAvailibleSteps(
-        checkAvailible(
-          gameField,
-          currentPlayer.numberCell,
-          currentPlayer.count,
-          currentPlayer.player,
-        ),
-      );
     }
+    setAvailibleSteps(
+      checkAvailible(
+        gameField,
+        currentPlayer.numberCell,
+        currentPlayer.count,
+        currentPlayer.player,
+      ),
+    );
+  };
+
+  // слушатель кнопки(создает массив активных ячеек, меняет массив стартовых ячеек и currentPlayer.numberCell)
+  const fieldHandler = (index: number) => {
+    currentPlayer.count -= 1;
+    setAvailibleSteps(
+      checkAvailible(
+        gameField,
+        index,
+        currentPlayer.count,
+        currentPlayer.player,
+      ),
+    );
+    changeStartFields(currentPlayer.id, index);
+    checkCounter(currentPlayer.count);
   };
 
   return (
@@ -137,7 +131,7 @@ export const GameFieldPage = () => {
               index={index}
               availibleSteps={availibleSteps}
               currentField={currentPlayer.numberCell}
-              onClick={() => FieldHandler(index)}
+              onClick={() => fieldHandler(index)}
             />
           );
         })}

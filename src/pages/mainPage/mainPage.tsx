@@ -16,7 +16,7 @@ export const MainPage = () => {
         <div className='list_link'>
           <ul className='list_li'>
             {btnName.map((btn) => (
-              <li>
+              <li key={btn}>
                 <Button
                   children={btn}
                   disabled={btn === 'Statistic' || btn === 'Credits'}

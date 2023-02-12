@@ -12,7 +12,11 @@ export const Popup = ({ hero }: PopupProps) => {
       </div>
       <div className='popup__health'>
         <span>{health}</span>
-        {Array(hero.health).fill(<div className='popup__heart-image' />)}
+        {Array(hero.health)
+          .fill(0)
+          .map((item, i) => (
+            <div className='popup__heart-image' key={i} />
+          ))}
       </div>
       <span className='popup__subtitle'>{description}</span>
       <p className='popup__description'>{hero.description}</p>

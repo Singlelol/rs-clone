@@ -7,3 +7,17 @@
   border: 2rem solid black;
   border-radius: 3rem;
 }
+
+.hidden {
+  visibility: hidden;
+}
+
+#pickUpItem {
+  position: absolute;
+  padding: 10rem;
+  text-align: center;
+  left: 50%;
+  top: 50%;
+  border: 2rem solid black;
+  border-radius: 3rem;
+}

@@ -2,6 +2,8 @@ import './counter.scss';
 /*
 import { Reset } from './Reset';
 
+функция возврата сделанных шагов
+
 export const countSteps = (props: string, moveId?: string) => {
   const moveY = Math.floor(Number(props) / 12);
   const moveX = Number(props) - moveY * 12;
@@ -15,24 +17,11 @@ export const countSteps = (props: string, moveId?: string) => {
 };
 */
 
-export const MoveCounter = (
-  props: string,
-  /*
-  moveId?: string,
-  */
-  step: number,
-  count?: number,
-) => {
-  /*
-  const thisId = props;
-  const nextId = moveId;
-  */
-  const moveNow = step;
-  /*
-  if (isString) {
-    MoveCounter(props, { count: 0, moveId, isString: false });
-  }
-  */
+type Props = {
+  step: number;
+  count: number;
+};
 
-  return <div id='counter'>{`${moveNow} for ${count}`}</div>;
+export const MoveCounter = ({ step, count }: Props) => {
+  return <div id='counter'>{`${step} for ${count}`}</div>;
 };

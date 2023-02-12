@@ -1,8 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-param-reassign */
-/* eslint-disable @typescript-eslint/no-use-before-define */
-/* eslint-disable array-callback-return */
-/* eslint-disable consistent-return */
 /* eslint-disable import/no-cycle */
 import { useContext, useState } from 'react';
 import { GameField } from '../../components/GameField/GameField';
@@ -13,9 +8,6 @@ import {
   checkAvailible,
   startFields,
   findHeroName,
-  ItemsArr,
-  ShuffleItemsArr,
-  randomItemField,
   addItemInBack,
 } from '../../utilities/utilities';
 import { Context } from '../../App';
@@ -29,6 +21,7 @@ export const GameFieldPage = () => {
   const { play } = useContext(Context);
   // создание массива игроков для отслеживания номера ячейки, кол-во ходов, статуса активности
   const PlayersStatus: StateType[] = [];
+  // eslint-disable-next-line array-callback-return
   play.map((pl, i) => {
     const activeStatus = i === 0;
     PlayersStatus.push({
@@ -75,22 +68,6 @@ export const GameFieldPage = () => {
   //   console.log(itemImage, ItemArray);
   //   return itemImage;
   // };
-
-  // слушатель кнопки(создает массив активных ячеек, меняет массив стартовых ячеек и currentPlayer.numberCell)
-  const FieldHandler = (index: number, item: ItemType | undefined) => {
-    currentPlayer.count -= 1;
-    setAvailibleSteps(
-      checkAvailible(
-        gameField,
-        index,
-        currentPlayer.count,
-        currentPlayer.player,
-      ),
-    );
-    changeStartFields(currentPlayer.id, index);
-    checkCounter(currentPlayer.count);
-    checkItem(item);
-  };
 
   const checkItem = (item: ItemType | undefined) => {
     const itemType = item ? item.type : '';
@@ -143,6 +120,22 @@ export const GameFieldPage = () => {
     );
   };
 
+  // слушатель кнопки(создает массив активных ячеек, меняет массив стартовых ячеек и currentPlayer.numberCell)
+  const fieldHandler = (index: number, item: ItemType | undefined) => {
+    currentPlayer.count -= 1;
+    setAvailibleSteps(
+      checkAvailible(
+        gameField,
+        index,
+        currentPlayer.count,
+        currentPlayer.player,
+      ),
+    );
+    changeStartFields(currentPlayer.id, index);
+    checkCounter(currentPlayer.count);
+    checkItem(item);
+  };
+
   return (
     <div>
       <div className='players-card-wrapper'>
@@ -164,7 +157,7 @@ export const GameFieldPage = () => {
               index={index}
               availibleSteps={availibleSteps}
               currentField={currentPlayer.numberCell}
-              onClick={() => FieldHandler(index, item.item)}
+              onClick={() => fieldHandler(index, item.item)}
             />
           );
         })}

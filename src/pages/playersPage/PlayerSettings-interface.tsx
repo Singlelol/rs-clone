@@ -1,4 +1,5 @@
 export type PlayerType = {
+  // [x: string]: any;
   id: number;
   name: string;
   isHuman?: boolean;
@@ -32,7 +33,7 @@ export type HeroType = {
 };
 
 type ItemType = {
-  id: string;
+  id: number;
   name: string;
   type: string;
   count: number;

@@ -1,11 +1,7 @@
-/* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable no-param-reassign */
-/* eslint-disable consistent-return */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable array-callback-return */
+/* eslint-disable react/jsx-no-useless-fragment */
 import { GridItemsType } from './GameFieldTypes';
-import { ArrayFieldType, StateType } from '../../types/types';
+import { ArrayFieldType } from '../../types/types';
 import './GameFieldStyle.scss';
 import '../../assets/img/gameField.webp';
 
@@ -14,7 +10,6 @@ type GameFieldItemProps = {
   index: number;
   availibleSteps: number[];
   onClick: () => void;
-  currentField: number;
   url: string | false;
   // itemUrl: string | false;
 };

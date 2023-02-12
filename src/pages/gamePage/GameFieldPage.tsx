@@ -102,7 +102,7 @@ export const GameFieldPage = () => {
         indexPlayer + 1 < PlayersStatus.length ? indexPlayer + 1 : 0;
       PlayersStatus[indexPlayer].isActive = false;
       PlayersStatus[currentIndex].isActive = true;
-      // тупой кусок кода
+      // TODO: переделать
       currentPlayer.id = PlayersStatus[currentIndex].id;
       currentPlayer.count = count;
       currentPlayer.isActive = true;
@@ -156,7 +156,6 @@ export const GameFieldPage = () => {
               item={item}
               index={index}
               availibleSteps={availibleSteps}
-              currentField={currentPlayer.numberCell}
               onClick={() => fieldHandler(index, item.item)}
             />
           );

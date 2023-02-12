@@ -4,6 +4,7 @@ import { GridItemsType } from './GameFieldTypes';
 import { ArrayFieldType } from '../../types/types';
 import './GameFieldStyle.scss';
 import '../../assets/img/gameField.webp';
+import CoverImage from '../../images/cardСover.png';
 
 type GameFieldItemProps = {
   item: ArrayFieldType;
@@ -34,31 +35,17 @@ GameFieldItemProps) => {
     attr.key = index.toString();
   });
 
-  return (
-    // <div
-    //   style={{
-    //     backgroundImage: `url(${item.item?.image})`,
-    //     backgroundSize: 'cover',
-    //     border: '.05rem solid #B95A27',
-    //     zIndex: 1,
-    //   }}
-    //   {...attr}
-    //   onClick={() => availibleSteps.includes(item.id) && onClick()}
-    // >
-    //   {url ? (
-    //     <div
-    //       style={{
-    //         backgroundImage: `url(${url || ''})`,
-    //         backgroundSize: 'cover',
-    //         height: '-webkit-fill-available',
-    //         zIndex: 10,
-    //       }}
-    //     />
-    //   ) : (
-    //     <></>
-    //   )}
-    // </div>
+  const checkItemStatus = () => {
+    if (item.item && item.item?.itemStatus === 'open') {
+      return item.item?.image;
+    }
+    if (item.item && item.item?.itemStatus === 'close') {
+      return CoverImage;
+    }
+    return '';
+  };
 
+  return (
     <div
       style={{
         backgroundImage: `url(${url || ''})`,
@@ -69,10 +56,10 @@ GameFieldItemProps) => {
       {...attr}
       onClick={() => availibleSteps.includes(item.id) && onClick()}
     >
-      {item.item && !url ? (
+      {item.item?.itemStatus !== 'delete' ? (
         <div
           style={{
-            backgroundImage: `url(${item.item.image})`,
+            backgroundImage: `url(${checkItemStatus()})`,
             backgroundSize: 'cover',
             height: '-webkit-fill-available',
             zIndex: 1,

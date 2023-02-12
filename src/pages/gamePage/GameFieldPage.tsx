@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable import/no-cycle */
 import { useContext, useState } from 'react';
 import { GameField } from '../../components/GameField/GameField';
@@ -7,12 +8,14 @@ import {
   createField,
   checkAvailible,
   startFields,
-  findHeroName,
   addItemInBack,
+  addHeroHelth,
+  getHeroImage,
 } from '../../utilities/utilities';
 import { Context } from '../../App';
 import '../../components/PlayersCard/PlayerCard.scss';
-import { ItemType } from '../../data/items';
+import { PickedPopUp } from '../../components/CheckPopUp/PickedPopUp';
+import { ResultPickedPopUp } from '../../components/CheckPopUp/ResultPickedPopUp';
 
 // заглушка, рандомное создание ходов игрока
 const count = Math.round(Math.random() * 10);
@@ -39,9 +42,11 @@ export const GameFieldPage = () => {
     (elem) => elem.isActive === true,
   ) as StateType;
 
+  // изменение текущего игрока
   const [currentPlayer, setCurrentPlayer] = useState(current);
-
+  // изменения массива стартовых значений
   const [startArr, setStartArr] = useState(startFields);
+  // изменение массива текущих шагов
   const [availibleSteps, setAvailibleSteps] = useState(
     checkAvailible(
       gameField,
@@ -50,33 +55,28 @@ export const GameFieldPage = () => {
       currentPlayer.player,
     ),
   );
+  // изменение статусы ответа пользователя при открытии ячейки с карточкой
+  const [answer, setAnswer] = useState(false);
+  // изменение видимости попапа при подборе айтемов
+  const [popup, setPopup] = useState(false);
 
-  // картинка героя
-  const getHeroImage = (id: number) => {
-    const item = PlayersStatus.find((elem) => elem.numberCell === id);
-    if (item) {
-      const hero = findHeroName(item?.player);
-      return hero ? hero.image : '';
-    }
-    return '';
-  };
-
-  // картинкb айтемов
-  // const getItemImage = (id: number) => {
-  //   const itemImage = ItemArray[0] ? ItemArray[0].image : '';
-  //   ItemArray.shift();
-  //   console.log(itemImage, ItemArray);
-  //   return itemImage;
-  // };
-
-  const checkItem = (item: ItemType | undefined) => {
-    const itemType = item ? item.type : '';
+  // проверить тип карточки и забрать/начать бой
+  const checkItem = (item: ArrayFieldType) => {
+    const itemType = item.item ? item.item.type : '';
     if (itemType === 'monster') {
-      console.log(`oh noooo, its ${item?.name}`);
+      console.log(`oh noooo, its ${item.item?.name}`);
+      if (item.item) item.item.itemStatus = 'open';
+      // Викино окно боя
     }
     if (itemType === 'weapon' || itemType === 'items') {
-      console.log(`yeees, its ${item?.name}`);
-      addItemInBack(currentPlayer.player, item);
+      console.log(`yeees, its ${item.item?.name}`);
+      if (item.item) item.item.itemStatus = 'delete';
+      if (item.item && item.item.id === 4) {
+        addHeroHelth(currentPlayer.player);
+      } else {
+        addItemInBack(currentPlayer.player, item.item);
+      }
+      setPopup(true);
     }
   };
 
@@ -120,20 +120,45 @@ export const GameFieldPage = () => {
     );
   };
 
+  const getAnswer = (isYes: boolean) => {
+    if (isYes) {
+      currentPlayer.count = 0;
+      checkCounter(currentPlayer.count);
+      checkItem(gameField[currentPlayer.numberCell]);
+    }
+    setAnswer(false);
+  };
+
   // слушатель кнопки(создает массив активных ячеек, меняет массив стартовых ячеек и currentPlayer.numberCell)
-  const fieldHandler = (index: number, item: ItemType | undefined) => {
-    currentPlayer.count -= 1;
-    setAvailibleSteps(
-      checkAvailible(
-        gameField,
-        index,
-        currentPlayer.count,
-        currentPlayer.player,
-      ),
-    );
-    changeStartFields(currentPlayer.id, index);
-    checkCounter(currentPlayer.count);
-    checkItem(item);
+  const fieldHandler = (index: number, item: ArrayFieldType) => {
+    setPopup(false);
+    if (item.item && item.item.field && item.item.itemStatus !== 'delete') {
+      currentPlayer.count -= 1;
+      setAvailibleSteps(
+        checkAvailible(
+          gameField,
+          index,
+          currentPlayer.count,
+          currentPlayer.player,
+        ),
+      );
+      changeStartFields(currentPlayer.id, index);
+      checkCounter(currentPlayer.count);
+      setAnswer(true);
+      currentPlayer.count = 0;
+    } else {
+      currentPlayer.count -= 1;
+      setAvailibleSteps(
+        checkAvailible(
+          gameField,
+          index,
+          currentPlayer.count,
+          currentPlayer.player,
+        ),
+      );
+      changeStartFields(currentPlayer.id, index);
+      checkCounter(currentPlayer.count);
+    }
   };
 
   return (
@@ -143,20 +168,29 @@ export const GameFieldPage = () => {
           <PlayerCard key={player.id} player={player} />
         ))}
       </div>
+      {answer && <PickedPopUp getAnswer={getAnswer} />}
+
+      {popup && (
+        <ResultPickedPopUp
+          persone={currentPlayer.player}
+          item={gameField[currentPlayer.numberCell].item?.id}
+          setPopup={setPopup}
+        />
+      )}
 
       <div className='grid-container'>
         {gameField.map((item: ArrayFieldType, index: number) => {
           return (
             <GameField
-              url={startArr.includes(item.id) && getHeroImage(item.id)}
-              // itemUrl={
-              //   randomItemField.includes(item.id) && getItemImage(item.id)
-              // }
+              url={
+                startArr.includes(item.id) &&
+                getHeroImage(item.id, PlayersStatus)
+              }
               key={item.id}
               item={item}
               index={index}
               availibleSteps={availibleSteps}
-              onClick={() => fieldHandler(index, item.item)}
+              onClick={() => fieldHandler(index, item)}
             />
           );
         })}

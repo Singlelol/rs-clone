@@ -1,9 +1,8 @@
 import { PlayerProps } from './Players-card-interface';
-import { findHeroName } from '../../utilities/utilities';
 import './PlayerCard.scss';
 
 export const PlayerCard = ({ player }: PlayerProps) => {
-  const hero = findHeroName(player);
+  const { hero } = player;
   return (
     <div className='players-card'>
       <div className='players-card__main'>

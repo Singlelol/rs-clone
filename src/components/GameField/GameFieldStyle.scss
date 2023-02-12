@@ -5,7 +5,7 @@ body {
 
 .grid-container {
   display: grid;
-  width: 60%;
+  width: 40%;
   margin: 1rem auto;
   // border: 5px green solid;
   grid-template-columns: repeat(12, minmax(1rem, 1fr));

@@ -20,7 +20,7 @@ export const Slyder = ({ player }: SliderProps) => {
 
   const addHero = () => {
     // eslint-disable-next-line no-param-reassign
-    player.hero = heroes[activeIndex + 1].name;
+    player.hero = heroes[activeIndex + 1];
   };
 
   return (

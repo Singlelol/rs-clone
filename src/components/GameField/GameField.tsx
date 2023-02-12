@@ -40,6 +40,30 @@ GameFieldItemProps) => {
   });
 
   return (
+    // <div
+    //   style={{
+    //     backgroundImage: `url(${item.item?.image})`,
+    //     backgroundSize: 'cover',
+    //     border: '.05rem solid #B95A27',
+    //     zIndex: 1,
+    //   }}
+    //   {...attr}
+    //   onClick={() => availibleSteps.includes(item.id) && onClick()}
+    // >
+    //   {url ? (
+    //     <div
+    //       style={{
+    //         backgroundImage: `url(${url || ''})`,
+    //         backgroundSize: 'cover',
+    //         height: '-webkit-fill-available',
+    //         zIndex: 10,
+    //       }}
+    //     />
+    //   ) : (
+    //     <></>
+    //   )}
+    // </div>
+
     <div
       style={{
         backgroundImage: `url(${url || ''})`,
@@ -50,7 +74,7 @@ GameFieldItemProps) => {
       {...attr}
       onClick={() => availibleSteps.includes(item.id) && onClick()}
     >
-      {item.item ? (
+      {item.item && !url ? (
         <div
           style={{
             backgroundImage: `url(${item.item.image})`,

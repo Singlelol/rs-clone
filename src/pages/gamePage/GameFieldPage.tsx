@@ -16,15 +16,16 @@ import {
   ItemsArr,
   ShuffleItemsArr,
   randomItemField,
+  addItemInBack,
 } from '../../utilities/utilities';
 import { Context } from '../../App';
 import '../../components/PlayersCard/PlayerCard.scss';
+import { ItemType } from '../../data/items';
 
 // заглушка, рандомное создание ходов игрока
 const count = Math.round(Math.random() * 10);
 
 export const GameFieldPage = () => {
-  // const ItemArray = ShuffleItemsArr();
   const { play } = useContext(Context);
   // создание массива игроков для отслеживания номера ячейки, кол-во ходов, статуса активности
   const PlayersStatus: StateType[] = [];
@@ -76,7 +77,7 @@ export const GameFieldPage = () => {
   // };
 
   // слушатель кнопки(создает массив активных ячеек, меняет массив стартовых ячеек и currentPlayer.numberCell)
-  const FieldHandler = (index: number) => {
+  const FieldHandler = (index: number, item: ItemType | undefined) => {
     currentPlayer.count -= 1;
     setAvailibleSteps(
       checkAvailible(
@@ -88,6 +89,18 @@ export const GameFieldPage = () => {
     );
     changeStartFields(currentPlayer.id, index);
     checkCounter(currentPlayer.count);
+    checkItem(item);
+  };
+
+  const checkItem = (item: ItemType | undefined) => {
+    const itemType = item ? item.type : '';
+    if (itemType === 'monster') {
+      console.log(`oh noooo, its ${item?.name}`);
+    }
+    if (itemType === 'weapon' || itemType === 'items') {
+      console.log(`yeees, its ${item?.name}`);
+      addItemInBack(currentPlayer.player, item);
+    }
   };
 
   // изменения массива стартовых значений
@@ -151,7 +164,7 @@ export const GameFieldPage = () => {
               index={index}
               availibleSteps={availibleSteps}
               currentField={currentPlayer.numberCell}
-              onClick={() => FieldHandler(index)}
+              onClick={() => FieldHandler(index, item.item)}
             />
           );
         })}

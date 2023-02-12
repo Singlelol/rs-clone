@@ -29,17 +29,16 @@ export const randomItemField: number[] = [
   112, 77, 116, 130, 97, 78, 80, 76, 59, 117, 75, 138, 89, 1, 83, 19, 47, 36,
   143, 57, 95, 27, 28, 93, 118, 134, 23, 84, 51, 43, 16, 98,
 ];
-
+const ItemArray = ShuffleItemsArr();
 // создание ячеек поля
 export const createField = () => {
-  const ItemArray = ShuffleItemsArr();
   const arrField: ArrayFieldType[] = [];
-
+  const arr = [...ItemArray];
   for (let i = 0; i < 144; i += 1) {
     const field: ArrayFieldType = {
       id: i,
       availible: false,
-      item: randomItemField.includes(i) ? ItemArray.shift() : undefined,
+      item: randomItemField.includes(i) ? arr.shift() : undefined,
     };
     // границы поля
     if (i % 12 === 11) field.right = true;
@@ -49,11 +48,7 @@ export const createField = () => {
     if (bordersBottomIndex.includes(i)) field.bottom = true;
     if (bordersTopIndex.includes(i)) field.top = true;
     arrField.push(field);
-
-    // console.log(ItemArray, ItemArray[0]);
   }
-  // ItemArray.splice(0, 1);
-  // console.log(arrField);
   return arrField;
 };
 
@@ -79,3 +74,12 @@ export const checkAvailible = (
 
 // create start field for hero
 export const startFields = [133, 120, 121, 132];
+
+// подбор предметов в рюкзак
+export const addItemInBack = (
+  player: PlayerType,
+  item: ItemType | undefined,
+) => {
+  const hero = findHeroName(player);
+  if (item && !hero?.inventory.includes(item)) hero?.inventory.push(item);
+};

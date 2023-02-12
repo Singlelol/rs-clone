@@ -15,15 +15,22 @@ export const PlayerCard = ({ player }: PlayerProps) => {
           <p className='players-card__name'>{player.name}</p>
         </div>
         <div className='players-card__heart'>
-          {Array(hero?.health).fill(
-            <div className='players-card__heart-image' />,
-          )}
+          {Array(hero?.health)
+            .fill(0)
+            .map((_, i) => (
+              <div className='players-card__heart-image' key={i} />
+            ))}
         </div>
       </div>
       <div className='players-card__items'>
         <div className='items'>
-          {hero?.inventory.map((item) => (
-            <img className='item' src={item.image} alt='player-invent' />
+          {hero?.inventory.map((item, i) => (
+            <img
+              className='item'
+              src={item.image}
+              alt='player-invent'
+              key={i}
+            />
           ))}
         </div>
       </div>

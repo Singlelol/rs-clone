@@ -57,19 +57,24 @@ export const GameFieldPage = () => {
     ),
   );
   // изменение статусы ответа пользователя при открытии ячейки с карточкой
+  // const [spiner, setSpiner] = useState(0);
+  // изменение статусы ответа пользователя при открытии ячейки с карточкой
   const [answer, setAnswer] = useState(false);
   // изменение видимости попапа при подборе айтемов
   const [popup, setPopup] = useState(false);
+  // изменение видимости попапа боя с монстром
+  // const [battlePopup, setBattlePopup] = useState(false);
+
+  // const [isHumanWin, setIsHumanWin] = useState(false);
 
   // проверить тип карточки и забрать/начать бой
   const checkItem = (item: ArrayFieldType) => {
-    const itemType = item.item ? item.item.type : '';
-    if (itemType === 'monster') {
+    if (item.item && item.item?.id < 4) {
       console.log(`oh noooo, its ${item.item?.name}`);
       if (item.item) item.item.itemStatus = 'open';
-      // Викино окно боя
+      // setBattlePopup(true);
     }
-    if (itemType === 'weapon' || itemType === 'items') {
+    if (item.item && item.item?.id > 3) {
       console.log(`yeees, its ${item.item?.name}`);
       if (item.item) item.item.itemStatus = 'delete';
       if (item.item && item.item.id === 4) {
@@ -77,6 +82,7 @@ export const GameFieldPage = () => {
       } else {
         addItemInBack(currentPlayer.player, item.item);
       }
+      setPopup(true);
     }
   };
 
@@ -122,23 +128,21 @@ export const GameFieldPage = () => {
 
   const getAnswer = (isYes: boolean) => {
     if (isYes) {
-      setPopup(true);
       currentPlayer.count = 0;
       checkItem(gameField[currentPlayer.numberCell]);
-      // checkCounter(currentPlayer.count);
+      checkCounter(currentPlayer.count);
     }
     setAnswer(false);
   };
 
   // слушатель кнопки(создает массив активных ячеек, меняет массив стартовых ячеек и currentPlayer.numberCell)
   const fieldHandler = (index: number, item: ArrayFieldType) => {
+    console.log(currentPlayer.count);
     setPopup(false);
     if (item.item && item.item.field && item.item.itemStatus !== 'delete') {
       setAnswer(true);
-      currentPlayer.count -= 1;
-    } else {
-      currentPlayer.count -= 1;
     }
+    currentPlayer.count -= 1;
     setAvailibleSteps(
       checkAvailible(
         gameField,
@@ -151,6 +155,7 @@ export const GameFieldPage = () => {
     checkCounter(currentPlayer.count);
   };
 
+  const currentField = gameField[currentPlayer.numberCell];
   return (
     <div>
       <div className='players-card-wrapper'>
@@ -163,7 +168,11 @@ export const GameFieldPage = () => {
       {popup && (
         <ResultPickedPopUp
           persone={currentPlayer.player}
-          item={gameField[currentPlayer.numberCell].item?.id}
+          item={
+            currentField.item && currentField.item.id > 3
+              ? gameField[currentPlayer.numberCell].item?.id
+              : undefined
+          }
           setPopup={setPopup}
         />
       )}
@@ -184,7 +193,19 @@ export const GameFieldPage = () => {
             />
           );
         })}
-        {/* {true && <div />} */}
+
+        {/* {battlePopup && (
+          <BattlePopUp
+            player={currentPlayer.player}
+            item={
+              currentField.item && currentField.item.id < 4
+                ? gameField[currentPlayer.numberCell].item
+                : undefined
+            }
+            setBattlePopup={setBattlePopup}
+            setIsHumanWin={setIsHumanWin}
+          />
+        )} */}
       </div>
       <div className='spinner-page'>
         <SpinnerPage />

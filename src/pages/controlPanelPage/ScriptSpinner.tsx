@@ -33,6 +33,7 @@ export class ScriptSpinner {
   spinnerStyles!: CSSStyleDeclaration;
   spinClass: string = 'is-spinning';
   selectedClass: string = 'selected';
+  // setSpiner: () => void;
 
   initialize(): void {
     this.wheel = document.querySelector('.deal-wheel') as HTMLElement;
@@ -185,9 +186,12 @@ export class ScriptSpinner {
     cancelAnimationFrame(this.tickerAnim);
     this.rotation %= 360;
     this.selectPrize();
-    console.log(ScriptSpinner.returnPrize());
+    // this.getNumber(ScriptSpinner.returnPrize() as string);
     this.wheel.classList.remove(this.spinClass);
     this.spinner.style.setProperty('--rotate', this.rotation.toString());
     this.trigger.removeAttribute('disabled');
+    // return ScriptSpinner.returnPrize();
+    // ScriptSpinner.returnPrize()
+    // this.getNumber();
   }
 }

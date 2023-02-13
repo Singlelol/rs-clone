@@ -6,6 +6,7 @@ import { PlayerSettings } from './pages/playersPage/PlayerSettings';
 import { MainPage } from './pages/mainPage/mainPage';
 // import { ErrorPage } from './pages/errorPage/ErrorPage';
 import { PlayerType } from './pages/playersPage/PlayerSettings-interface';
+import { SpinnerPage } from './pages/controlPanelPage/SpinnerPage';
 
 export const Context = createContext({
   play: [
@@ -39,6 +40,7 @@ function App() {
         <Route path='/players' element={<PlayerSettings />} />
         <Route path='/game' element={<GameFieldPage />} />
         <Route path='*' element={<MainPage />} />
+        <Route path='/Spinner' element={<SpinnerPage />} />
       </Routes>
     </Context.Provider>
   );

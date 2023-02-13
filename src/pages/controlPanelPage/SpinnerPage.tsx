@@ -1,9 +1,10 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/jsx-no-comment-textnodes */
 import React, { Component } from 'react';
 import { Script } from './Script_Spinner';
 import './SpinnerPage.scss';
-import image from '../../components/background/Snipper.jpg';
+import image from '../../images/Snipper.jpg';
 
 export class SpinnerPage extends Component {
   workerScript: Script = new Script();

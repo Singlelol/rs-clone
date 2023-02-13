@@ -16,6 +16,7 @@ import { Context } from '../../App';
 import '../../components/PlayersCard/PlayerCard.scss';
 import { PickedPopUp } from '../../components/CheckPopUp/PickedPopUp';
 import { ResultPickedPopUp } from '../../components/CheckPopUp/ResultPickedPopUp';
+import { SpinnerPage } from '../controlPanelPage/SpinnerPage';
 
 // заглушка, рандомное создание ходов игрока
 const count = Math.round(Math.random() * 10);
@@ -76,7 +77,6 @@ export const GameFieldPage = () => {
       } else {
         addItemInBack(currentPlayer.player, item.item);
       }
-      setPopup(true);
     }
   };
 
@@ -122,9 +122,10 @@ export const GameFieldPage = () => {
 
   const getAnswer = (isYes: boolean) => {
     if (isYes) {
+      setPopup(true);
       currentPlayer.count = 0;
-      checkCounter(currentPlayer.count);
       checkItem(gameField[currentPlayer.numberCell]);
+      // checkCounter(currentPlayer.count);
     }
     setAnswer(false);
   };
@@ -133,32 +134,21 @@ export const GameFieldPage = () => {
   const fieldHandler = (index: number, item: ArrayFieldType) => {
     setPopup(false);
     if (item.item && item.item.field && item.item.itemStatus !== 'delete') {
-      currentPlayer.count -= 1;
-      setAvailibleSteps(
-        checkAvailible(
-          gameField,
-          index,
-          currentPlayer.count,
-          currentPlayer.player,
-        ),
-      );
-      changeStartFields(currentPlayer.id, index);
-      checkCounter(currentPlayer.count);
       setAnswer(true);
-      currentPlayer.count = 0;
+      currentPlayer.count -= 1;
     } else {
       currentPlayer.count -= 1;
-      setAvailibleSteps(
-        checkAvailible(
-          gameField,
-          index,
-          currentPlayer.count,
-          currentPlayer.player,
-        ),
-      );
-      changeStartFields(currentPlayer.id, index);
-      checkCounter(currentPlayer.count);
     }
+    setAvailibleSteps(
+      checkAvailible(
+        gameField,
+        index,
+        currentPlayer.count,
+        currentPlayer.player,
+      ),
+    );
+    changeStartFields(currentPlayer.id, index);
+    checkCounter(currentPlayer.count);
   };
 
   return (
@@ -195,6 +185,9 @@ export const GameFieldPage = () => {
           );
         })}
         {/* {true && <div />} */}
+      </div>
+      <div className='spinner-page'>
+        <SpinnerPage />
       </div>
     </div>
   );

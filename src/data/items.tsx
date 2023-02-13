@@ -16,151 +16,168 @@ import Dog from '../images/Dog.png';
 import Horror from '../images/Horror.png';
 
 export type ItemType = {
-  id: string;
+  id: number;
   name: string;
   type: string;
   count: number;
   description: string;
   image: string;
+  isClose: true;
 };
 
 export const items: ItemType[] = [
   {
-    id: 'Zombi',
+    id: 0,
     name: 'Зомби',
     type: 'monster',
     count: 17,
     description: 'Нападает на игрока и кусает, если вертушка показывает -зубы.',
     image: Zombi,
+    isClose: true,
   },
   {
-    id: 'Spider',
+    id: 1,
     name: 'Паук - мутант',
     type: 'monster',
     count: 5,
     description: 'Нападает на игрока и кусает, если вертушка показывает -зубы.',
     image: Spider,
+    isClose: true,
   },
   {
-    id: 'Dog',
+    id: 2,
     name: 'Дьявольский пёс',
     type: 'monster',
     count: 5,
     description: 'Нападает на игрока и кусает, если вертушка показывает -зубы.',
     image: Dog,
+    isClose: true,
   },
   {
-    id: 'Boss',
+    id: 3,
     name: 'Босс - Болотный ужас',
     type: 'monster',
     count: 1,
     description:
       'Нападает на игрока и кусает, если вертушка показывает -зубы. Это босс. Его можно убить только с помощью гранотомёта.',
     image: Horror,
+    isClose: true,
   },
   {
-    id: 'Midicament',
+    id: 4,
     name: 'Аптечка',
     type: 'items',
     count: 6,
     description: 'Восполняет одну жизнь (а при применении Настей - сразу две).',
     image: Midicament,
+    isClose: true,
   },
   {
-    id: 'Boards',
+    id: 5,
     name: 'Доски',
     type: 'items',
     count: 8,
     description:
       'С их помощью можно забить окно или дверь. Для этого пройдя через окно или дверь, игрок кладет карточку досок на клетку с изображением окна или двери.',
     image: Boards,
+    isClose: true,
   },
   {
-    id: 'Canister',
+    id: 6,
     name: 'Канистра с бензином',
     type: 'items',
     count: 1,
     description: 'Нужна чтобы заправить и завести машину.',
     image: Canister,
+    isClose: true,
   },
   {
-    id: 'Keys',
+    id: 7,
     name: 'Ключ',
     type: 'items',
     count: 1,
     description: 'Нужен чтобы завести машину',
     image: Keys,
+    isClose: true,
   },
   {
-    id: 'machineGun',
+    id: 8,
     name: 'Автомат',
     type: 'weapon',
     count: 1,
     description:
       'Огнестрельное оружие: может убить одного монстра, если вертушка показывает прицел.',
     image: machineGun,
+    isClose: true,
   },
   {
-    id: 'Gun',
+    id: 9,
     name: 'Пистолет',
     type: 'weapon',
     count: 1,
     description:
       'Огнестрельное оружие: может убить одного монстра, если вертушка показывает прицел.',
     image: Gun,
+    isClose: true,
   },
   {
-    id: 'Shotgun',
+    id: 10,
     name: 'Дробовик',
     type: 'weapon',
     count: 1,
     description:
       'Огнестрельное оружие: может убить одного монстра, если вертушка показывает прицел.',
     image: Shotgun,
+    isClose: true,
   },
   {
-    id: 'Knife',
+    id: 11,
     name: 'Нож',
     type: 'weapon',
     count: 1,
     description:
       'Холодное оружие: может убить одного монстра, если вертушка показывает прицел.',
     image: Knife,
+    isClose: true,
   },
   {
-    id: 'Axe',
+    id: 12,
     name: 'Топор',
     type: 'weapon',
     count: 1,
     description:
       'Холодное оружие: может убить одного монстра, если вертушка показывает прицел.',
     image: Axe,
+    isClose: true,
   },
   {
-    id: 'Crossbow',
+    id: 13,
     name: 'Арбалет',
     type: 'weapon',
     count: 1,
     description:
       'Холодное оружие: может убить одного монстра, если вертушка показывает прицел.',
     image: Crossbow,
+    isClose: true,
   },
   {
-    id: 'Grenade',
+    id: 14,
     name: 'Граната',
     type: 'weapon',
     count: 1,
     description:
       'Может сразу взорвать любого монстра, кроме босса - Болотного ужаса.',
     image: Grenade,
+    isClose: true,
   },
   {
-    id: 'Bazooka',
+    id: 15,
     name: 'Гранатомет',
     type: 'weapon',
     count: 1,
     description:
       'Единственный способ избавиться от босса - Болотного ужаса. Нельзя использовать на других врагов.',
     image: Bazooka,
+    isClose: true,
   },
 ];

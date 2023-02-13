@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/lines-between-class-members */
-export class Script {
+export class ScriptSpinner {
   isInitialized = false;
   tickerAnim!: number;
   rotation = 0;
@@ -141,15 +141,18 @@ export class Script {
   }
 
   selectPrize(): void {
-    const tmpRotation = Math.abs(this.rotation + 90);
+    let tmpRotation = Math.abs(this.rotation + 90);
     let selected = 0;
-    if (tmpRotation >= 0 && tmpRotation <= 110) {
+    if (tmpRotation > 360) {
+      tmpRotation -= 360;
+    }
+    if (tmpRotation > 0 && tmpRotation <= 110) {
       selected = 3;
     } else if (tmpRotation > 110 && tmpRotation <= 180) {
       selected = 2;
     } else if (tmpRotation > 180 && tmpRotation <= 250) {
       selected = 1;
-    } else if (tmpRotation > 250 && tmpRotation < 360) {
+    } else if (tmpRotation > 250 && tmpRotation <= 360) {
       selected = 0;
     }
     this.prizeNodes[selected].classList.add(this.selectedClass);
@@ -165,9 +168,10 @@ export class Script {
 
   rotate() {
     this.trigger.setAttribute('disabled', '0');
-    this.rotation = Math.floor(
-      Math.random() * 360 + Script.spinertia(500, 3000),
-    );
+    // this.rotation = Math.floor(
+    //   Math.random() * 360 + ScriptSpinner.spinertia(500, 3000),
+    // );
+    this.rotation = 4 + ScriptSpinner.spinertia(500, 3000);
     this.prizeNodes.forEach((prize) =>
       prize.classList.remove(this.selectedClass),
     );
@@ -181,7 +185,7 @@ export class Script {
     cancelAnimationFrame(this.tickerAnim);
     this.rotation %= 360;
     this.selectPrize();
-    console.log(Script.returnPrize());
+    console.log(ScriptSpinner.returnPrize());
     this.wheel.classList.remove(this.spinClass);
     this.spinner.style.setProperty('--rotate', this.rotation.toString());
     this.trigger.removeAttribute('disabled');

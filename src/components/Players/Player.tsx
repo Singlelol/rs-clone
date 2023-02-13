@@ -12,7 +12,7 @@ export const Player = ({ player, decrease }: PlayerProps) => {
         <input type='checkbox' defaultChecked={player.isHuman} />
         <span>Human</span>
       </div>
-      <Slyder />
+      <Slyder player={player} />
       <input type='button' className='player__btn-delete' onClick={decrease} />
     </div>
   );

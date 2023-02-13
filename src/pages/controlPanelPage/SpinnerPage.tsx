@@ -1,16 +1,16 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/jsx-no-comment-textnodes */
 import React, { Component } from 'react';
-import { Script } from './Script_Spinner';
+import { ScriptSpinner } from './ScriptSpinner';
 import './SpinnerPage.scss';
-import image from '../../components/background/Snipper.jpg';
+import image from '../../images/Snipper.jpg';
 
 export class SpinnerPage extends Component {
-  workerScript: Script = new Script();
+  rotateSpinner: ScriptSpinner = new ScriptSpinner();
 
   render(): React.ReactNode {
-    const comp = () => {
-      this.workerScript.setupWheel();
+    const launchSpinner = () => {
+      this.rotateSpinner.setupWheel();
     };
 
     return (
@@ -19,7 +19,7 @@ export class SpinnerPage extends Component {
           <img src={image} className='image_backround' alt='img' />
         </ul>
         <div className='ticker' />
-        <button className='btn-spin' onClick={comp}>
+        <button className='btn-spin' onClick={launchSpinner}>
           Run
         </button>
       </div>

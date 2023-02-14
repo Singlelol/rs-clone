@@ -11,19 +11,24 @@
 }
 
 .deal-wheel {
---size: clamp(100px, 20vmin, 50px);
---lg-hs: 0 3%;
---lg-stop: 50%;
---lg: linear-gradient( hsl(var(--lg-hs) 0%) 0 var(--lg-stop), hsl(var(--lg-hs) 20%) var(--lg-stop) 100% );
-position: relative;
-display: grid;
-grid-gap: calc(var(--size) / 20);
-align-items: center;
-grid-template-areas:
-"spinner"
-"trigger";
-font-size: calc(var(--size) / 21);
-  
+  display: grid;
+  place-items: center;
+  --size: clamp(25rem, 35rem, 45rem);
+  --lg-hs: 0 3%;
+  --lg-stop: 50%;
+  --lg: linear-gradient(
+      hsl(var(--lg-hs) 0%) 0 var(--lg-stop),
+      hsl(var(--lg-hs) 20%) var(--lg-stop) 100%
+    );
+  position: relative;
+  display: grid;
+  grid-gap: calc(var(--size) / 20);
+  align-items: center;
+  grid-template-areas:
+    "spinner"
+    "trigger";
+  font-size: calc(var(--size) / 21);
+
   .btn-spin {
     grid-area: trigger;
     justify-self: center;
@@ -31,26 +36,23 @@ font-size: calc(var(--size) / 21);
 
   .spinner {
     padding: 0;
-    position: relative;
+    margin: 0;
     display: grid;
     align-items: center;
     grid-template-areas: "spinner";
-    width: var(--size);
-    height: var(--size);
     transform: rotate(calc(var(--rotate, 0) * 1deg));
     border-radius: 50%;
   }
   
   .spinner * {
     grid-area: spinner;
-    width: 8rem;
   }
 
   .ticker {
-    margin-right: 5rem;
+    // margin-right: 20rem;
     position: relative;
     left: calc(var(--size) / -5);
-    width: calc(var(--size) / 10);
+    width: calc(var(--size) / 30);
     height: calc(var(--size) / 20);
     background: var(--lg);
     z-index: 1;
@@ -59,12 +61,11 @@ font-size: calc(var(--size) / 21);
   }
   
   .btn-spin {
-    margin-top: 4rem;
-    padding: 0.5rem 1rem;
     color: white;
     background: black;
     border: none;
     font-size: inherit;
+    padding: 0.9rem 2rem 1rem;
     border-radius: 0.5rem;
     cursor: pointer;
   }
@@ -82,6 +83,7 @@ font-size: calc(var(--size) / 21);
 .prize {
   display: flex;
   align-items: center;
+  padding: 0 calc(var(--size) / 6) 0 calc(var(--size) / 20);
   width: 50%;
   height: 50%;
   transform-origin: center right;
@@ -93,9 +95,11 @@ font-size: calc(var(--size) / 21);
   transition: transform 8s cubic-bezier(0.1, -0.01, 0, 1);
 }
 
+
 .is-spinning .ticker {
-          animation: tick 700ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: tick 700ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
+
 
 @keyframes tick {
   40% {
@@ -130,4 +134,7 @@ font-size: calc(var(--size) / 21);
   85% {
     transform: scale(1);
   }
+}
+.image_backround {
+  width: 10rem;
 }

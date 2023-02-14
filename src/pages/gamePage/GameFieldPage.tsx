@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/no-cycle */
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { GameField } from '../../components/GameField/GameField';
 import { PlayerCard } from '../../components/PlayersCard/PlayerCard';
 import { ArrayFieldType, StateType } from '../../types/types';
@@ -14,15 +14,22 @@ import {
 } from '../../utilities/utilities';
 import { Context } from '../../App';
 import '../../components/PlayersCard/PlayerCard.scss';
+import './gamePage.scss';
 import { PickedPopUp } from '../../components/CheckPopUp/PickedPopUp';
 import { ResultPickedPopUp } from '../../components/CheckPopUp/ResultPickedPopUp';
-import { SpinnerPage } from '../controlPanelPage/SpinnerPage';
+import { SpinnerPage } from '../../components/Spiner/SpinnerPage';
 
-// заглушка, рандомное создание ходов игрока
-const count = Math.round(Math.random() * 10);
-
+// // заглушка, рандомное создание ходов игрока
+let count = 0;
 export const GameFieldPage = () => {
   const { play } = useContext(Context);
+
+  // спинер
+  const [spiner, setSpiner] = useState(1);
+  useEffect(() => {
+    count = spiner;
+  }, [spiner]); // Перезапускать эффект только если spiner поменялся
+
   // создание массива игроков для отслеживания номера ячейки, кол-во ходов, статуса активности
   const PlayersStatus: StateType[] = [];
   // eslint-disable-next-line array-callback-return
@@ -52,16 +59,17 @@ export const GameFieldPage = () => {
     checkAvailible(
       gameField,
       currentPlayer.numberCell,
-      currentPlayer.count,
+      count,
       currentPlayer.player,
     ),
   );
-  // изменение статусы ответа пользователя при открытии ячейки с карточкой
-  // const [spiner, setSpiner] = useState(0);
+
   // изменение статусы ответа пользователя при открытии ячейки с карточкой
   const [answer, setAnswer] = useState(false);
+
   // изменение видимости попапа при подборе айтемов
   const [popup, setPopup] = useState(false);
+
   // изменение видимости попапа боя с монстром
   // const [battlePopup, setBattlePopup] = useState(false);
 
@@ -97,7 +105,7 @@ export const GameFieldPage = () => {
   const checkCounter = (counter: number) => {
     if (counter === 0 && PlayersStatus.length === 1) {
       console.log('new round');
-      currentPlayer.count = count;
+      currentPlayer.count = spiner;
       setCurrentPlayer(currentPlayer);
     } else if (counter === 0 && PlayersStatus.length !== 1) {
       console.log('new person');
@@ -110,7 +118,7 @@ export const GameFieldPage = () => {
       PlayersStatus[currentIndex].isActive = true;
       // TODO: переделать
       currentPlayer.id = PlayersStatus[currentIndex].id;
-      currentPlayer.count = count;
+      currentPlayer.count = spiner;
       currentPlayer.isActive = true;
       currentPlayer.numberCell = PlayersStatus[currentIndex].numberCell;
       currentPlayer.player = PlayersStatus[currentIndex].player;
@@ -126,8 +134,10 @@ export const GameFieldPage = () => {
     );
   };
 
+  // слушатель кнопки(создает массив активных ячеек, меняет массив стартовых ячеек и currentPlayer.numberCell)
   const fieldHandler = (index: number, item: ArrayFieldType) => {
-    console.log(currentPlayer.count);
+    setPopup(false);
+    console.log(`ШАГИ ${currentPlayer.count}/${spiner}`);
     currentPlayer.count -= 1;
     setAvailibleSteps(
       checkAvailible(
@@ -138,40 +148,22 @@ export const GameFieldPage = () => {
       ),
     );
     changeStartFields(currentPlayer.id, index);
-    // checkCounter(currentPlayer.count);
-    if (item.item) {
+    if (item.item && item.item.itemStatus !== 'delete') {
       setAnswer(true);
     }
   };
 
   const getAnswer = (isYes: boolean) => {
-    console.log(currentPlayer.numberCell);
     setAnswer(false);
-
     if (isYes) {
       checkItem(gameField[currentPlayer.numberCell]);
       currentPlayer.count = 0;
-      checkCounter(currentPlayer.count);
     }
-    // currentPlayer.count -= 1;
-    // fieldHandler(currentPlayer.numberCell);
   };
 
-  // слушатель кнопки(создает массив активных ячеек, меняет массив стартовых ячеек и currentPlayer.numberCell)
-
-  // const change = () => {
-  //   currentPlayer.count -= 1;
-  //   setAvailibleSteps(
-  //     checkAvailible(
-  //       gameField,
-  //       index,
-  //       currentPlayer.count,
-  //       currentPlayer.player,
-  //     ),
-  //   );
-  //   changeStartFields(currentPlayer.id, index);
-  //   checkCounter(currentPlayer.count);
-  // };
+  const nextStepHandler = () => {
+    checkCounter(currentPlayer.count);
+  };
 
   const currentField = gameField[currentPlayer.numberCell];
   return (
@@ -211,6 +203,11 @@ export const GameFieldPage = () => {
             />
           );
         })}
+        {!currentPlayer.count && !answer && (
+          <div className='modal-wheel'>
+            Нажми кнопку "Покрутить колесо" и "начать ход"
+          </div>
+        )}
 
         {/* {battlePopup && (
           <BattlePopUp
@@ -225,11 +222,20 @@ export const GameFieldPage = () => {
           />
         )} */}
       </div>
-      {currentPlayer.count === 1 && (
-        <div className='spinner-page'>
-          <SpinnerPage />
-        </div>
-      )}
+      <div className='spinner-page'>
+        <SpinnerPage setSpiner={setSpiner} />
+        {currentPlayer.count === 0 && (
+          <div className='step-button'>
+            <button
+              type='button'
+              className='btn-spin'
+              onClick={() => nextStepHandler()}
+            >
+              Начать ход
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -4,6 +4,7 @@ body {
 }
 
 .grid-container {
+  position: relative;
   display: grid;
   width: 40%;
   margin: 1rem auto;

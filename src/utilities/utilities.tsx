@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable no-param-reassign */
 import {
   bordersRightIndex,
@@ -98,4 +99,21 @@ export const getHeroImage = (id: number, PlayersStatus: StateType[]) => {
     return item.player.hero ? item.player.hero.image : '';
   }
   return '';
+};
+
+export const getSpinnerCount = (count: number) => {
+  if (count === 0 || count === 1) {
+    return 1;
+  }
+  if (count === 2 || count === 3) {
+    return 2;
+  }
+
+  if (count === 4) {
+    return 3;
+  }
+
+  if (count === 5) {
+    return 4;
+  }
 };

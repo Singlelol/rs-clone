@@ -8,7 +8,7 @@ import './player-settings.scss';
 import { Context } from '../../App';
 import { heroes } from '../../data/heroes';
 
-const maxPlayers = 5;
+const maxPlayers = 4;
 const title = 'Выберите количество игроков:';
 const list = 'Список игроков';
 const startText = 'Начать игру';

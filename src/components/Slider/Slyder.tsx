@@ -20,7 +20,7 @@ export const Slyder = ({ player }: SliderProps) => {
 
   const addHero = () => {
     // eslint-disable-next-line no-param-reassign
-    player.hero = heroes[activeIndex + 1].name;
+    player.hero = heroes[activeIndex + 1];
   };
 
   return (
@@ -36,14 +36,17 @@ export const Slyder = ({ player }: SliderProps) => {
         <img src={arr} className='prev' alt='btn-prev' />
       </button>
       <div className='slider'>
-        <div className='slider__img slider__img--prev' key={prevImgIndex}>
+        <div
+          className='slider__img slider__img--prev'
+          key={`slider${prevImgIndex}`}
+        >
           <img
             src={heroes[prevImgIndex].image}
             className='icon'
             alt='player-img'
           />
         </div>
-        <div className='slider__img' key={activeIndex}>
+        <div className='slider__img' key={`slider${activeIndex}`}>
           <img
             src={heroes[activeIndex].image}
             className='icon'
@@ -51,7 +54,10 @@ export const Slyder = ({ player }: SliderProps) => {
           />
           <span>{heroes[activeIndex].name}</span>
         </div>
-        <div className='slider__img slider__img--next' key={nextImgIndex}>
+        <div
+          className='slider__img slider__img--next'
+          key={`slider${nextImgIndex}`}
+        >
           <img
             src={heroes[nextImgIndex].image}
             className='icon'

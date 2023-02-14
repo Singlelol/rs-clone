@@ -22,7 +22,8 @@ export type ItemType = {
   count: number;
   description: string;
   image: string;
-  isClose: true;
+  itemStatus: 'close' | 'open' | 'delete';
+  field?: number;
 };
 
 export const items: ItemType[] = [
@@ -33,7 +34,7 @@ export const items: ItemType[] = [
     count: 17,
     description: 'Нападает на игрока и кусает, если вертушка показывает -зубы.',
     image: Zombi,
-    isClose: true,
+    itemStatus: 'close',
   },
   {
     id: 1,
@@ -42,7 +43,7 @@ export const items: ItemType[] = [
     count: 5,
     description: 'Нападает на игрока и кусает, если вертушка показывает -зубы.',
     image: Spider,
-    isClose: true,
+    itemStatus: 'close',
   },
   {
     id: 2,
@@ -51,7 +52,7 @@ export const items: ItemType[] = [
     count: 5,
     description: 'Нападает на игрока и кусает, если вертушка показывает -зубы.',
     image: Dog,
-    isClose: true,
+    itemStatus: 'close',
   },
   {
     id: 3,
@@ -61,7 +62,7 @@ export const items: ItemType[] = [
     description:
       'Нападает на игрока и кусает, если вертушка показывает -зубы. Это босс. Его можно убить только с помощью гранотомёта.',
     image: Horror,
-    isClose: true,
+    itemStatus: 'close',
   },
   {
     id: 4,
@@ -70,7 +71,7 @@ export const items: ItemType[] = [
     count: 6,
     description: 'Восполняет одну жизнь (а при применении Настей - сразу две).',
     image: Midicament,
-    isClose: true,
+    itemStatus: 'close',
   },
   {
     id: 5,
@@ -80,7 +81,7 @@ export const items: ItemType[] = [
     description:
       'С их помощью можно забить окно или дверь. Для этого пройдя через окно или дверь, игрок кладет карточку досок на клетку с изображением окна или двери.',
     image: Boards,
-    isClose: true,
+    itemStatus: 'close',
   },
   {
     id: 6,
@@ -89,7 +90,7 @@ export const items: ItemType[] = [
     count: 1,
     description: 'Нужна чтобы заправить и завести машину.',
     image: Canister,
-    isClose: true,
+    itemStatus: 'close',
   },
   {
     id: 7,
@@ -98,7 +99,7 @@ export const items: ItemType[] = [
     count: 1,
     description: 'Нужен чтобы завести машину',
     image: Keys,
-    isClose: true,
+    itemStatus: 'close',
   },
   {
     id: 8,
@@ -108,7 +109,7 @@ export const items: ItemType[] = [
     description:
       'Огнестрельное оружие: может убить одного монстра, если вертушка показывает прицел.',
     image: machineGun,
-    isClose: true,
+    itemStatus: 'close',
   },
   {
     id: 9,
@@ -118,7 +119,7 @@ export const items: ItemType[] = [
     description:
       'Огнестрельное оружие: может убить одного монстра, если вертушка показывает прицел.',
     image: Gun,
-    isClose: true,
+    itemStatus: 'close',
   },
   {
     id: 10,
@@ -128,7 +129,7 @@ export const items: ItemType[] = [
     description:
       'Огнестрельное оружие: может убить одного монстра, если вертушка показывает прицел.',
     image: Shotgun,
-    isClose: true,
+    itemStatus: 'close',
   },
   {
     id: 11,
@@ -138,7 +139,7 @@ export const items: ItemType[] = [
     description:
       'Холодное оружие: может убить одного монстра, если вертушка показывает прицел.',
     image: Knife,
-    isClose: true,
+    itemStatus: 'close',
   },
   {
     id: 12,
@@ -148,7 +149,7 @@ export const items: ItemType[] = [
     description:
       'Холодное оружие: может убить одного монстра, если вертушка показывает прицел.',
     image: Axe,
-    isClose: true,
+    itemStatus: 'close',
   },
   {
     id: 13,
@@ -158,7 +159,7 @@ export const items: ItemType[] = [
     description:
       'Холодное оружие: может убить одного монстра, если вертушка показывает прицел.',
     image: Crossbow,
-    isClose: true,
+    itemStatus: 'close',
   },
   {
     id: 14,
@@ -168,7 +169,7 @@ export const items: ItemType[] = [
     description:
       'Может сразу взорвать любого монстра, кроме босса - Болотного ужаса.',
     image: Grenade,
-    isClose: true,
+    itemStatus: 'close',
   },
   {
     id: 15,
@@ -178,6 +179,6 @@ export const items: ItemType[] = [
     description:
       'Единственный способ избавиться от босса - Болотного ужаса. Нельзя использовать на других врагов.',
     image: Bazooka,
-    isClose: true,
+    itemStatus: 'close',
   },
 ];

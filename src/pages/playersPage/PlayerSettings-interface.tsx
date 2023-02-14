@@ -3,7 +3,7 @@ export type PlayerType = {
   id: number;
   name: string;
   isHuman?: boolean;
-  hero: string;
+  hero: HeroType;
 };
 
 export type PlayerProps = {

@@ -32,7 +32,7 @@ export type HeroType = {
   profession: string;
 };
 
-type ItemType = {
+export type ItemType = {
   id: number;
   name: string;
   type: string;

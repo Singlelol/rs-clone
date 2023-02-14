@@ -25,6 +25,7 @@ export class ScriptSpinner {
   ];
 
   wheel!: HTMLElement;
+  imageBack!: HTMLElement;
   spinner!: HTMLElement;
   trigger!: HTMLElement;
   ticker!: HTMLElement;
@@ -39,6 +40,9 @@ export class ScriptSpinner {
     this.spinner = this.wheel!.querySelector('.spinner') as HTMLElement;
     this.trigger = this.wheel!.querySelector('.btn-spin') as HTMLElement;
     this.ticker = this.wheel!.querySelector('.ticker') as HTMLElement;
+    this.imageBack = this.spinner!.querySelector(
+      '.image_backround',
+    ) as HTMLElement;
 
     this.prizeSlice = 360 / this.prizes.length;
     this.prizeOffset = Math.floor(180 / this.prizes.length);

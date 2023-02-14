@@ -1,0 +1,44 @@
+.battleField {
+  display: flex;
+  justify-content: space-evenly;
+  background: transparent;
+}
+.player_cards {
+  background-color: aqua;
+  margin-top: 20rem;
+  width: 20rem;
+  height: 25rem;
+  border: 2mm ridge rgba(26, 70, 158, 0.6);
+
+  .battle-card__name {
+    padding-left: 8rem;
+  }
+  .battle-card__img {
+    width: 19rem;
+  }
+}
+.monster_cards {
+  margin-top: 20rem;
+  width: 20rem;
+  height: 25rem;
+  background-color: aqua;
+  border: 2mm ridge rgba(26, 70, 158, 0.6);
+
+  .battle-card__img {
+    width: 19rem;
+  }
+  .battle-card__name {
+    padding-left: 5rem;
+  }
+}
+.battle_card {
+  width: 6rem;
+}
+.battle-card__name {
+  margin: 0;
+  color: #102f72;
+  width: 14rem;
+  height: 2rem;
+  padding-left: 2.5rem;
+  padding-top: 1.5rem;
+}

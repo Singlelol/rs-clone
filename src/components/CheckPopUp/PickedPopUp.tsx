@@ -1,5 +1,9 @@
 import './checkUp.scss';
 
+const popUpPhase = 'Do you want to pick up an item?';
+const yes = 'Yes';
+const no = 'No';
+
 type PopupType = {
   getAnswer: (isYes: boolean) => void;
 };
@@ -8,9 +12,6 @@ export const PickedPopUp = ({ getAnswer }: PopupType) => {
   const popUpHandler = () => {
     getAnswer(true);
   };
-  const popUpPhase = 'Do you want to pick up an item?';
-  const yes = 'Yes';
-  const no = 'No';
   const popUpClosed = () => {
     getAnswer(false);
   };

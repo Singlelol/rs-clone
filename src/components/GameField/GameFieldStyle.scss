@@ -4,8 +4,9 @@ body {
 }
 
 .grid-container {
+  position: relative;
   display: grid;
-  width: 60%;
+  width: 40%;
   margin: 1rem auto;
   // border: 5px green solid;
   grid-template-columns: repeat(12, minmax(1rem, 1fr));
@@ -20,6 +21,6 @@ body {
 
 .grid-item--availible{
   background-color: rgb(94, 235, 94);
-  opacity: .5;
-  z-index: 5;
+  opacity: .8;
+  z-index: 10;
 }

@@ -6,8 +6,9 @@ import { Counter } from '../../components/Counter/Counter';
 import { Player } from '../../components/Players/Player';
 import './player-settings.scss';
 import { Context } from '../../App';
+import { heroes } from '../../data/heroes';
 
-const maxPlayers = 5;
+const maxPlayers = 4;
 const title = 'Выберите количество игроков:';
 const list = 'Список игроков';
 const startText = 'Начать игру';
@@ -16,7 +17,7 @@ export const PlayerSettings = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { play, changePlayers } = useContext(Context);
   const startplayers: PlayerType[] = [
-    { id: 1, name: 'Player1', isHuman: true, hero: 'Саша' },
+    { id: 1, name: 'Player1', isHuman: true, hero: heroes[0] },
   ];
   const [players, setPlayers] = useState<PlayerType[]>(startplayers);
 
@@ -26,7 +27,7 @@ export const PlayerSettings = () => {
         id: Number(players.length + 1),
         name: `Player${players.length + 1}`,
         isHuman: false,
-        hero: 'Саша',
+        hero: heroes[0],
       };
       setPlayers([...players, newPlayer]);
     }

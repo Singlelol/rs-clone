@@ -1,27 +1,22 @@
-import { heroes } from '../../data/heroes';
 import { items } from '../../data/items';
-import { checkId } from './CheckPopUp';
+import { PlayerType } from '../../pages/playersPage/PlayerSettings-interface';
 import './checkUp.scss';
 
 type Ids = {
-  persone: number;
-  item: number;
+  persone: PlayerType;
+  item: number | undefined;
+  setPopup: (arg: boolean) => void;
 };
 
-export const ResultPickedPopUp = ({ persone, item }: Ids) => {
-  const goNextTurn = () => {
-    goNextTurn();
-  };
-  const goText = 'Go!';
-  const personName = heroes[persone - 1].name;
-  const itemName = items[item - 1].name;
-  const usedItemPhrase = `The character ${personName} is put ${itemName} in an inventory`;
-  const monsterPhrase = `The character ${personName} met the monster ${itemName}. The battle is unavoidable!`;
-  const phrase = checkId(item) === true ? usedItemPhrase : monsterPhrase;
+export const ResultPickedPopUp = ({ persone, item, setPopup }: Ids) => {
+  const goText = 'Ok!';
+  const personName = persone.name;
+  const itemName = item ? items[item].name : '';
+  const phrase = `The character ${personName} is put ${itemName} in an inventory`;
   return (
-    <div id='pickUpItem' className='hidden'>
+    <div id='pickUpItem'>
       <p>{`${phrase}`}</p>
-      <button type='button' onClick={() => goNextTurn()}>
+      <button type='button' onClick={() => setPopup(false)}>
         {goText}
       </button>
     </div>

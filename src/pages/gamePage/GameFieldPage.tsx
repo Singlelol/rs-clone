@@ -126,22 +126,8 @@ export const GameFieldPage = () => {
     );
   };
 
-  const getAnswer = (isYes: boolean) => {
-    if (isYes) {
-      currentPlayer.count = 0;
-      checkItem(gameField[currentPlayer.numberCell]);
-      checkCounter(currentPlayer.count);
-    }
-    setAnswer(false);
-  };
-
-  // слушатель кнопки(создает массив активных ячеек, меняет массив стартовых ячеек и currentPlayer.numberCell)
   const fieldHandler = (index: number, item: ArrayFieldType) => {
     console.log(currentPlayer.count);
-    setPopup(false);
-    if (item.item && item.item.field && item.item.itemStatus !== 'delete') {
-      setAnswer(true);
-    }
     currentPlayer.count -= 1;
     setAvailibleSteps(
       checkAvailible(
@@ -152,8 +138,40 @@ export const GameFieldPage = () => {
       ),
     );
     changeStartFields(currentPlayer.id, index);
-    checkCounter(currentPlayer.count);
+    // checkCounter(currentPlayer.count);
+    if (item.item) {
+      setAnswer(true);
+    }
   };
+
+  const getAnswer = (isYes: boolean) => {
+    console.log(currentPlayer.numberCell);
+    setAnswer(false);
+
+    if (isYes) {
+      checkItem(gameField[currentPlayer.numberCell]);
+      currentPlayer.count = 0;
+      checkCounter(currentPlayer.count);
+    }
+    // currentPlayer.count -= 1;
+    // fieldHandler(currentPlayer.numberCell);
+  };
+
+  // слушатель кнопки(создает массив активных ячеек, меняет массив стартовых ячеек и currentPlayer.numberCell)
+
+  // const change = () => {
+  //   currentPlayer.count -= 1;
+  //   setAvailibleSteps(
+  //     checkAvailible(
+  //       gameField,
+  //       index,
+  //       currentPlayer.count,
+  //       currentPlayer.player,
+  //     ),
+  //   );
+  //   changeStartFields(currentPlayer.id, index);
+  //   checkCounter(currentPlayer.count);
+  // };
 
   const currentField = gameField[currentPlayer.numberCell];
   return (
@@ -207,9 +225,11 @@ export const GameFieldPage = () => {
           />
         )} */}
       </div>
-      <div className='spinner-page'>
-        <SpinnerPage />
-      </div>
+      {currentPlayer.count === 1 && (
+        <div className='spinner-page'>
+          <SpinnerPage />
+        </div>
+      )}
     </div>
   );
 };

@@ -7,6 +7,7 @@ type PopupType = {
 export const PickedPopUp = ({ getAnswer }: PopupType) => {
   const popUpHandler = () => {
     getAnswer(true);
+    console.log('popup');
   };
   const popUpPhase = 'Do you want to pick up an item?';
   const yes = 'Yes';

@@ -13,6 +13,7 @@ export class SpinnerPage extends Component {
     const launchSpinner = () => {
       this.rotateSpinner.setupWheel();
     };
+    console.log(this.rotateSpinner.stopRotateAndSelect());
 
     return (
       <div className='deal-wheel'>

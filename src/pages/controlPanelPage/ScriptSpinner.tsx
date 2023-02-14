@@ -190,8 +190,12 @@ export class ScriptSpinner {
     this.wheel.classList.remove(this.spinClass);
     this.spinner.style.setProperty('--rotate', this.rotation.toString());
     this.trigger.removeAttribute('disabled');
-    // return ScriptSpinner.returnPrize();
-    // ScriptSpinner.returnPrize()
+
+    return ScriptSpinner.returnPrize();
     // this.getNumber();
   }
+
+  // getCounter() {
+  //   console.log(ScriptSpinner.returnPrize());
+  // }
 }

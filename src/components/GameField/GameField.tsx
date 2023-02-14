@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/jsx-no-useless-fragment */
 import { GridItemsType } from './GameFieldTypes';
@@ -57,14 +58,22 @@ GameFieldItemProps) => {
       onClick={() => availibleSteps.includes(item.id) && onClick()}
     >
       {item.item?.itemStatus !== 'delete' ? (
-        <div
-          style={{
-            backgroundImage: `url(${checkItemStatus()})`,
-            backgroundSize: 'cover',
-            height: '-webkit-fill-available',
-            zIndex: 1,
-          }}
-        />
+        !url ? (
+          <div
+            style={{
+              backgroundImage: `url(${checkItemStatus()})`,
+              backgroundSize: 'cover',
+              height: '-webkit-fill-available',
+              zIndex: 1,
+            }}
+          />
+        ) : (
+          <div
+            style={{
+              backgroundImage: "url($'')",
+            }}
+          />
+        )
       ) : (
         <></>
       )}

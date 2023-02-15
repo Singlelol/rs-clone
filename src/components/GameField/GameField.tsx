@@ -60,6 +60,7 @@ GameFieldItemProps) => {
       {item.item?.itemStatus !== 'delete' ? (
         !url ? (
           <div
+            className='item-style'
             style={{
               backgroundImage: `url(${checkItemStatus()})`,
               backgroundSize: 'cover',

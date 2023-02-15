@@ -26,7 +26,7 @@ export const GameFieldPage = () => {
   const { play } = useContext(Context);
 
   // спинер
-  const [spiner, setSpiner] = useState(1);
+  const [spiner, setSpiner] = useState(0);
   useEffect(() => {
     count = spiner;
   }, [spiner]); // Перезапускать эффект только если spiner поменялся

@@ -3,7 +3,7 @@ export const bordersRightIndex: number[] = [
   109, 114, 118, 119,
 ];
 export const bordersLeftIndex: number[] = [
-  38, 40, 43, 47, 52, 62, 67, 71, 74, 79, 83, 87, 98, 103, 107, 110, 115, 119,
+  38, 40, 43, 47, 52, 62, 67, 71, 74, 79, 83, 98, 103, 107, 110, 115, 119,
 ];
 export const bordersTopIndex: number[] = [
   0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 38, 39, 40, 42, 43, 44, 45, 46, 74, 75,

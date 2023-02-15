@@ -21,6 +21,9 @@ body {
 
 .grid-item--availible{
   background-color: rgb(94, 235, 94);
-  opacity: .8;
-  z-index: 10;
+  opacity: 1;
+
+  .item-style{
+    opacity: 0.5;
+  }
 }

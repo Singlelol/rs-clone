@@ -140,6 +140,7 @@ export const GameFieldPage = () => {
     setPopup(false);
     console.log(`ШАГИ ${currentPlayer.count}/${spiner}`);
     currentPlayer.count -= 1;
+    if (currentPlayer.count === 0) setSpiner(0);
     setAvailibleSteps(
       checkAvailible(
         gameField,
@@ -156,6 +157,7 @@ export const GameFieldPage = () => {
 
   const getAnswer = (isYes: boolean) => {
     setAnswer(false);
+    setSpiner(0);
     if (isYes) {
       checkItem(gameField[currentPlayer.numberCell]);
       currentPlayer.count = 0;
@@ -163,6 +165,7 @@ export const GameFieldPage = () => {
   };
 
   const nextStepHandler = () => {
+    setPopup(false);
     checkCounter(currentPlayer.count);
   };
 
@@ -219,20 +222,22 @@ export const GameFieldPage = () => {
           />
         )} */}
       </div>
-      <div className='spinner-page'>
-        <SpinnerPage setSpiner={setSpiner} />
-        {currentPlayer.count === 0 && (
-          <div className='step-button'>
-            <button
-              type='button'
-              className='btn-spin'
-              onClick={() => nextStepHandler()}
-            >
-              Начать ход
-            </button>
-          </div>
-        )}
-      </div>
+      {currentPlayer.count === 0 && !answer && (
+        <div className='spinner-page'>
+          <SpinnerPage setSpiner={setSpiner} />
+        </div>
+      )}
+      {currentPlayer.count === 0 && !answer && spiner && (
+        <div className='step-button'>
+          <button
+            type='button'
+            className='btn-spin'
+            onClick={() => nextStepHandler()}
+          >
+            Начать ход
+          </button>
+        </div>
+      )}
       <MoveCounter step={currentPlayer.count} count={spiner} />
     </div>
   );

@@ -102,18 +102,22 @@ export const getHeroImage = (id: number, PlayersStatus: StateType[]) => {
 };
 
 export const getSpinnerCount = (count: number) => {
-  if (count === 0 || count === 1) {
-    return 1;
-  }
-  if (count === 2 || count === 3) {
-    return 2;
-  }
-
-  if (count === 4) {
-    return 3;
-  }
-
-  if (count === 5) {
-    return 4;
+  switch (count) {
+    case 0:
+    case 1:
+      return 1;
+      break;
+    case 2:
+    case 3:
+      return 2;
+      break;
+    case 4:
+      return 3;
+      break;
+    case 5:
+      return 4;
+      break;
+    default:
+      break;
   }
 };

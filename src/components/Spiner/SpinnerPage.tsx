@@ -8,21 +8,24 @@ type SpinerType = {
   setSpiner: (arg: number) => void;
 };
 
+const circle = 360;
+const allCountSteps = 6;
+const rotation = 30;
+
 export const SpinnerPage = ({ setSpiner }: SpinerType) => {
   const [step, setStep] = useState(0);
   const [springs, api] = useSpring(() => ({
-    from: { transform: `rotate(${30 * step}deg)` },
+    from: { transform: `rotate(${rotation * step}deg)` },
   }));
 
   const handleClick = () => {
-    setStep(Math.floor(Math.random() * 6));
+    setStep(Math.floor(Math.random() * allCountSteps));
     api.start({
-      from: { transform: `rotate(${30 * step}deg)` },
-      to: { transform: `rotate(${360 * 2 - 60 * step}deg)` },
+      from: { transform: `rotate(${rotation * step}deg)` },
+      to: { transform: `rotate(${circle * 2 - rotation * 2 * step}deg)` },
       onRest: () => {
-        const st: number = getSpinnerCount(step) as number;
-        // console.log(st);
-        setSpiner(st);
+        const numberOfSteps: number = getSpinnerCount(step) as number;
+        setSpiner(numberOfSteps);
       },
     });
   };

@@ -18,6 +18,7 @@ import './gamePage.scss';
 import { PickedPopUp } from '../../components/CheckPopUp/PickedPopUp';
 import { ResultPickedPopUp } from '../../components/CheckPopUp/ResultPickedPopUp';
 import { SpinnerPage } from '../../components/Spiner/SpinnerPage';
+import { MoveCounter } from '../../components/MoveCounter/MoveCounter';
 
 // // заглушка, рандомное создание ходов игрока
 let count = 0;
@@ -209,14 +210,10 @@ export const GameFieldPage = () => {
           </div>
         )}
 
-        {/* {battlePopup && (
+        {/* {battlePopup && currentField.item && currentField.item.id < 4 && (
           <BattlePopUp
             player={currentPlayer.player}
-            item={
-              currentField.item && currentField.item.id < 4
-                ? gameField[currentPlayer.numberCell].item
-                : undefined
-            }
+            item={gameField[currentPlayer.numberCell].item!}
             setBattlePopup={setBattlePopup}
             setIsHumanWin={setIsHumanWin}
           />
@@ -236,6 +233,7 @@ export const GameFieldPage = () => {
           </div>
         )}
       </div>
+      <MoveCounter step={currentPlayer.count} count={spiner} />
     </div>
   );
 };

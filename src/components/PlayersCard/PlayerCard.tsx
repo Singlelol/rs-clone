@@ -1,10 +1,20 @@
-import { PlayerProps } from './Players-card-interface';
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+import { PlayerCardProps } from './Players-card-interface';
 import './PlayerCard.scss';
 
-export const PlayerCard = ({ player }: PlayerProps) => {
+export const PlayerCard = ({
+  player,
+  isActive,
+  setapplyBoards,
+  windowsField,
+}: PlayerCardProps) => {
   const { hero } = player;
+  const inventoryHandler = (id: number) => {
+    const board = id === 5;
+    if (windowsField?.length && board) setapplyBoards(true);
+  };
   return (
-    <div className='players-card'>
+    <div className={isActive ? 'players-card--active' : 'players-card'}>
       <div className='players-card__main'>
         <div className='players-card__info'>
           <img
@@ -30,6 +40,7 @@ export const PlayerCard = ({ player }: PlayerProps) => {
               src={item.image}
               alt='player-invent'
               key={i}
+              onClick={() => inventoryHandler(item.id)}
             />
           ))}
         </div>

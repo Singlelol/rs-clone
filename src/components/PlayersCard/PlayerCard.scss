@@ -73,6 +73,16 @@
     }
   }
 }
+.players-card--active{
+  display: flex;
+  flex-direction: column;
+  background-color: #FEDAA1;
+  width: 10rem;
+  margin: 0.5rem 0;
+  border: .1rem solid #B95A27;
+  border-radius: 5%;
+  box-shadow: 0 .2rem .4rem rgba(94, 235, 94, .2);
+}
 
 .players-card-wrapper{
   position: absolute;

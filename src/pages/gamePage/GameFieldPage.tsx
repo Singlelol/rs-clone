@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/no-cycle */
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { GameField } from '../../components/GameField/GameField';
 import { PlayerCard } from '../../components/PlayersCard/PlayerCard';
 import { ArrayFieldType, StateType } from '../../types/types';
@@ -33,7 +33,7 @@ import {
   bordersWindowTopIndex,
 } from '../../data/border';
 
-let count = 0;
+// let count = 0;
 export const GameFieldPage = () => {
   const { play } = useContext(Context);
   // границы и окна/двери
@@ -50,9 +50,6 @@ export const GameFieldPage = () => {
   const [borders, setBorders] = useState(bordersArray);
   // спинер
   const [spiner, setSpiner] = useState(0);
-  useEffect(() => {
-    count = spiner;
-  }, [spiner]); // Перезапускать эффект только если spiner поменялся
 
   // создание массива игроков для отслеживания номера ячейки, кол-во ходов, статуса активности
   const PlayersStatus: StateType[] = [];
@@ -63,7 +60,7 @@ export const GameFieldPage = () => {
       id: i,
       numberCell: startFields[i],
       player: pl,
-      count,
+      count: spiner,
       isActive: activeStatus,
     });
   });
@@ -74,8 +71,6 @@ export const GameFieldPage = () => {
     (elem) => elem.isActive === true,
   ) as StateType;
 
-  // проверка на клик по доскам
-  // const [useBoards, setUseBoards] = useState(false);
   // изменение текущего игрока
   const [currentPlayer, setCurrentPlayer] = useState(current);
   // изменения массива стартовых значений
@@ -85,7 +80,7 @@ export const GameFieldPage = () => {
     checkAvailible(
       gameField,
       currentPlayer.numberCell,
-      count,
+      spiner,
       currentPlayer.player,
     ),
   );
@@ -169,6 +164,8 @@ export const GameFieldPage = () => {
     console.log(`ШАГИ ${currentPlayer.count}/${spiner}`);
     currentPlayer.count -= 1;
     if (currentPlayer.count === 0) setSpiner(0);
+    currentPlayer.numberCell = index;
+    // if (currentPlayer.count === 0) setSpiner(0);
     setAvailibleSteps(
       checkAvailible(
         gameField,
@@ -186,7 +183,7 @@ export const GameFieldPage = () => {
 
   const getAnswer = (isYes: boolean) => {
     setAnswer(false);
-    // setSpiner(0);
+    setSpiner(0);
     if (isYes) {
       checkItem(gameField[currentPlayer.numberCell]);
       currentPlayer.count = 0;
@@ -196,9 +193,10 @@ export const GameFieldPage = () => {
 
   const getBroadAnswer = (isYes: boolean) => {
     if (isYes) {
-      // TODO посмотреть
-      currentPlayer.player.hero.inventory =
-        currentPlayer.player.hero.inventory.filter((el) => el.id !== 5);
+      const broadIndex = currentPlayer.player.hero.inventory.findIndex(
+        (el) => el.id === 5,
+      );
+      currentPlayer.player.hero.inventory.splice(broadIndex, 1);
       const allBordersChange = closeWindow(
         gameField,
         currentPlayer.numberCell,

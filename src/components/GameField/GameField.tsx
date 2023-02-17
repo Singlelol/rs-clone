@@ -13,6 +13,7 @@ type GameFieldItemProps = {
   availibleSteps: number[];
   onClick: () => void;
   url: string | false;
+  windowsField: number[];
   // itemUrl: string | false;
 };
 
@@ -20,6 +21,7 @@ export const GameField = ({
   item,
   index,
   availibleSteps,
+  windowsField,
   onClick,
   url,
 }: // itemUrl,
@@ -30,9 +32,15 @@ GameFieldItemProps) => {
     if (key !== 'id') {
       attr[`data-${key}`] = `${item[key as keyof typeof item]}`;
     }
-    attr.className = availibleSteps.includes(item.id)
-      ? 'grid-item--availible'
-      : 'grid-item';
+    // подсветка ячеек
+    if (windowsField && windowsField.includes(item.id)) {
+      attr.className = 'grid-item--window';
+    } else if (availibleSteps && availibleSteps.includes(item.id)) {
+      attr.className = 'grid-item--availible';
+    } else {
+      attr.className = 'grid-item';
+    }
+
     attr.key = index.toString();
   });
 
@@ -41,6 +49,7 @@ GameFieldItemProps) => {
       return item.item?.image;
     }
     if (item.item && item.item?.itemStatus === 'close') {
+      // return '';
       return CoverImage;
     }
     return '';

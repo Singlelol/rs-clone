@@ -14,3 +14,14 @@ export const bordersBottomIndex: number[] = [
   115, 117, 118, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143,
   144,
 ];
+export const bordersWindowRightIndex: number[] = [85, 49, 63, 90, 54, 94, 58];
+
+export const bordersWindowLeftIndex: number[] = [95, 59, 55, 91, 64, 86, 50];
+export const bordersWindowBottomIndex: number[] = [29, 64, 69, 113, 116, 112];
+export const bordersWindowTopIndex: number[] = [124, 125, 128, 76, 81, 41];
+
+export const randomItemField: number[] = [
+  103, 90, 107, 129, 71, 60, 92, 113, 53, 114, 38, 79, 58, 2, 52, 50, 29, 128,
+  112, 77, 116, 130, 97, 78, 80, 76, 59, 117, 75, 138, 89, 1, 83, 19, 47, 36,
+  143, 57, 95, 27, 28, 93, 118, 134, 23, 84, 51, 43, 16, 98,
+];

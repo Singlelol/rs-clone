@@ -1,14 +1,14 @@
 import { useSpring, animated } from 'react-spring';
 import React, { useState } from 'react';
 import './SpinnerPage.scss';
-import image from '../../images/Snipper.jpg';
+import image from '../../images/Wheel.png';
 import { getSpinnerCount } from '../../utilities/utilities';
 
 type SpinerType = {
   setSpiner: (arg: number) => void;
 };
 
-const circle = 360;
+const circle = 160;
 const allCountSteps = 6;
 const rotation = 30;
 

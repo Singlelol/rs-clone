@@ -1,30 +1,53 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BattleCard } from './BattleCard';
 // import { heroes } from '../../data/heroes';
-import { PlayerType, ItemType } from '../playersPage/PlayerSettings-interface';
-import { SpinnerPage } from '../controlPanelPage/SpinnerPage';
+import { PlayerType } from '../playersPage/PlayerSettings-interface';
+import { SpinnerPage } from '../../components/Spiner/SpinnerPage';
+import { doSpinnerAction } from '../../utilities/utilitiesBattle';
 import './battleFied.scss';
-import Alex from '../../images/Pers/Alex.png';
+import { ItemType } from '../../data/items';
+// import Alex from '../../images/Pers/Alex.png';
 
 type BattlePopUpType = {
   player: PlayerType;
   item: ItemType;
-  // eslint-disable-next-line react/require-default-props
-  // setBattlePopup?: (arg: boolean) => void;
-  // setIsHumanWin: (arg: boolean) => void;
+  setBattlePopup: (arg: boolean) => void;
+  setIsHumanWin: (arg: boolean) => void;
 };
 
-export const BattleField = ({ player, item }: BattlePopUpType) => {
-  // const hero = heroes.find((el) => el.name === player.hero);
+export const BattlePopUp = ({
+  player,
+  item,
+  setIsHumanWin,
+  setBattlePopup,
+}: BattlePopUpType) => {
+  const [spiner, setSpiner] = useState(0);
+  console.log(`Spinner state in BattlePopUp ${spiner}`);
+
+  useEffect(() => {
+    if (item) {
+      const result = doSpinnerAction(
+        spiner,
+        player,
+        item,
+        setIsHumanWin,
+        setBattlePopup,
+      );
+      console.log(result);
+    }
+  }, [spiner]);
+
   return (
     <div className='battleField'>
       <div className='player_cards'>
-        {/* hero?.image */}
-        <BattleCard name={player.name} image={Alex} />
+        <BattleCard name={player.name} image={player.hero?.image} />
       </div>
-      <SpinnerPage />
+      <div>
+        <SpinnerPage setSpiner={setSpiner} />
+        <p>{spiner}</p>
+      </div>
       <div className='monster_cards'>
-        <BattleCard name={item.name} image={item.image} />
+        <BattleCard name={item!.name} image={item!.image} />
       </div>
     </div>
   );

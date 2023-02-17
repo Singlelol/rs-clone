@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-bind */
 /* eslint-disable import/no-cycle */
 import React, { createContext, useMemo, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
@@ -6,14 +5,13 @@ import { GameFieldPage } from './pages/gamePage/GameFieldPage';
 import { PlayerSettings } from './pages/playersPage/PlayerSettings';
 import { MainPage } from './pages/mainPage/mainPage';
 // import { ErrorPage } from './pages/errorPage/ErrorPage';
+
 import { PlayerType } from './pages/playersPage/PlayerSettings-interface';
-import { SpinnerPage } from './pages/controlPanelPage/SpinnerPage';
-import { BattleField } from './pages/battleField/battleFied';
-import Spider from './images/Spider.png';
+import { heroes } from './data/heroes';
 
 export const Context = createContext({
   play: [
-    { id: 1, name: 'Player1', isHuman: true, hero: 'Саша' },
+    { id: 1, name: 'Player1', isHuman: true, hero: heroes[0] },
   ] as PlayerType[],
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   changePlayers: (_arr: Array<PlayerType>) => {},
@@ -21,7 +19,7 @@ export const Context = createContext({
 
 function App() {
   const [play, setPlayers] = useState<PlayerType[]>([
-    { id: 1, name: 'Player1', isHuman: true, hero: 'Саша' },
+    { id: 1, name: 'Player1', isHuman: true, hero: heroes[0] },
   ]);
 
   const changePlayers = useMemo(
@@ -43,29 +41,6 @@ function App() {
         <Route path='/players' element={<PlayerSettings />} />
         <Route path='/game' element={<GameFieldPage />} />
         <Route path='*' element={<MainPage />} />
-        <Route path='/Spinner' element={<SpinnerPage />} />
-        <Route
-          path='/Battle'
-          element={
-            <BattleField
-              player={{
-                id: 1,
-                name: 'Саша',
-                isHuman: true,
-                hero: 'медсестра',
-              }}
-              item={{
-                id: 1,
-                name: 'Паук - мутант',
-                type: 'monster',
-                count: 5,
-                description:
-                  'Нападает на игрока и кусает, если вертушка показывает -зубы.',
-                image: Spider,
-              }}
-            />
-          }
-        />
       </Routes>
     </Context.Provider>
   );

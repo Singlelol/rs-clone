@@ -2,8 +2,15 @@
   box-sizing: border-box;
 }
 
+.spinner-page{
+  position: absolute;
+  top: 0;
+  right:0;
+  width: 15rem;
+  height: 15rem;
+}
+
 .deal-wheel {
-  margin-top: 10rem;
   display: grid;
   place-items: center;
   --size: clamp(25rem, 35rem, 45rem);
@@ -42,10 +49,10 @@
   }
 
   .ticker {
-    margin-right: 20rem;
+    // margin-right: 20rem;
     position: relative;
     left: calc(var(--size) / -5);
-    width: calc(var(--size) / 10);
+    width: calc(var(--size) / 30);
     height: calc(var(--size) / 20);
     background: var(--lg);
     z-index: 1;
@@ -54,7 +61,6 @@
   }
   
   .btn-spin {
-    margin-top: 5rem;
     color: white;
     background: black;
     border: none;
@@ -130,5 +136,5 @@
   }
 }
 .image_backround {
-  width: 30rem;
+  width: 10rem;
 }

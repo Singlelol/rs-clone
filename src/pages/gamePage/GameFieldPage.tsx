@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/no-cycle */
-import { useContext, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { GameField } from '../../components/GameField/GameField';
 import { PlayerCard } from '../../components/PlayersCard/PlayerCard';
 import { ArrayFieldType, StateType } from '../../types/types';
@@ -11,6 +11,8 @@ import {
   addItemInBack,
   addHeroHelth,
   getHeroImage,
+  closeWindow,
+  // checkWindow,
 } from '../../utilities/utilities';
 import { Context } from '../../App';
 import '../../components/PlayersCard/PlayerCard.scss';
@@ -18,18 +20,36 @@ import './gamePage.scss';
 import { PickedPopUp } from '../../components/CheckPopUp/PickedPopUp';
 import { ResultPickedPopUp } from '../../components/CheckPopUp/ResultPickedPopUp';
 import { SpinnerPage } from '../../components/Spiner/SpinnerPage';
+import { MoveCounter } from '../../components/MoveCounter/MoveCounter';
+import { CheckBroadPopup } from '../../components/CheckPopUp/CheckBroadPopup';
 import { BattlePopUp } from '../battleField/battleFied';
+import {
+  bordersBottomIndex,
+  bordersLeftIndex,
+  bordersRightIndex,
+  bordersTopIndex,
+  bordersWindowBottomIndex,
+  bordersWindowLeftIndex,
+  bordersWindowRightIndex,
+  bordersWindowTopIndex,
+} from '../../data/border';
 
-// // заглушка, рандомное создание ходов игрока
-let count = 0;
 export const GameFieldPage = () => {
   const { play } = useContext(Context);
-
+  // границы и окна/двери
+  const bordersArray = [
+    bordersRightIndex,
+    bordersLeftIndex,
+    bordersBottomIndex,
+    bordersTopIndex,
+    bordersWindowRightIndex,
+    bordersWindowLeftIndex,
+    bordersWindowBottomIndex,
+    bordersWindowTopIndex,
+  ];
+  const [borders, setBorders] = useState(bordersArray);
   // спинер
-  const [spiner, setSpiner] = useState(1);
-  useEffect(() => {
-    count = spiner;
-  }, [spiner]); // Перезапускать эффект только если spiner поменялся
+  const [spiner, setSpiner] = useState(0);
 
   // создание массива игроков для отслеживания номера ячейки, кол-во ходов, статуса активности
   const PlayersStatus: StateType[] = [];
@@ -40,12 +60,12 @@ export const GameFieldPage = () => {
       id: i,
       numberCell: startFields[i],
       player: pl,
-      count,
+      count: spiner,
       isActive: activeStatus,
     });
   });
 
-  const gameField = createField();
+  const gameField = createField(borders);
   // при первом старте находит героя у которого isActive
   const current = PlayersStatus.find(
     (elem) => elem.isActive === true,
@@ -60,10 +80,13 @@ export const GameFieldPage = () => {
     checkAvailible(
       gameField,
       currentPlayer.numberCell,
-      count,
+      spiner,
       currentPlayer.player,
     ),
   );
+
+  // проверка статуса ответа пользователя при попытке воспользоваться досками
+  const [applyBoards, setapplyBoards] = useState(false);
 
   // изменение статусы ответа пользователя при открытии ячейки с карточкой
   const [answer, setAnswer] = useState(false);
@@ -139,12 +162,13 @@ export const GameFieldPage = () => {
   // слушатель кнопки(создает массив активных ячеек, меняет массив стартовых ячеек и currentPlayer.numberCell)
   const fieldHandler = (index: number, item: ArrayFieldType) => {
     setPopup(false);
-    console.log(`ШАГИ ${currentPlayer.count}/${spiner}`);
     currentPlayer.count -= 1;
+    if (currentPlayer.count === 0) setSpiner(0);
+    currentPlayer.numberCell = index;
     setAvailibleSteps(
       checkAvailible(
         gameField,
-        index,
+        currentPlayer.numberCell,
         currentPlayer.count,
         currentPlayer.player,
       ),
@@ -157,26 +181,79 @@ export const GameFieldPage = () => {
 
   const getAnswer = (isYes: boolean) => {
     setAnswer(false);
+    setSpiner(0);
     if (isYes) {
       checkItem(gameField[currentPlayer.numberCell]);
       currentPlayer.count = 0;
     }
   };
+  const currentField = gameField[currentPlayer.numberCell];
+
+  const changeBorders = useCallback(() => {
+    const allBordersChange = closeWindow(
+      gameField,
+      currentPlayer.numberCell,
+      borders,
+    );
+    setBorders(allBordersChange);
+  }, [borders, currentPlayer.numberCell, gameField]);
+
+  useEffect(() => {
+    setAvailibleSteps(
+      checkAvailible(
+        gameField,
+        currentPlayer.numberCell,
+        currentPlayer.count,
+        currentPlayer.player,
+      ),
+    );
+  }, [borders]);
+
+  const getBroadAnswer = (isYes: boolean) => {
+    if (isYes) {
+      const broadIndex = currentPlayer.player.hero.inventory.findIndex(
+        (el) => el.id === 5,
+      );
+      currentPlayer.player.hero.inventory.splice(broadIndex, 1);
+      changeBorders();
+    }
+    setapplyBoards(false);
+  };
 
   const nextStepHandler = () => {
+    setPopup(false);
     checkCounter(currentPlayer.count);
   };
 
-  const currentField = gameField[currentPlayer.numberCell];
   return (
     <div>
+      {/* карточки игроков */}
       <div className='players-card-wrapper'>
-        {play.map((player) => (
-          <PlayerCard key={player.id} player={player} />
+        {PlayersStatus.map((item) => (
+          <PlayerCard
+            key={item.id}
+            player={item.player}
+            isActive={item.isActive}
+            setapplyBoards={setapplyBoards}
+            windowsField={availibleSteps[1]}
+          />
         ))}
       </div>
+
+      {/* модалка на открытие карточек */}
       {answer && <PickedPopUp getAnswer={getAnswer} />}
 
+      {/* модалка на заколачивание окна */}
+      {availibleSteps[1]?.length && applyBoards && (
+        <CheckBroadPopup getBroadAnswer={getBroadAnswer} />
+      )}
+
+      {/* модалка на прорубание окна */}
+      {availibleSteps[1]?.length && applyBoards && (
+        <CheckBroadPopup getBroadAnswer={getBroadAnswer} />
+      )}
+
+      {/* модалка какой айтем положили в рюкзак */}
       {popup && (
         <ResultPickedPopUp
           persone={currentPlayer.player}
@@ -189,6 +266,7 @@ export const GameFieldPage = () => {
         />
       )}
 
+      {/* игровое поле */}
       <div className='grid-container'>
         {gameField.map((item: ArrayFieldType, index: number) => {
           return (
@@ -200,39 +278,51 @@ export const GameFieldPage = () => {
               key={item.id}
               item={item}
               index={index}
-              availibleSteps={availibleSteps}
+              availibleSteps={availibleSteps[0]}
+              windowsField={availibleSteps[1]}
               onClick={() => fieldHandler(index, item)}
             />
           );
         })}
-        {!currentPlayer.count && !answer && !battlePopup && (
+
+        {/* экран перехода хода */}
+        {!currentPlayer.count && !answer && (
           <div className='modal-wheel'>
             Нажми кнопку "Покрутить колесо" и "начать ход"
           </div>
         )}
-      </div>
-      <div className='spinner-page'>
-        <SpinnerPage setSpiner={setSpiner} />
-        {currentPlayer.count === 0 && (
-          <div className='step-button'>
-            <button
-              type='button'
-              className='btn-spin'
-              onClick={() => nextStepHandler()}
-            >
-              Начать ход
-            </button>
-          </div>
+
+        {/* поле битвы */}
+        {battlePopup && currentField.item && currentField.item.id < 4 && (
+          <BattlePopUp
+            player={currentPlayer.player}
+            item={gameField[currentPlayer.numberCell].item!}
+            setBattlePopup={setBattlePopup}
+            setIsHumanWin={setIsHumanWin}
+          />
         )}
       </div>
-      {battlePopup && currentField.item && currentField.item.id < 4 && (
-        <BattlePopUp
-          player={currentPlayer.player}
-          item={gameField[currentPlayer.numberCell].item!}
-          setBattlePopup={setBattlePopup}
-          setIsHumanWin={setIsHumanWin}
-        />
+
+      {/* спинер */}
+      {currentPlayer.count === 0 && !answer && (
+        <div className='spinner-page'>
+          <SpinnerPage setSpiner={setSpiner} />
+        </div>
       )}
+
+      {/* кнопка начать ход */}
+      {currentPlayer.count === 0 && !answer && spiner && (
+        <div className='step-button'>
+          <button
+            type='button'
+            className='btn-spin'
+            onClick={() => nextStepHandler()}
+          >
+            Начать ход
+          </button>
+        </div>
+      )}
+      <MoveCounter step={currentPlayer.count} count={spiner} />
     </div>
   );
 };

@@ -10,6 +10,10 @@ export type ArrayFieldType = {
   right?: boolean;
   bottom?: boolean;
   left?: boolean;
+  windowright?: boolean;
+  windowleft?: boolean;
+  windowbottom?: boolean;
+  windowtop?: boolean;
   item?: ItemType;
   availible: boolean;
   pers?: HeroType;

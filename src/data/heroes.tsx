@@ -14,7 +14,7 @@ export const heroes: HeroType[] = [
     description:
       'Увлекается боевыми искусствами. Вне зависимости от того, какие предметы выпадут в процессе игры, у него всегда есть в запасе нож, которым он может воспользоваться при необходимости.',
     image: img1,
-    inventory: [items[11]],
+    inventory: [items[11], items[5]],
     skill: 1,
     profession: 'кунгфу мастер',
   },
@@ -25,7 +25,7 @@ export const heroes: HeroType[] = [
     description:
       'Работает медсестрой, а значит, что ее аптечка дает не 1 дополнительную жизнь, а сразу две.',
     image: img2,
-    inventory: [items[4]],
+    inventory: [items[4], items[10]],
     skill: 1,
     profession: 'полицейский',
   },

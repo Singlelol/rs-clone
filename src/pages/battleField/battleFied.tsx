@@ -21,7 +21,7 @@ export const BattlePopUp = ({
   setIsHumanWin,
   setBattlePopup,
 }: BattlePopUpType) => {
-  const [spiner, setSpiner] = useState(0);
+  const [spiner, setSpiner] = useState(8);
   console.log(`Spinner state in BattlePopUp ${spiner}`);
 
   useEffect(() => {
@@ -34,6 +34,7 @@ export const BattlePopUp = ({
         setBattlePopup,
       );
       console.log(result);
+      setSpiner(8);
     }
   }, [spiner]);
 

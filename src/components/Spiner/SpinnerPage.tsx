@@ -1,7 +1,7 @@
 import { useSpring, animated } from 'react-spring';
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 import './SpinnerPage.scss';
-import image from '../../images/Snipper.jpg';
+import image from '../../images/Wheel.png';
 import { getSpinnerCount } from '../../utilities/utilities';
 
 type SpinerType = {
@@ -9,24 +9,24 @@ type SpinerType = {
   setSpiner: (arg: number) => void;
 };
 
+const circle = 360;
+const allCountSteps = 6;
+const rotation = 30;
+
 export const SpinnerPage = ({ setSpiner }: SpinerType) => {
-  const intialStep = Math.floor(Math.random() * 6); // картинка может быть наклонена вначале
-  const [step, setStep] = useState(intialStep);
+  // const [step, setStep] = useState(0);
   const [springs, api] = useSpring(() => ({
-    from: { transform: `rotate(${30 * step}deg)` },
+    from: { transform: `rotate(${rotation * 0}deg)` },
   }));
 
   const handleClick = () => {
-    const tmp = Math.floor(Math.random() * 6);
-    setStep(tmp);
+    const step = Math.floor(Math.random() * allCountSteps);
     api.start({
-      from: { transform: `rotate(${30 * step}deg)` },
-      to: { transform: `rotate(${360 * 2 - 60 * step}deg)` },
+      from: { transform: `rotate(${rotation * step}deg)` },
+      to: { transform: `rotate(${circle * 2 - rotation * 2 * step}deg)` },
       onRest: () => {
-        const st: number = getSpinnerCount(step) as number;
-        console.log(`Spinner step ${step}`);
-        console.log(`Spinner state in handleClick ${st}`);
-        setSpiner(st);
+        const numberOfSteps: number = getSpinnerCount(step) as number;
+        setSpiner(numberOfSteps);
       },
     });
   };

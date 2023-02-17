@@ -13,28 +13,34 @@ type GameFieldItemProps = {
   availibleSteps: number[];
   onClick: () => void;
   url: string | false;
-  // itemUrl: string | false;
+  windowsField: number[];
 };
 
 export const GameField = ({
   item,
   index,
   availibleSteps,
+  windowsField,
   onClick,
   url,
-}: // itemUrl,
-GameFieldItemProps) => {
+}: GameFieldItemProps) => {
   const attr: GridItemsType = {};
   Object.keys(item).forEach((key) => {
     if (key === 'id') attr.id = `${item[key as keyof typeof item]}`;
     if (key !== 'id') {
       attr[`data-${key}`] = `${item[key as keyof typeof item]}`;
     }
-    attr.className = availibleSteps.includes(item.id)
-      ? 'grid-item--availible'
-      : 'grid-item';
+
     attr.key = index.toString();
   });
+
+  if (windowsField && windowsField.includes(item.id)) {
+    attr.className = 'grid-item--window';
+  } else if (availibleSteps && availibleSteps.includes(item.id)) {
+    attr.className = 'grid-item--availible';
+  } else {
+    attr.className = 'grid-item';
+  }
 
   const checkItemStatus = () => {
     if (item.item && item.item?.itemStatus === 'open') {
@@ -60,6 +66,7 @@ GameFieldItemProps) => {
       {item.item?.itemStatus !== 'delete' ? (
         !url ? (
           <div
+            className='item-style'
             style={{
               backgroundImage: `url(${checkItemStatus()})`,
               backgroundSize: 'cover',

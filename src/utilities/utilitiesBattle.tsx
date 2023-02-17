@@ -3,6 +3,7 @@ import { PlayerType } from '../pages/playersPage/PlayerSettings-interface';
 
 const coldWeapon = [11, 12, 13, 14];
 const shooter = [8, 9, 10, 14];
+const shooterBoss = 15;
 // eslint-disable-next-line consistent-return
 export const doSpinnerAction = (
   action: number,
@@ -15,7 +16,6 @@ export const doSpinnerAction = (
     case 1:
       setBattlePopup(false);
       break;
-
     case 2:
       // eslint-disable-next-line no-param-reassign
       player.hero.health -= 1;
@@ -23,14 +23,32 @@ export const doSpinnerAction = (
       break;
 
     case 3:
-      if (coldWeapon.includes(item!.id)) {
+      if (
+        player.hero.inventory.find((el) => coldWeapon.includes(el.id)) &&
+        item?.id !== 3
+      ) {
+        setIsHumanWin(true);
+        setBattlePopup(false);
+      } else if (
+        item?.id === 3 &&
+        player.hero.inventory.find((el) => el.id === shooterBoss)
+      ) {
         setIsHumanWin(true);
         setBattlePopup(false);
       }
       break;
 
     case 4:
-      if (shooter.includes(item!.id)) {
+      if (
+        player.hero.inventory.find((el) => shooter.includes(el.id)) &&
+        item?.id !== 3
+      ) {
+        setIsHumanWin(true);
+        setBattlePopup(false);
+      } else if (
+        item?.id === 3 &&
+        player.hero.inventory.find((el) => el.id === shooterBoss)
+      ) {
         setIsHumanWin(true);
         setBattlePopup(false);
       }

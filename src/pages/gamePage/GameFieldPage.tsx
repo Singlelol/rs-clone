@@ -186,16 +186,17 @@ export const GameFieldPage = () => {
 
   const getAnswer = (isYes: boolean) => {
     setAnswer(false);
-    setSpiner(0);
+    // setSpiner(0);
     if (isYes) {
       checkItem(gameField[currentPlayer.numberCell]);
       currentPlayer.count = 0;
     }
   };
+  const currentField = gameField[currentPlayer.numberCell];
 
   const getBroadAnswer = (isYes: boolean) => {
     if (isYes) {
-      console.log('YES');
+      // TODO посмотреть
       currentPlayer.player.hero.inventory =
         currentPlayer.player.hero.inventory.filter((el) => el.id !== 5);
       const allBordersChange = closeWindow(
@@ -204,16 +205,15 @@ export const GameFieldPage = () => {
         borders,
       );
       setBorders(allBordersChange);
-      setAvailibleSteps(
-        checkAvailible(
-          gameField,
-          currentPlayer.numberCell,
-          currentPlayer.count,
-          currentPlayer.player,
-        ),
-      );
-      console.log(` broad ${availibleSteps}`);
     }
+    setAvailibleSteps(
+      checkAvailible(
+        gameField,
+        currentPlayer.numberCell,
+        currentPlayer.count,
+        currentPlayer.player,
+      ),
+    );
     setapplyBoards(false);
   };
 
@@ -222,7 +222,6 @@ export const GameFieldPage = () => {
     checkCounter(currentPlayer.count);
   };
 
-  const currentField = gameField[currentPlayer.numberCell];
   return (
     <div>
       {/* карточки игроков */}

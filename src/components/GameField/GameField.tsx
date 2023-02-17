@@ -32,24 +32,23 @@ GameFieldItemProps) => {
     if (key !== 'id') {
       attr[`data-${key}`] = `${item[key as keyof typeof item]}`;
     }
-    // подсветка ячеек
-    if (windowsField && windowsField.includes(item.id)) {
-      attr.className = 'grid-item--window';
-    } else if (availibleSteps && availibleSteps.includes(item.id)) {
-      attr.className = 'grid-item--availible';
-    } else {
-      attr.className = 'grid-item';
-    }
 
     attr.key = index.toString();
   });
+
+  if (windowsField && windowsField.includes(item.id)) {
+    attr.className = 'grid-item--window';
+  } else if (availibleSteps && availibleSteps.includes(item.id)) {
+    attr.className = 'grid-item--availible';
+  } else {
+    attr.className = 'grid-item';
+  }
 
   const checkItemStatus = () => {
     if (item.item && item.item?.itemStatus === 'open') {
       return item.item?.image;
     }
     if (item.item && item.item?.itemStatus === 'close') {
-      // return '';
       return CoverImage;
     }
     return '';

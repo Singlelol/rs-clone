@@ -14,7 +14,6 @@ type GameFieldItemProps = {
   onClick: () => void;
   url: string | false;
   windowsField: number[];
-  // itemUrl: string | false;
 };
 
 export const GameField = ({
@@ -24,8 +23,7 @@ export const GameField = ({
   windowsField,
   onClick,
   url,
-}: // itemUrl,
-GameFieldItemProps) => {
+}: GameFieldItemProps) => {
   const attr: GridItemsType = {};
   Object.keys(item).forEach((key) => {
     if (key === 'id') attr.id = `${item[key as keyof typeof item]}`;

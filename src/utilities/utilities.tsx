@@ -14,7 +14,6 @@ export const ItemsArr: ItemType[][] = [];
 items
   .map((item) => ItemsArr.push(Array(item.count).fill(item)))
   .sort(() => Math.round(Math.random() * 100) - 50);
-// export const AllItems = ItemsArr.flat(2);
 
 // обьединяет и перемешивает айтемы
 export const ShuffleItemsArr = () => {
@@ -105,8 +104,23 @@ export const checkAvailible = (
   gameField[id].pers = player.hero;
   allsteps.push(availibleSteps);
   allsteps.push(windowId);
-  console.log(allsteps);
   return allsteps;
+};
+
+const changeBorders = (
+  bordersArray: number[],
+  windowsArray: number[],
+  id: number,
+  oppositeBordersArray: number[],
+  oppositeWindowsArray: number[],
+  oppositeid: number,
+) => {
+  bordersArray.push(id);
+  oppositeBordersArray.push(oppositeid);
+  const Index = windowsArray.indexOf(id);
+  windowsArray.splice(Index, 1);
+  const leftIndex = oppositeWindowsArray.indexOf(oppositeid);
+  oppositeWindowsArray.splice(leftIndex, 1);
 };
 
 export const closeWindow = (
@@ -127,39 +141,47 @@ export const closeWindow = (
   const allBorders: number[][] = [];
   if (gameField[id].windowright) {
     console.log('граница справа');
-    bordersRightIndex.push(id);
-    bordersLeftIndex.push(id + 1);
-    const rightIndex = bordersWindowRightIndex.indexOf(id);
-    bordersWindowRightIndex.splice(rightIndex, 1);
-    const leftIndex = bordersWindowLeftIndex.indexOf(id + 1);
-    bordersWindowLeftIndex.splice(leftIndex, 1);
+    changeBorders(
+      bordersRightIndex,
+      bordersWindowRightIndex,
+      id,
+      bordersLeftIndex,
+      bordersWindowLeftIndex,
+      id + 1,
+    );
   }
   if (gameField[id].windowleft) {
     console.log('граница слева');
-    bordersRightIndex.push(id - 1);
-    bordersLeftIndex.push(id);
-    const rightIndex = bordersWindowRightIndex.indexOf(id - 1);
-    bordersWindowRightIndex.splice(rightIndex, 1);
-    const leftIndex = bordersWindowLeftIndex.indexOf(id);
-    bordersWindowLeftIndex.splice(leftIndex, 1);
+    changeBorders(
+      bordersRightIndex,
+      bordersWindowRightIndex,
+      id - 1,
+      bordersLeftIndex,
+      bordersWindowLeftIndex,
+      id,
+    );
   }
   if (gameField[id].windowtop) {
     console.log('граница сверху');
-    bordersTopIndex.push(id);
-    bordersBottomIndex.push(id - 12);
-    const bottomIndex = bordersWindowBottomIndex.indexOf(id - 12);
-    bordersWindowBottomIndex.splice(bottomIndex, 1);
-    const topIndex = bordersWindowTopIndex.indexOf(id);
-    bordersWindowTopIndex.splice(topIndex, 1);
+    changeBorders(
+      bordersTopIndex,
+      bordersWindowTopIndex,
+      id,
+      bordersBottomIndex,
+      bordersWindowBottomIndex,
+      id - 12,
+    );
   }
   if (gameField[id].windowbottom) {
     console.log('граница снизу');
-    bordersBottomIndex.push(id);
-    bordersTopIndex.push(id + 12);
-    const bottomIndex = bordersWindowBottomIndex.indexOf(id);
-    bordersWindowBottomIndex.splice(bottomIndex, 1);
-    const topIndex = bordersWindowTopIndex.indexOf(id + 12);
-    bordersWindowTopIndex.splice(topIndex, 1);
+    changeBorders(
+      bordersTopIndex,
+      bordersWindowTopIndex,
+      id + 12,
+      bordersBottomIndex,
+      bordersWindowBottomIndex,
+      id,
+    );
   }
   allBorders.push(
     bordersRightIndex,
@@ -171,7 +193,7 @@ export const closeWindow = (
     bordersWindowBottomIndex,
     bordersWindowTopIndex,
   );
-  console.log(allBorders);
+  // console.log(allBorders);
   return allBorders;
 };
 
@@ -211,17 +233,13 @@ export const getSpinnerCount = (count: number) => {
     case 0:
     case 1:
       return 1;
-      break;
     case 2:
     case 3:
       return 2;
-      break;
     case 4:
       return 3;
-      break;
     case 5:
       return 4;
-      break;
     default:
       break;
   }

@@ -8,7 +8,6 @@ const no = 'No';
 type BroadPopupType = {
   getBroadAnswer: (arg: boolean) => void;
 };
-// { useBoards }: BroadPopupType
 
 export const CheckBroadPopup = ({ getBroadAnswer }: BroadPopupType) => {
   return (

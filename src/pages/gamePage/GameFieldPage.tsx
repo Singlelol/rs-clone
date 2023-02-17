@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/no-cycle */
-import { useContext, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { GameField } from '../../components/GameField/GameField';
 import { PlayerCard } from '../../components/PlayersCard/PlayerCard';
 import { ArrayFieldType, StateType } from '../../types/types';
@@ -33,7 +33,6 @@ import {
   bordersWindowTopIndex,
 } from '../../data/border';
 
-// let count = 0;
 export const GameFieldPage = () => {
   const { play } = useContext(Context);
   // границы и окна/двери
@@ -161,11 +160,9 @@ export const GameFieldPage = () => {
   // слушатель кнопки(создает массив активных ячеек, меняет массив стартовых ячеек и currentPlayer.numberCell)
   const fieldHandler = (index: number, item: ArrayFieldType) => {
     setPopup(false);
-    console.log(`ШАГИ ${currentPlayer.count}/${spiner}`);
     currentPlayer.count -= 1;
     if (currentPlayer.count === 0) setSpiner(0);
     currentPlayer.numberCell = index;
-    // if (currentPlayer.count === 0) setSpiner(0);
     setAvailibleSteps(
       checkAvailible(
         gameField,
@@ -174,7 +171,6 @@ export const GameFieldPage = () => {
         currentPlayer.player,
       ),
     );
-    console.log(availibleSteps[1]);
     changeStartFields(currentPlayer.id, index);
     if (item.item && item.item.itemStatus !== 'delete') {
       setAnswer(true);
@@ -191,19 +187,16 @@ export const GameFieldPage = () => {
   };
   const currentField = gameField[currentPlayer.numberCell];
 
-  const getBroadAnswer = (isYes: boolean) => {
-    if (isYes) {
-      const broadIndex = currentPlayer.player.hero.inventory.findIndex(
-        (el) => el.id === 5,
-      );
-      currentPlayer.player.hero.inventory.splice(broadIndex, 1);
-      const allBordersChange = closeWindow(
-        gameField,
-        currentPlayer.numberCell,
-        borders,
-      );
-      setBorders(allBordersChange);
-    }
+  const changeBorders = useCallback(() => {
+    const allBordersChange = closeWindow(
+      gameField,
+      currentPlayer.numberCell,
+      borders,
+    );
+    setBorders(allBordersChange);
+  }, [borders, currentPlayer.numberCell, gameField]);
+
+  useEffect(() => {
     setAvailibleSteps(
       checkAvailible(
         gameField,
@@ -212,6 +205,16 @@ export const GameFieldPage = () => {
         currentPlayer.player,
       ),
     );
+  }, [borders]);
+
+  const getBroadAnswer = (isYes: boolean) => {
+    if (isYes) {
+      const broadIndex = currentPlayer.player.hero.inventory.findIndex(
+        (el) => el.id === 5,
+      );
+      currentPlayer.player.hero.inventory.splice(broadIndex, 1);
+      changeBorders();
+    }
     setapplyBoards(false);
   };
 
@@ -238,7 +241,12 @@ export const GameFieldPage = () => {
       {/* модалка на открытие карточек */}
       {answer && <PickedPopUp getAnswer={getAnswer} />}
 
-      {/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!модалка на заколачивание окна */}
+      {/* модалка на заколачивание окна */}
+      {availibleSteps[1]?.length && applyBoards && (
+        <CheckBroadPopup getBroadAnswer={getBroadAnswer} />
+      )}
+
+      {/* модалка на прорубание окна */}
       {availibleSteps[1]?.length && applyBoards && (
         <CheckBroadPopup getBroadAnswer={getBroadAnswer} />
       )}

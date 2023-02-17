@@ -291,17 +291,16 @@ export const GameFieldPage = () => {
             Нажми кнопку "Покрутить колесо" и "начать ход"
           </div>
         )}
-
-        {/* поле битвы */}
-        {battlePopup && currentField.item && currentField.item.id < 4 && (
-          <BattlePopUp
-            player={currentPlayer.player}
-            item={gameField[currentPlayer.numberCell].item!}
-            setBattlePopup={setBattlePopup}
-            setIsHumanWin={setIsHumanWin}
-          />
-        )}
       </div>
+      {/* поле битвы */}
+      {battlePopup && currentField.item && currentField.item.id < 4 && (
+        <BattlePopUp
+          player={currentPlayer.player}
+          item={gameField[currentPlayer.numberCell].item!}
+          setBattlePopup={setBattlePopup}
+          setIsHumanWin={setIsHumanWin}
+        />
+      )}
 
       {/* спинер */}
       {currentPlayer.count === 0 && !answer && (

@@ -11,15 +11,23 @@ export const doSpinnerAction = (
   item: ItemType | undefined,
   setIsHumanWin: (arg: boolean) => void,
   setBattlePopup: (arg: boolean) => void,
+  setIsHeroeWin: (arg: boolean) => void,
+  setIsMonsterWin: (arg: boolean) => void,
 ) => {
   switch (action) {
     case 1:
       setBattlePopup(false);
+      setIsMonsterWin(true);
+      setIsHeroeWin(true);
       break;
     case 2:
       // eslint-disable-next-line no-param-reassign
       player.hero.health -= 1;
-      if (player.hero.health <= 0) setBattlePopup(false);
+      if (player.hero.health <= 0) {
+        setIsMonsterWin(true);
+        setIsHeroeWin(false);
+        setTimeout(setBattlePopup, 10000);
+      }
       break;
 
     case 3:
@@ -28,13 +36,17 @@ export const doSpinnerAction = (
         item?.id !== 3
       ) {
         setIsHumanWin(true);
-        setBattlePopup(false);
+        setIsHeroeWin(true);
+        setIsMonsterWin(false);
+        setTimeout(setBattlePopup, 10000);
       } else if (
         item?.id === 3 &&
         player.hero.inventory.find((el) => el.id === shooterBoss)
       ) {
         setIsHumanWin(true);
-        setBattlePopup(false);
+        setIsHeroeWin(true);
+        setIsMonsterWin(false);
+        setTimeout(setBattlePopup, 10000);
       }
       break;
 
@@ -44,13 +56,17 @@ export const doSpinnerAction = (
         item?.id !== 3
       ) {
         setIsHumanWin(true);
-        setBattlePopup(false);
+        setIsHeroeWin(true);
+        setIsMonsterWin(false);
+        setTimeout(setBattlePopup, 10000);
       } else if (
         item?.id === 3 &&
         player.hero.inventory.find((el) => el.id === shooterBoss)
       ) {
         setIsHumanWin(true);
-        setBattlePopup(false);
+        setIsHeroeWin(true);
+        setIsMonsterWin(false);
+        setTimeout(setBattlePopup, 10000);
       }
       break;
 

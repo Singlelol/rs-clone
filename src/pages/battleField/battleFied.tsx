@@ -24,6 +24,9 @@ export const BattlePopUp = ({
   const [spiner, setSpiner] = useState(8);
   console.log(`Spinner state in BattlePopUp ${spiner}`);
 
+  const [isHeroe, setIsHeroeWin] = useState(true);
+  const [isMonster, setIsMonsterWin] = useState(true);
+
   useEffect(() => {
     if (item) {
       const result = doSpinnerAction(
@@ -32,6 +35,8 @@ export const BattlePopUp = ({
         item,
         setIsHumanWin,
         setBattlePopup,
+        setIsHeroeWin,
+        setIsMonsterWin,
       );
       console.log(result);
       setSpiner(8);
@@ -41,14 +46,18 @@ export const BattlePopUp = ({
   return (
     <div className='battleField'>
       <div className='player_cards'>
-        <BattleCard name={player.name} image={player.hero?.image} />
+        <BattleCard
+          name={player.name}
+          image={player.hero?.image}
+          win={isHeroe}
+        />
       </div>
       <div>
         <SpinnerPage setSpiner={setSpiner} />
         <p>{spiner}</p>
       </div>
       <div className='monster_cards'>
-        <BattleCard name={item!.name} image={item!.image} />
+        <BattleCard name={item!.name} image={item!.image} win={isMonster} />
       </div>
     </div>
   );

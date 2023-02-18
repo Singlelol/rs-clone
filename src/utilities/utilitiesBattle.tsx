@@ -23,7 +23,6 @@ export const doSpinnerAction = (
       setBattlePopup(false);
       setIsMonsterWin(true);
       setIsHeroeWin(true);
-      console.log(1);
       setIsBattleEnd(true);
       break;
     case 2:
@@ -34,7 +33,6 @@ export const doSpinnerAction = (
         setIsHeroeWin(false);
         setTimeout(() => setBattlePopup(false), 3000);
         setIsBattleEnd(true);
-        console.log(2);
       }
       break;
 
@@ -51,7 +49,6 @@ export const doSpinnerAction = (
         setTimeout(() => setBattlePopup(false), 3000);
         setIsBattleEnd(true);
       }
-      console.log(3);
       break;
 
     case 4:
@@ -67,7 +64,6 @@ export const doSpinnerAction = (
         setTimeout(() => setBattlePopup(false), 3000);
         setIsBattleEnd(true);
       }
-      console.log(4);
       break;
     default:
       break;

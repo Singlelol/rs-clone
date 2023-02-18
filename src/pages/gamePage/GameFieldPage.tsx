@@ -110,23 +110,19 @@ export const GameFieldPage = () => {
   // проверить тип карточки и забрать/начать бой
   const checkItem = (item: ArrayFieldType) => {
     if (item.item && item.item?.id < 4) {
-      console.log(`oh noooo, its ${item.item?.name}`);
+      // console.log(`oh noooo, its ${item.item?.name}`);
       if (!isBattleEnd) setBattlePopup(true);
 
       if (isHumanWin && !isRunAway) {
-        console.log('я убил монстра');
         item.item.itemStatus = 'delete';
         setIsHumanWin(false);
         setIsBattleEnd(false);
       } else if (!isHumanWin && !isRunAway && isBattleEnd) {
-        console.log('я проиграл');
         // eslint-disable-next-line prettier/prettier
         item = { ...item, item: currentPlayer.player.hero.inventory[0], pers: undefined};
-        console.log(item);
         setIsBattleEnd(false);
       }
       if (isRunAway) {
-        console.log('я убежал');
         item.item!.itemStatus = 'open';
         setIsRunAway(false);
         setIsBattleEnd(false);
@@ -156,18 +152,15 @@ export const GameFieldPage = () => {
       (el) => el.player.id === currentPlayer.id,
     );
     PlayersStatus.splice(Index, 1);
-    console.log(PlayersStatus, PlayersStatus.length);
     if (PlayersStatus.length === 0) isGameLose(true);
   }
 
   // проверка состояния счетчика, если 0, то меняем персонажа
   const checkCounter = (counter: number) => {
     if (isRunAway) {
-      console.log('runaway');
       currentPlayer.count = spiner;
       setCurrentPlayer(currentPlayer);
     } else if (counter === 0 && PlayersStatus.length === 1) {
-      console.log('new round');
       currentPlayer.count = spiner;
       setCurrentPlayer(currentPlayer);
     } else if (
@@ -175,7 +168,6 @@ export const GameFieldPage = () => {
       PlayersStatus.length !== 1 &&
       PlayersStatus.length > 0
     ) {
-      console.log('new person');
       const indexPlayer = PlayersStatus.findIndex(
         (elem) => elem.player.id === currentPlayer.player.id,
       );
@@ -250,7 +242,7 @@ export const GameFieldPage = () => {
         currentPlayer.player,
       ),
     );
-  }, [borders, battlePopup, isHumanWin]);
+  }, [borders]);
 
   const getBroadAnswer = (isYes: boolean) => {
     if (isYes) {

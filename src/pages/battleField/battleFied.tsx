@@ -32,7 +32,7 @@ export const BattlePopUp = ({
   useEffect(() => {
     if (item) {
       doSpinnerAction(
-        1,
+        spiner,
         player,
         item,
         setIsHumanWin,

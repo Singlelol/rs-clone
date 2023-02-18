@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { ItemType } from '../data/items';
 import { PlayerType } from '../pages/playersPage/PlayerSettings-interface';
 
@@ -13,20 +14,27 @@ export const doSpinnerAction = (
   setBattlePopup: (arg: boolean) => void,
   setIsHeroeWin: (arg: boolean) => void,
   setIsMonsterWin: (arg: boolean) => void,
+  setIsRunAway: (arg: boolean) => void,
+  setIsBattleEnd: (arg: boolean) => void,
 ) => {
   switch (action) {
     case 1:
+      setIsRunAway(true);
       setBattlePopup(false);
       setIsMonsterWin(true);
       setIsHeroeWin(true);
+      console.log(1);
+      setIsBattleEnd(true);
       break;
     case 2:
-      // eslint-disable-next-line no-param-reassign
       player.hero.health -= 1;
       if (player.hero.health <= 0) {
+        setIsHumanWin(false);
         setIsMonsterWin(true);
         setIsHeroeWin(false);
-        setTimeout(setBattlePopup, 10000);
+        setTimeout(setBattlePopup, 5000);
+        setIsBattleEnd(true);
+        console.log(2);
       }
       break;
 
@@ -38,7 +46,8 @@ export const doSpinnerAction = (
         setIsHumanWin(true);
         setIsHeroeWin(true);
         setIsMonsterWin(false);
-        setTimeout(setBattlePopup, 10000);
+        setTimeout(setBattlePopup, 5000);
+        setIsBattleEnd(true);
       } else if (
         item?.id === 3 &&
         player.hero.inventory.find((el) => el.id === shooterBoss)
@@ -46,8 +55,10 @@ export const doSpinnerAction = (
         setIsHumanWin(true);
         setIsHeroeWin(true);
         setIsMonsterWin(false);
-        setTimeout(setBattlePopup, 10000);
+        setTimeout(setBattlePopup, 5000);
+        setIsBattleEnd(true);
       }
+      console.log(3);
       break;
 
     case 4:
@@ -58,7 +69,8 @@ export const doSpinnerAction = (
         setIsHumanWin(true);
         setIsHeroeWin(true);
         setIsMonsterWin(false);
-        setTimeout(setBattlePopup, 10000);
+        setTimeout(setBattlePopup, 5000);
+        setIsBattleEnd(true);
       } else if (
         item?.id === 3 &&
         player.hero.inventory.find((el) => el.id === shooterBoss)
@@ -66,8 +78,10 @@ export const doSpinnerAction = (
         setIsHumanWin(true);
         setIsHeroeWin(true);
         setIsMonsterWin(false);
-        setTimeout(setBattlePopup, 10000);
+        setTimeout(setBattlePopup, 5000);
+        setIsBattleEnd(true);
       }
+      console.log(4);
       break;
 
     default:

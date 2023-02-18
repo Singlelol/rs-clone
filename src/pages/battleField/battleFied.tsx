@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { BattleCard } from './BattleCard';
-// import { heroes } from '../../data/heroes';
 import { PlayerType } from '../playersPage/PlayerSettings-interface';
 import { SpinnerPage } from '../../components/Spiner/SpinnerPage';
 import { doSpinnerAction } from '../../utilities/utilitiesBattle';
 import './battleFied.scss';
 import { ItemType } from '../../data/items';
-// import Alex from '../../images/Pers/Alex.png';
 
 type BattlePopUpType = {
   player: PlayerType;
   item: ItemType;
   setBattlePopup: (arg: boolean) => void;
   setIsHumanWin: (arg: boolean) => void;
+  setIsRunAway: (arg: boolean) => void;
+  setIsBattleEnd: (arg: boolean) => void;
 };
 
 export const BattlePopUp = ({
@@ -20,25 +20,26 @@ export const BattlePopUp = ({
   item,
   setIsHumanWin,
   setBattlePopup,
+  setIsRunAway,
+  setIsBattleEnd,
 }: BattlePopUpType) => {
   const [spiner, setSpiner] = useState(8);
-  console.log(`Spinner state in BattlePopUp ${spiner}`);
-
   const [isHeroe, setIsHeroeWin] = useState(true);
   const [isMonster, setIsMonsterWin] = useState(true);
 
   useEffect(() => {
     if (item) {
-      const result = doSpinnerAction(
-        spiner,
+      doSpinnerAction(
+        1,
         player,
         item,
         setIsHumanWin,
         setBattlePopup,
         setIsHeroeWin,
         setIsMonsterWin,
+        setIsRunAway,
+        setIsBattleEnd,
       );
-      console.log(result);
       setSpiner(8);
     }
   }, [spiner]);

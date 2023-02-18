@@ -214,6 +214,19 @@ export const addItemInBack = (
     player.hero.inventory.push(item);
 };
 
+export const deleteMonstr = (
+  player: PlayerType,
+  item: ItemType | undefined,
+) => {
+  if (
+    item &&
+    player.hero.inventory.find(
+      (it) => item.type === 'weapon' && it.name === item.name,
+    ) === undefined
+  )
+    player.hero.inventory.push(item);
+};
+
 // добавления очков здоровья если игрок поднял аптечку
 export const addHeroHelth = (player: PlayerType) => {
   player.hero.health += player.hero.id === 2 ? 2 : 1;

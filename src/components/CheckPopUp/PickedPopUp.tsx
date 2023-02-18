@@ -1,8 +1,8 @@
 import './checkUp.scss';
 
-const popUpPhase = 'Do you want to pick up an item?';
-const yes = 'Yes';
-const no = 'No';
+const popUpPhase = 'Выхотите поднять предмет?';
+const yes = 'Да';
+const no = 'Нет';
 
 type PopupType = {
   getAnswer: (isYes: boolean) => void;

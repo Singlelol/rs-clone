@@ -2,7 +2,7 @@ import { items } from '../../data/items';
 import { PlayerType } from '../../pages/playersPage/PlayerSettings-interface';
 import './checkUp.scss';
 
-const goText = 'Ok!';
+const goText = 'Вперед!';
 
 type Ids = {
   persone: PlayerType;
@@ -13,7 +13,7 @@ type Ids = {
 export const ResultPickedPopUp = ({ persone, item, setPopup }: Ids) => {
   const personName = persone.name;
   const itemName = item ? items[item].name : '';
-  const phrase = `The character ${personName} is put ${itemName} in an inventory`;
+  const phrase = `Персонаж ${personName} кладет ${itemName} в свой инвентарь`;
   return (
     <div id='pickUpItem'>
       <p>{`${phrase}`}</p>

@@ -5,6 +5,7 @@ import { SpinnerPage } from '../../components/Spiner/SpinnerPage';
 import { doSpinnerAction } from '../../utilities/utilitiesBattle';
 import './battleFied.scss';
 import { ItemType } from '../../data/items';
+import imageSwords from '../../images/oriental.png';
 
 type BattlePopUpType = {
   player: PlayerType;
@@ -14,6 +15,7 @@ type BattlePopUpType = {
   setIsRunAway: (arg: boolean) => void;
   setIsBattleEnd: (arg: boolean) => void;
 };
+const state = 8;
 
 export const BattlePopUp = ({
   player,
@@ -23,10 +25,10 @@ export const BattlePopUp = ({
   setIsRunAway,
   setIsBattleEnd,
 }: BattlePopUpType) => {
-  const [spiner, setSpiner] = useState(8);
+  const [spiner, setSpiner] = useState(state);
+
   const [isHeroe, setIsHeroeWin] = useState(true);
   const [isMonster, setIsMonsterWin] = useState(true);
-
   useEffect(() => {
     if (item) {
       doSpinnerAction(
@@ -46,16 +48,16 @@ export const BattlePopUp = ({
 
   return (
     <div className='battleField'>
-      <div className='player_cards'>
+      <div id='div' className='player_cards'>
         <BattleCard
           name={player.name}
           image={player.hero?.image}
           win={isHeroe}
         />
       </div>
-      <div>
+      <div className='block_Spinner-Swords'>
         <SpinnerPage setSpiner={setSpiner} />
-        <p>{spiner}</p>
+        <img src={imageSwords} className='swords' alt='Swords' />
       </div>
       <div className='monster_cards'>
         <BattleCard name={item!.name} image={item!.image} win={isMonster} />

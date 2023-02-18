@@ -98,6 +98,7 @@ export const GameFieldPage = () => {
   // изменение видимости попапа боя с монстром
   const [battlePopup, setBattlePopup] = useState(false);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isHumanWin, setIsHumanWin] = useState(false);
 
   const [isRunAway, setIsRunAway] = useState(false);

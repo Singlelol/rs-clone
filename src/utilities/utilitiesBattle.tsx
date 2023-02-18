@@ -26,7 +26,7 @@ export const doSpinnerAction = (
       if (player.hero.health <= 0) {
         setIsMonsterWin(true);
         setIsHeroeWin(false);
-        setTimeout(setBattlePopup, 10000);
+        setTimeout(setBattlePopup, 3000);
       }
       break;
 
@@ -38,7 +38,7 @@ export const doSpinnerAction = (
         setIsHumanWin(true);
         setIsHeroeWin(true);
         setIsMonsterWin(false);
-        setTimeout(setBattlePopup, 10000);
+        setTimeout(setBattlePopup, 3000);
       } else if (
         item?.id === 3 &&
         player.hero.inventory.find((el) => el.id === shooterBoss)
@@ -46,7 +46,7 @@ export const doSpinnerAction = (
         setIsHumanWin(true);
         setIsHeroeWin(true);
         setIsMonsterWin(false);
-        setTimeout(setBattlePopup, 10000);
+        setTimeout(setBattlePopup, 3000);
       }
       break;
 
@@ -58,7 +58,7 @@ export const doSpinnerAction = (
         setIsHumanWin(true);
         setIsHeroeWin(true);
         setIsMonsterWin(false);
-        setTimeout(setBattlePopup, 10000);
+        setTimeout(setBattlePopup, 3000);
       } else if (
         item?.id === 3 &&
         player.hero.inventory.find((el) => el.id === shooterBoss)
@@ -66,7 +66,7 @@ export const doSpinnerAction = (
         setIsHumanWin(true);
         setIsHeroeWin(true);
         setIsMonsterWin(false);
-        setTimeout(setBattlePopup, 10000);
+        setTimeout(setBattlePopup, 3000);
       }
       break;
 

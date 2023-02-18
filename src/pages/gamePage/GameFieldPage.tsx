@@ -118,7 +118,7 @@ export const GameFieldPage = () => {
         setIsHumanWin(false);
         setIsBattleEnd(false);
       } else if (!isHumanWin && !isRunAway && isBattleEnd) {
-        console.log('я проиаграл');
+        console.log('я проиграл');
         // eslint-disable-next-line prettier/prettier
         item = { ...item, item: currentPlayer.player.hero.inventory[0], pers: undefined};
         console.log(item);
@@ -161,20 +161,10 @@ export const GameFieldPage = () => {
 
   // проверка состояния счетчика, если 0, то меняем персонажа
   const checkCounter = (counter: number) => {
-    // if (!isHumanWin && isBattleEnd) {
-    //   checkItem(gameField[currentPlayer.numberCell]);
-    //   const Index = PlayersStatus.findIndex(
-    //     (el) => el.player.id === currentPlayer.id,
-    //   );
-    //   PlayersStatus.splice(Index, 1);
-    //   console.log(PlayersStatus, PlayersStatus.length);
-    //   if (PlayersStatus.length === 0) isGameLose(true);
-    // }
     if (isRunAway) {
       console.log('runaway');
       currentPlayer.count = spiner;
       setCurrentPlayer(currentPlayer);
-      checkItem(gameField[currentPlayer.numberCell]);
     } else if (counter === 0 && PlayersStatus.length === 1) {
       console.log('new round');
       currentPlayer.count = spiner;
@@ -200,6 +190,7 @@ export const GameFieldPage = () => {
       currentPlayer.player = PlayersStatus[currentIndex].player;
       setCurrentPlayer(currentPlayer);
     }
+    checkItem(gameField[currentPlayer.numberCell]);
     setAvailibleSteps(
       checkAvailible(
         gameField,

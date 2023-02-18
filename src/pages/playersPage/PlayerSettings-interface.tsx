@@ -1,3 +1,5 @@
+import { ItemType } from '../../data/items';
+
 export type PlayerType = {
   // [x: string]: any;
   id: number;
@@ -32,11 +34,11 @@ export type HeroType = {
   profession: string;
 };
 
-type ItemType = {
-  id: number;
-  name: string;
-  type: string;
-  count: number;
-  description: string;
-  image: string;
-};
+// export type ItemType = {
+//   id: number;
+//   name: string;
+//   type: string;
+//   count: number;
+//   description: string;
+//   image: string;
+// };

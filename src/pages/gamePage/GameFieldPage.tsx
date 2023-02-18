@@ -12,7 +12,7 @@ import {
   addHeroHelth,
   getHeroImage,
   closeWindow,
-  // checkWindow,
+  endFields,
 } from '../../utilities/utilities';
 import { Context } from '../../App';
 import '../../components/PlayersCard/PlayerCard.scss';
@@ -76,6 +76,10 @@ export const GameFieldPage = () => {
   const [currentPlayer, setCurrentPlayer] = useState(current);
   // изменения массива стартовых значений
   const [startArr, setStartArr] = useState(startFields);
+
+  // проверка на выйгрыш
+  const [gameOver, setgameOver] = useState(false);
+
   // изменение массива текущих шагов
   const [availibleSteps, setAvailibleSteps] = useState(
     checkAvailible(
@@ -316,6 +320,7 @@ export const GameFieldPage = () => {
               index={index}
               availibleSteps={availibleSteps[0]}
               windowsField={availibleSteps[1]}
+              endFields={endFields}
               onClick={() => fieldHandler(index, item)}
             />
           );
@@ -363,6 +368,9 @@ export const GameFieldPage = () => {
 
       {/* модалка LOSE GAME */}
       {gameLose && <LosePopUp />}
+
+      {/* модалка LOSE GAME */}
+      {gameOver && <LosePopUp />}
     </div>
   );
 };

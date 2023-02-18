@@ -195,6 +195,9 @@ export const closeWindow = (
 // create start field for hero
 export const startFields = [133, 120, 121, 132];
 
+// create start field for hero
+export const endFields = [9, 10, 21, 22];
+
 // подбор предметов в рюкзак
 export const addItemInBack = (
   player: PlayerType,

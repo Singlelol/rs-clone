@@ -22,6 +22,7 @@ import { ResultPickedPopUp } from '../../components/CheckPopUp/ResultPickedPopUp
 import { SpinnerPage } from '../../components/Spiner/SpinnerPage';
 import { MoveCounter } from '../../components/MoveCounter/MoveCounter';
 import { CheckBroadPopup } from '../../components/CheckPopUp/CheckBroadPopup';
+import { BattlePopUp } from '../battleField/battleFied';
 import {
   bordersBottomIndex,
   bordersLeftIndex,
@@ -94,19 +95,18 @@ export const GameFieldPage = () => {
   const [popup, setPopup] = useState(false);
 
   // изменение видимости попапа боя с монстром
-  // const [battlePopup, setBattlePopup] = useState(false);
+  const [battlePopup, setBattlePopup] = useState(false);
 
-  // const [isHumanWin, setIsHumanWin] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [isHumanWin, setIsHumanWin] = useState(false);
 
   // проверить тип карточки и забрать/начать бой
   const checkItem = (item: ArrayFieldType) => {
     if (item.item && item.item?.id < 4) {
-      console.log(`oh noooo, its ${item.item?.name}`);
       if (item.item) item.item.itemStatus = 'open';
-      // setBattlePopup(true);
+      setBattlePopup(true);
     }
     if (item.item && item.item?.id > 3) {
-      console.log(`yeees, its ${item.item?.name}`);
       if (item.item) item.item.itemStatus = 'delete';
       if (item.item && item.item.id === 4) {
         addHeroHelth(currentPlayer.player);
@@ -222,6 +222,7 @@ export const GameFieldPage = () => {
     setPopup(false);
     checkCounter(currentPlayer.count);
   };
+  const stateSpiner = 4;
 
   return (
     <div>
@@ -289,17 +290,18 @@ export const GameFieldPage = () => {
             Нажми кнопку "Покрутить колесо" и "начать ход"
           </div>
         )}
-
-        {/* поле битвы */}
-        {/* {battlePopup && currentField.item && currentField.item.id < 4 && (
+      </div>
+      {/* поле битвы */}
+      {battlePopup &&
+        currentField.item &&
+        currentField.item.id < stateSpiner && (
           <BattlePopUp
             player={currentPlayer.player}
             item={gameField[currentPlayer.numberCell].item!}
             setBattlePopup={setBattlePopup}
             setIsHumanWin={setIsHumanWin}
           />
-        )} */}
-      </div>
+        )}
 
       {/* спинер */}
       {currentPlayer.count === 0 && !answer && (

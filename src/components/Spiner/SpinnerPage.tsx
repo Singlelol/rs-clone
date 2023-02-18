@@ -5,6 +5,7 @@ import image from '../../images/Wheel.png';
 import { getSpinnerCount } from '../../utilities/utilities';
 
 type SpinerType = {
+  // eslint-disable-next-line react/require-default-props
   setSpiner: (arg: number) => void;
 };
 

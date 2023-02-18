@@ -97,18 +97,16 @@ export const GameFieldPage = () => {
   // изменение видимости попапа боя с монстром
   const [battlePopup, setBattlePopup] = useState(false);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isHumanWin, setIsHumanWin] = useState(false);
 
   // проверить тип карточки и забрать/начать бой
   const checkItem = (item: ArrayFieldType) => {
     if (item.item && item.item?.id < 4) {
-      console.log(`oh noooo, its ${item.item?.name}`);
       if (item.item) item.item.itemStatus = 'open';
       setBattlePopup(true);
-      console.log(`Win ${isHumanWin}`);
     }
     if (item.item && item.item?.id > 3) {
-      console.log(`yeees, its ${item.item?.name}`);
       if (item.item) item.item.itemStatus = 'delete';
       if (item.item && item.item.id === 4) {
         addHeroHelth(currentPlayer.player);
@@ -224,6 +222,7 @@ export const GameFieldPage = () => {
     setPopup(false);
     checkCounter(currentPlayer.count);
   };
+  const stateSpiner = 4;
 
   return (
     <div>
@@ -293,14 +292,16 @@ export const GameFieldPage = () => {
         )}
       </div>
       {/* поле битвы */}
-      {battlePopup && currentField.item && currentField.item.id < 4 && (
-        <BattlePopUp
-          player={currentPlayer.player}
-          item={gameField[currentPlayer.numberCell].item!}
-          setBattlePopup={setBattlePopup}
-          setIsHumanWin={setIsHumanWin}
-        />
-      )}
+      {battlePopup &&
+        currentField.item &&
+        currentField.item.id < stateSpiner && (
+          <BattlePopUp
+            player={currentPlayer.player}
+            item={gameField[currentPlayer.numberCell].item!}
+            setBattlePopup={setBattlePopup}
+            setIsHumanWin={setIsHumanWin}
+          />
+        )}
 
       {/* спинер */}
       {currentPlayer.count === 0 && !answer && (

@@ -15,6 +15,7 @@ type BattlePopUpType = {
   setBattlePopup: (arg: boolean) => void;
   setIsHumanWin: (arg: boolean) => void;
 };
+const state = 8;
 
 export const BattlePopUp = ({
   player,
@@ -22,14 +23,13 @@ export const BattlePopUp = ({
   setIsHumanWin,
   setBattlePopup,
 }: BattlePopUpType) => {
-  const [spiner, setSpiner] = useState(8);
-  console.log(`Spinner state in BattlePopUp ${spiner}`);
+  const [spiner, setSpiner] = useState(state);
 
   const [isHeroe, setIsHeroeWin] = useState(true);
   const [isMonster, setIsMonsterWin] = useState(true);
   useEffect(() => {
     if (item) {
-      const result = doSpinnerAction(
+      doSpinnerAction(
         spiner,
         player,
         item,
@@ -38,7 +38,6 @@ export const BattlePopUp = ({
         setIsHeroeWin,
         setIsMonsterWin,
       );
-      console.log(result);
       setSpiner(8);
     }
   }, [spiner]);

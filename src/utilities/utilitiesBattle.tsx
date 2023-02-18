@@ -17,8 +17,6 @@ export const doSpinnerAction = (
   switch (action) {
     case 1:
       setBattlePopup(false);
-      setIsMonsterWin(true);
-      setIsHeroeWin(true);
       break;
     case 2:
       // eslint-disable-next-line no-param-reassign
@@ -26,50 +24,37 @@ export const doSpinnerAction = (
       if (player.hero.health <= 0) {
         setIsMonsterWin(true);
         setIsHeroeWin(false);
-        setTimeout(setBattlePopup, 3000);
+        setTimeout(() => setBattlePopup(false), 3000);
       }
       break;
 
     case 3:
       if (
-        player.hero.inventory.find((el) => coldWeapon.includes(el.id)) &&
-        item?.id !== 3
+        (player.hero.inventory.find((el) => coldWeapon.includes(el.id)) &&
+          item?.id !== 3) ||
+        (item?.id === 3 &&
+          player.hero.inventory.find((el) => el.id === shooterBoss))
       ) {
         setIsHumanWin(true);
         setIsHeroeWin(true);
         setIsMonsterWin(false);
-        setTimeout(setBattlePopup, 3000);
-      } else if (
-        item?.id === 3 &&
-        player.hero.inventory.find((el) => el.id === shooterBoss)
-      ) {
-        setIsHumanWin(true);
-        setIsHeroeWin(true);
-        setIsMonsterWin(false);
-        setTimeout(setBattlePopup, 3000);
+        setTimeout(() => setBattlePopup(false), 3000);
       }
       break;
 
     case 4:
       if (
-        player.hero.inventory.find((el) => shooter.includes(el.id)) &&
-        item?.id !== 3
+        (player.hero.inventory.find((el) => shooter.includes(el.id)) &&
+          item?.id !== 3) ||
+        (item?.id === 3 &&
+          player.hero.inventory.find((el) => el.id === shooterBoss))
       ) {
         setIsHumanWin(true);
         setIsHeroeWin(true);
         setIsMonsterWin(false);
-        setTimeout(setBattlePopup, 3000);
-      } else if (
-        item?.id === 3 &&
-        player.hero.inventory.find((el) => el.id === shooterBoss)
-      ) {
-        setIsHumanWin(true);
-        setIsHeroeWin(true);
-        setIsMonsterWin(false);
-        setTimeout(setBattlePopup, 3000);
+        setTimeout(() => setBattlePopup(false), 3000);
       }
       break;
-
     default:
       break;
   }

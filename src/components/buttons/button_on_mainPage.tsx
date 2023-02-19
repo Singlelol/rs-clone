@@ -24,16 +24,16 @@ export const Button: React.FC<Props> = ({
 
   // eslint-disable-next-line default-case
   switch (children) {
-    case 'Новая игра':
+    case 'New Game':
       mainLink = '/players';
       break;
-    case 'Загрузить':
+    case 'Load':
       mainLink = '/load';
       break;
-    case 'Статистика':
+    case 'Statistic':
       mainLink = '/statistic';
       break;
-    case 'Об авторах':
+    case 'Credits':
       mainLink = '/credits';
       break;
   }

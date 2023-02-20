@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/no-cycle */
 import { useCallback, useContext, useEffect, useState } from 'react';
@@ -65,8 +66,10 @@ export const GameFieldPage = () => {
       player: pl,
       count: spiner,
       isActive: activeStatus,
+      isDeleted: false,
     });
   });
+  // const [PlayersStatus, setPlayerStatus] = useState<StateType[]>(Players);
 
   const gameField = createField(borders);
   // при первом старте находит героя у которого isActive
@@ -121,6 +124,7 @@ export const GameFieldPage = () => {
       // console.log(`oh noooo, its ${item.item?.name}`);
       if (!isBattleEnd) {
         setBattlePopup(true);
+        // if (!battlePopup) loseCheck();
       }
     }
     if (item.item && item.item?.id > 3) {
@@ -142,17 +146,6 @@ export const GameFieldPage = () => {
   };
 
   const checkResultBattle = (item: ArrayFieldType) => {
-    // удаление пользователя из PlayersStatus
-    if (!isHumanWin && isBattleEnd && !isRunAway) {
-      // checkItem(gameField[currentPlayer.numberCell]);
-      const Index = PlayersStatus.findIndex(
-        (el) => el.player.id === currentPlayer.id,
-      );
-      PlayersStatus.splice(Index, 1);
-      if (PlayersStatus.length === 0) {
-        setGameLose(true);
-      }
-    }
     if (isHumanWin && !isRunAway) {
       item.item!.itemStatus = 'delete';
       setIsHumanWin(false);
@@ -172,22 +165,25 @@ export const GameFieldPage = () => {
     }
   };
 
+  const checkDeletedPlayer = (index: number) =>{
+    return PlayersStatus[index].isDeleted ? index + 1 : index;
+  }
+
   // проверка состояния счетчика, если 0, то меняем персонажа
   const checkCounter = (counter: number) => {
+    console.log(PlayersStatus);
     if (counter === 0 && PlayersStatus.length === 1) {
       currentPlayer.count = spiner;
       setCurrentPlayer(currentPlayer);
-    } else if (
-      counter === 0 &&
-      PlayersStatus.length !== 1 &&
-      PlayersStatus.length > 0
-    ) {
+    } else if (counter === 0 && PlayersStatus.length > 1) {
       if (!startGame) {
         const indexPlayer = PlayersStatus.findIndex(
           (elem) => elem.player.id === currentPlayer.player.id,
         );
-        const currentIndex =
-          indexPlayer + 1 < PlayersStatus.length ? indexPlayer + 1 : 0;
+
+        // не получается реализовать проверку на наличие следующего индекса в массиве и проверка на isDeleted
+        let currentIndex = checkDeletedPlayer(indexPlayer + 1);
+        currentIndex = currentIndex < PlayersStatus.length ? currentIndex : 0;
         PlayersStatus[indexPlayer].isActive = false;
         PlayersStatus[currentIndex].isActive = true;
         // TODO: переделать
@@ -211,7 +207,7 @@ export const GameFieldPage = () => {
     );
   };
 
-  // проверка на выйгрыш
+  // проверка на победу в игре
   const winCheck = () => {
     if (PlayersStatus.length > 1 && checkAllWin(PlayersStatus)) {
       setGameWin(true);
@@ -284,9 +280,32 @@ export const GameFieldPage = () => {
     setapplyBoards(false);
   };
 
+  // проверка на поражение
+  const loseCheck = () => {
+    if (!isHumanWin && isBattleEnd && !isRunAway) {
+      currentPlayer.isDeleted = true;
+      setCurrentPlayer(currentPlayer);
+      if (PlayersStatus.length === 1) {
+        setGameLose(true);
+      }
+      if (PlayersStatus.length > 1) {
+        const isAlive = PlayersStatus.some((elem) => elem.isDeleted === true);
+        if (!isAlive) {
+          setGameLose(true);
+        }
+      }
+      // const Index = PlayersStatus.findIndex((el) => el.id === currentPlayer.id);
+      // console.log(Index);
+      // PlayersStatus.splice(Index, 1);
+      // console.log(PlayersStatus);
+      // setPlayerStatus(PlayersStatus);
+    }
+  };
+
   const nextStepHandler = () => {
     setPopup(false);
     checkResultBattle(gameField[currentPlayer.numberCell]);
+    loseCheck();
     checkCounter(currentPlayer.count);
     setStartGame(false);
   };

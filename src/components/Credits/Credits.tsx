@@ -1,8 +1,8 @@
 import './credits.scss';
 
-const creditsH1 = 'Над проектом работали:';
+const creditsTitle = 'Над проектом работали:';
 const authorH2 = 'Автор идеи:';
-const pogrammerH2 = 'Программисты:';
+const programmerH2 = 'Программисты:';
 const programmerOne = 'Кристина Хабибулина';
 const programmerTwo = 'Виктория Горячкина';
 const programmerThree = 'Салов Иван';
@@ -20,13 +20,13 @@ const buttonText = 'Назад';
 export const Credits = () => {
   return (
     <section className='credits'>
-      <h2 className='credits_header'>{creditsH1}</h2>
+      <h2 className='credits_header'>{creditsTitle}</h2>
       <div className='credits_body'>
         <h3 className='credits_body_title'>{authorH2}</h3>
         <div className='credits_body_text'>
           <a href={programmerThreeLink}>{programmerThree}</a>
         </div>
-        <h3 className='credits_body_title'>{pogrammerH2}</h3>
+        <h3 className='credits_body_title'>{programmerH2}</h3>
         <div className='credits_body_text'>
           <a href={programmerOneLink}>{programmerOne}</a>
         </div>

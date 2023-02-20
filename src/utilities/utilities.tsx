@@ -140,7 +140,6 @@ export const closeWindow = (
   ] = borders;
   const allBorders: number[][] = [];
   if (gameField[id].windowright) {
-    console.log('граница справа');
     changeBorders(
       bordersRightIndex,
       bordersWindowRightIndex,
@@ -151,7 +150,6 @@ export const closeWindow = (
     );
   }
   if (gameField[id].windowleft) {
-    console.log('граница слева');
     changeBorders(
       bordersRightIndex,
       bordersWindowRightIndex,
@@ -162,7 +160,6 @@ export const closeWindow = (
     );
   }
   if (gameField[id].windowtop) {
-    console.log('граница сверху');
     changeBorders(
       bordersTopIndex,
       bordersWindowTopIndex,
@@ -173,7 +170,6 @@ export const closeWindow = (
     );
   }
   if (gameField[id].windowbottom) {
-    console.log('граница снизу');
     changeBorders(
       bordersTopIndex,
       bordersWindowTopIndex,
@@ -193,7 +189,6 @@ export const closeWindow = (
     bordersWindowBottomIndex,
     bordersWindowTopIndex,
   );
-  // console.log(allBorders);
   return allBorders;
 };
 
@@ -209,6 +204,20 @@ export const addItemInBack = (
     item &&
     player.hero.inventory.find(
       (it) => item.type === 'weapon' && it.name === item.name,
+    ) === undefined
+  )
+    player.hero.inventory.push(item);
+};
+
+const typeWeapon = 'weapon';
+export const deleteMonstr = (
+  player: PlayerType,
+  item: ItemType | undefined,
+) => {
+  if (
+    item &&
+    player.hero.inventory.find(
+      (it) => item.type === typeWeapon && it.name === item.name,
     ) === undefined
   )
     player.hero.inventory.push(item);

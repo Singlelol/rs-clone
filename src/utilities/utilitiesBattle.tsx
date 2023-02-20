@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { ItemType } from '../data/items';
 import { PlayerType } from '../pages/playersPage/PlayerSettings-interface';
 
@@ -13,18 +14,25 @@ export const doSpinnerAction = (
   setBattlePopup: (arg: boolean) => void,
   setIsHeroeWin: (arg: boolean) => void,
   setIsMonsterWin: (arg: boolean) => void,
+  setIsRunAway: (arg: boolean) => void,
+  setIsBattleEnd: (arg: boolean) => void,
 ) => {
   switch (action) {
     case 1:
+      setIsRunAway(true);
       setBattlePopup(false);
+      setIsMonsterWin(true);
+      setIsHeroeWin(true);
+      setIsBattleEnd(true);
       break;
     case 2:
-      // eslint-disable-next-line no-param-reassign
       player.hero.health -= 1;
       if (player.hero.health <= 0) {
+        setIsHumanWin(false);
         setIsMonsterWin(true);
         setIsHeroeWin(false);
         setTimeout(() => setBattlePopup(false), 3000);
+        setIsBattleEnd(true);
       }
       break;
 
@@ -39,6 +47,7 @@ export const doSpinnerAction = (
         setIsHeroeWin(true);
         setIsMonsterWin(false);
         setTimeout(() => setBattlePopup(false), 3000);
+        setIsBattleEnd(true);
       }
       break;
 
@@ -53,6 +62,7 @@ export const doSpinnerAction = (
         setIsHeroeWin(true);
         setIsMonsterWin(false);
         setTimeout(() => setBattlePopup(false), 3000);
+        setIsBattleEnd(true);
       }
       break;
     default:

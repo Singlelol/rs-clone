@@ -33,6 +33,7 @@ import {
   bordersWindowRightIndex,
   bordersWindowTopIndex,
 } from '../../data/border';
+import { LosePopUp } from '../../components/LosePopUp/LosePopUp';
 
 export const GameFieldPage = () => {
   const { play } = useContext(Context);
@@ -100,11 +101,34 @@ export const GameFieldPage = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isHumanWin, setIsHumanWin] = useState(false);
 
+  const [isRunAway, setIsRunAway] = useState(false);
+
+  const [isBattleEnd, setIsBattleEnd] = useState(false);
+
+  const [gameLose, isGameLose] = useState(false);
+
   // проверить тип карточки и забрать/начать бой
   const checkItem = (item: ArrayFieldType) => {
     if (item.item && item.item?.id < 4) {
-      if (item.item) item.item.itemStatus = 'open';
-      setBattlePopup(true);
+      // console.log(`oh noooo, its ${item.item?.name}`);
+      if (!isBattleEnd) {
+        setBattlePopup(true);
+      }
+
+      if (isHumanWin && !isRunAway) {
+        item.item.itemStatus = 'delete';
+        setIsHumanWin(false);
+        setIsBattleEnd(false);
+      } else if (!isHumanWin && !isRunAway && isBattleEnd) {
+        // eslint-disable-next-line prettier/prettier
+        item = { ...item, item: currentPlayer.player.hero.inventory[0], pers: undefined};
+        setIsBattleEnd(false);
+      }
+      if (isRunAway) {
+        item.item!.itemStatus = 'open';
+        setIsRunAway(false);
+        setIsBattleEnd(false);
+      }
     }
     if (item.item && item.item?.id > 3) {
       if (item.item) item.item.itemStatus = 'delete';
@@ -124,14 +148,30 @@ export const GameFieldPage = () => {
     setStartArr(startArr);
   };
 
+  if (!isHumanWin && isBattleEnd && !isRunAway) {
+    checkItem(gameField[currentPlayer.numberCell]);
+    const Index = PlayersStatus.findIndex(
+      (el) => el.player.id === currentPlayer.id,
+    );
+    PlayersStatus.splice(Index, 1);
+    if (PlayersStatus.length === 0) {
+      isGameLose(true);
+    }
+  }
+
   // проверка состояния счетчика, если 0, то меняем персонажа
   const checkCounter = (counter: number) => {
-    if (counter === 0 && PlayersStatus.length === 1) {
-      console.log('new round');
+    if (isRunAway) {
       currentPlayer.count = spiner;
       setCurrentPlayer(currentPlayer);
-    } else if (counter === 0 && PlayersStatus.length !== 1) {
-      console.log('new person');
+    } else if (counter === 0 && PlayersStatus.length === 1) {
+      currentPlayer.count = spiner;
+      setCurrentPlayer(currentPlayer);
+    } else if (
+      counter === 0 &&
+      PlayersStatus.length !== 1 &&
+      PlayersStatus.length > 0
+    ) {
       const indexPlayer = PlayersStatus.findIndex(
         (elem) => elem.player.id === currentPlayer.player.id,
       );
@@ -147,6 +187,7 @@ export const GameFieldPage = () => {
       currentPlayer.player = PlayersStatus[currentIndex].player;
       setCurrentPlayer(currentPlayer);
     }
+    checkItem(gameField[currentPlayer.numberCell]);
     setAvailibleSteps(
       checkAvailible(
         gameField,
@@ -222,21 +263,21 @@ export const GameFieldPage = () => {
     setPopup(false);
     checkCounter(currentPlayer.count);
   };
-  const stateSpiner = 4;
 
   return (
     <div>
       {/* карточки игроков */}
       <div className='players-card-wrapper'>
-        {PlayersStatus.map((item) => (
-          <PlayerCard
-            key={item.id}
-            player={item.player}
-            isActive={item.isActive}
-            setapplyBoards={setapplyBoards}
-            windowsField={availibleSteps[1]}
-          />
-        ))}
+        {PlayersStatus.length > 0 &&
+          PlayersStatus.map((item) => (
+            <PlayerCard
+              key={item.id}
+              player={item.player}
+              isActive={item.isActive}
+              setapplyBoards={setapplyBoards}
+              windowsField={availibleSteps[1]}
+            />
+          ))}
       </div>
 
       {/* модалка на открытие карточек */}
@@ -292,16 +333,16 @@ export const GameFieldPage = () => {
         )}
       </div>
       {/* поле битвы */}
-      {battlePopup &&
-        currentField.item &&
-        currentField.item.id < stateSpiner && (
-          <BattlePopUp
-            player={currentPlayer.player}
-            item={gameField[currentPlayer.numberCell].item!}
-            setBattlePopup={setBattlePopup}
-            setIsHumanWin={setIsHumanWin}
-          />
-        )}
+      {battlePopup && currentField.item && currentField.item.id < 4 && (
+        <BattlePopUp
+          player={currentPlayer.player}
+          item={gameField[currentPlayer.numberCell].item!}
+          setBattlePopup={setBattlePopup}
+          setIsHumanWin={setIsHumanWin}
+          setIsRunAway={setIsRunAway}
+          setIsBattleEnd={setIsBattleEnd}
+        />
+      )}
 
       {/* спинер */}
       {currentPlayer.count === 0 && !answer && (
@@ -323,6 +364,9 @@ export const GameFieldPage = () => {
         </div>
       )}
       <MoveCounter step={currentPlayer.count} count={spiner} />
+
+      {/* модалка LOSE GAME */}
+      {gameLose && <LosePopUp />}
     </div>
   );
 };

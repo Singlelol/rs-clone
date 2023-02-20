@@ -2,12 +2,12 @@
 import './losepopup.scss';
 
 type GameOverProps = {
-  win: boolean;
+  isWin: boolean;
 };
 
-export const GameOverPopUp = ({ win }: GameOverProps) => {
-  const popUpPhase = win ? 'Вы победили!' : 'Вы проиграли!';
-  const cite = win
+export const GameOverPopUp = ({ isWin }: GameOverProps) => {
+  const popUpPhase = isWin ? 'Вы победили!' : 'Вы проиграли!';
+  const cite = isWin
     ? `Пришел, увидел, победил! 
   Красавчик! `
     : '«Победители никогда не сдаются, а сдавшиеся никогда не побеждают» Винс Ломбарди';

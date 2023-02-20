@@ -163,9 +163,10 @@ export const GameFieldPage = () => {
       setIsBattleEnd(false);
     }
     if (isRunAway) {
+      const openStatus = 'open';
       currentPlayer.count = spiner;
       setCurrentPlayer(currentPlayer);
-      item.item!.itemStatus = 'open';
+      item.item!.itemStatus = openStatus;
       setIsRunAway(false);
       setIsBattleEnd(false);
     }
@@ -212,11 +213,11 @@ export const GameFieldPage = () => {
 
   // проверка на выйгрыш
   const winCheck = () => {
-    if (PlayersStatus.length > 1) {
-      if (checkAllWin(PlayersStatus)) setGameWin(true);
+    if (PlayersStatus.length > 1 && checkAllWin(PlayersStatus)) {
+      setGameWin(true);
     }
-    if (PlayersStatus.length === 1) {
-      if (checkWin(currentPlayer)) setGameWin(true);
+    if (PlayersStatus.length === 1 && checkWin(currentPlayer)) {
+      setGameWin(true);
     }
   };
 
@@ -392,10 +393,10 @@ export const GameFieldPage = () => {
       <MoveCounter step={currentPlayer.count} count={spiner} />
 
       {/* модалка LOSE GAME */}
-      {gameLose && <GameOverPopUp win={!gameLose} />}
+      {gameLose && <GameOverPopUp isWin={!gameLose} />}
 
       {/* модалка LOSE GAME */}
-      {gameWin && <GameOverPopUp win={gameWin} />}
+      {gameWin && <GameOverPopUp isWin={gameWin} />}
     </div>
   );
 };

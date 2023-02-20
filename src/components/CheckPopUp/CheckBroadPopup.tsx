@@ -2,8 +2,8 @@ import './checkUp.scss';
 
 const popUpPhase =
   ' Вы можете забить этот проход(дверь/окно). Хотите использовать доски?';
-const yes = 'Yes';
-const no = 'No';
+const yes = 'Да';
+const no = 'Нет';
 
 type BroadPopupType = {
   getBroadAnswer: (arg: boolean) => void;

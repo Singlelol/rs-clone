@@ -4,7 +4,6 @@ import './PlayerCard.scss';
 
 export const PlayerCard = ({
   player,
-  isActive,
   setapplyBoards,
   windowsField,
 }: PlayerCardProps) => {
@@ -14,7 +13,7 @@ export const PlayerCard = ({
     if (windowsField?.length && board) setapplyBoards(true);
   };
   return (
-    <div className={isActive ? 'players-card--active' : 'players-card'}>
+    <div className={player ? 'players-card' : 'players-card--hide'}>
       <div className='players-card__main'>
         <div className='players-card__info'>
           <img

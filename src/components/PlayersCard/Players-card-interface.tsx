@@ -6,7 +6,6 @@ export type PlayerProps = {
 
 export type PlayerCardProps = {
   player: PlayerType;
-  isActive: boolean;
   setapplyBoards: (arg: boolean) => void;
   windowsField: number[];
 };

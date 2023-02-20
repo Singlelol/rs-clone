@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable consistent-return */
 /* eslint-disable no-param-reassign */
 import { randomItemField } from '../data/border';
@@ -195,6 +196,9 @@ export const closeWindow = (
 // create start field for hero
 export const startFields = [133, 120, 121, 132];
 
+// create start field for hero
+export const endFields = [9, 10, 21, 22];
+
 // подбор предметов в рюкзак
 export const addItemInBack = (
   player: PlayerType,
@@ -252,4 +256,34 @@ export const getSpinnerCount = (count: number) => {
     default:
       break;
   }
+};
+
+// проверка на победу в игре
+const checkKeys = (player: PlayerType): boolean => {
+  return !!(player.hero.inventory.findIndex((el) => el.id === 7) !== -1);
+};
+const checkCanister = (player: PlayerType): boolean => {
+  return !!(player.hero.inventory.findIndex((el) => el.id === 6) !== -1);
+};
+
+export const checkWin = (player: StateType): boolean => {
+  return !!(
+    endFields.includes(player.numberCell) &&
+    checkKeys(player.player) &&
+    checkCanister(player.player)
+  );
+};
+
+export const checkAllWin = (PlayerStatus: StateType[]): boolean => {
+  const finalItems: boolean[] = [];
+  PlayerStatus.map((el) => {
+    if (endFields.includes(el.numberCell) && checkKeys(el.player)) {
+      finalItems.push(true);
+    }
+    if (endFields.includes(el.numberCell) && checkCanister(el.player)) {
+      finalItems.push(true);
+    }
+  });
+
+  return finalItems.length === 2;
 };

@@ -12,7 +12,9 @@ import {
   addHeroHelth,
   getHeroImage,
   closeWindow,
-  // checkWindow,
+  endFields,
+  checkWin,
+  checkAllWin,
 } from '../../utilities/utilities';
 import { Context } from '../../App';
 import '../../components/PlayersCard/PlayerCard.scss';
@@ -33,7 +35,7 @@ import {
   bordersWindowRightIndex,
   bordersWindowTopIndex,
 } from '../../data/border';
-import { LosePopUp } from '../../components/LosePopUp/LosePopUp';
+import { GameOverPopUp } from '../../components/LosePopUp/GameOverPopUp';
 
 export const GameFieldPage = () => {
   const { play } = useContext(Context);
@@ -76,6 +78,7 @@ export const GameFieldPage = () => {
   const [currentPlayer, setCurrentPlayer] = useState(current);
   // изменения массива стартовых значений
   const [startArr, setStartArr] = useState(startFields);
+
   // изменение массива текущих шагов
   const [availibleSteps, setAvailibleSteps] = useState(
     checkAvailible(
@@ -85,6 +88,9 @@ export const GameFieldPage = () => {
       currentPlayer.player,
     ),
   );
+
+  // проверка статуса ответа пользователя при попытке воспользоваться досками
+  const [startGame, setStartGame] = useState(true);
 
   // проверка статуса ответа пользователя при попытке воспользоваться досками
   const [applyBoards, setapplyBoards] = useState(false);
@@ -105,7 +111,9 @@ export const GameFieldPage = () => {
 
   const [isBattleEnd, setIsBattleEnd] = useState(false);
 
-  const [gameLose, isGameLose] = useState(false);
+  // проверка на выйгрыш/проигрыш
+  const [gameWin, setGameWin] = useState(false);
+  const [gameLose, setGameLose] = useState(false);
 
   // проверить тип карточки и забрать/начать бой
   const checkItem = (item: ArrayFieldType) => {
@@ -113,21 +121,6 @@ export const GameFieldPage = () => {
       // console.log(`oh noooo, its ${item.item?.name}`);
       if (!isBattleEnd) {
         setBattlePopup(true);
-      }
-
-      if (isHumanWin && !isRunAway) {
-        item.item.itemStatus = 'delete';
-        setIsHumanWin(false);
-        setIsBattleEnd(false);
-      } else if (!isHumanWin && !isRunAway && isBattleEnd) {
-        // eslint-disable-next-line prettier/prettier
-        item = { ...item, item: currentPlayer.player.hero.inventory[0], pers: undefined};
-        setIsBattleEnd(false);
-      }
-      if (isRunAway) {
-        item.item!.itemStatus = 'open';
-        setIsRunAway(false);
-        setIsBattleEnd(false);
       }
     }
     if (item.item && item.item?.id > 3) {
@@ -148,23 +141,40 @@ export const GameFieldPage = () => {
     setStartArr(startArr);
   };
 
-  if (!isHumanWin && isBattleEnd && !isRunAway) {
-    checkItem(gameField[currentPlayer.numberCell]);
-    const Index = PlayersStatus.findIndex(
-      (el) => el.player.id === currentPlayer.id,
-    );
-    PlayersStatus.splice(Index, 1);
-    if (PlayersStatus.length === 0) {
-      isGameLose(true);
+  const checkResultBattle = (item: ArrayFieldType) => {
+    // удаление пользователя из PlayersStatus
+    if (!isHumanWin && isBattleEnd && !isRunAway) {
+      // checkItem(gameField[currentPlayer.numberCell]);
+      const Index = PlayersStatus.findIndex(
+        (el) => el.player.id === currentPlayer.id,
+      );
+      PlayersStatus.splice(Index, 1);
+      if (PlayersStatus.length === 0) {
+        setGameLose(true);
+      }
     }
-  }
+    if (isHumanWin && !isRunAway) {
+      item.item!.itemStatus = 'delete';
+      setIsHumanWin(false);
+      setIsBattleEnd(false);
+    } else if (!isHumanWin && !isRunAway && isBattleEnd) {
+      // eslint-disable-next-line prettier/prettier
+      item = { ...item, item: currentPlayer.player.hero.inventory[0], pers: undefined};
+      setIsBattleEnd(false);
+    }
+    if (isRunAway) {
+      const openStatus = 'open';
+      currentPlayer.count = spiner;
+      setCurrentPlayer(currentPlayer);
+      item.item!.itemStatus = openStatus;
+      setIsRunAway(false);
+      setIsBattleEnd(false);
+    }
+  };
 
   // проверка состояния счетчика, если 0, то меняем персонажа
   const checkCounter = (counter: number) => {
-    if (isRunAway) {
-      currentPlayer.count = spiner;
-      setCurrentPlayer(currentPlayer);
-    } else if (counter === 0 && PlayersStatus.length === 1) {
+    if (counter === 0 && PlayersStatus.length === 1) {
       currentPlayer.count = spiner;
       setCurrentPlayer(currentPlayer);
     } else if (
@@ -172,22 +182,25 @@ export const GameFieldPage = () => {
       PlayersStatus.length !== 1 &&
       PlayersStatus.length > 0
     ) {
-      const indexPlayer = PlayersStatus.findIndex(
-        (elem) => elem.player.id === currentPlayer.player.id,
-      );
-      const currentIndex =
-        indexPlayer + 1 < PlayersStatus.length ? indexPlayer + 1 : 0;
-      PlayersStatus[indexPlayer].isActive = false;
-      PlayersStatus[currentIndex].isActive = true;
-      // TODO: переделать
-      currentPlayer.id = PlayersStatus[currentIndex].id;
-      currentPlayer.count = spiner;
-      currentPlayer.isActive = true;
-      currentPlayer.numberCell = PlayersStatus[currentIndex].numberCell;
-      currentPlayer.player = PlayersStatus[currentIndex].player;
+      if (!startGame) {
+        const indexPlayer = PlayersStatus.findIndex(
+          (elem) => elem.player.id === currentPlayer.player.id,
+        );
+        const currentIndex =
+          indexPlayer + 1 < PlayersStatus.length ? indexPlayer + 1 : 0;
+        PlayersStatus[indexPlayer].isActive = false;
+        PlayersStatus[currentIndex].isActive = true;
+        // TODO: переделать
+        currentPlayer.id = PlayersStatus[currentIndex].id;
+        currentPlayer.count = spiner;
+        currentPlayer.isActive = true;
+        currentPlayer.numberCell = PlayersStatus[currentIndex].numberCell;
+        currentPlayer.player = PlayersStatus[currentIndex].player;
+      } else {
+        currentPlayer.count = spiner;
+      }
       setCurrentPlayer(currentPlayer);
     }
-    checkItem(gameField[currentPlayer.numberCell]);
     setAvailibleSteps(
       checkAvailible(
         gameField,
@@ -198,12 +211,23 @@ export const GameFieldPage = () => {
     );
   };
 
+  // проверка на выйгрыш
+  const winCheck = () => {
+    if (PlayersStatus.length > 1 && checkAllWin(PlayersStatus)) {
+      setGameWin(true);
+    }
+    if (PlayersStatus.length === 1 && checkWin(currentPlayer)) {
+      setGameWin(true);
+    }
+  };
+
   // слушатель кнопки(создает массив активных ячеек, меняет массив стартовых ячеек и currentPlayer.numberCell)
   const fieldHandler = (index: number, item: ArrayFieldType) => {
     setPopup(false);
     currentPlayer.count -= 1;
     if (currentPlayer.count === 0) setSpiner(0);
     currentPlayer.numberCell = index;
+    PlayersStatus[currentPlayer.id].numberCell = index;
     setAvailibleSteps(
       checkAvailible(
         gameField,
@@ -213,6 +237,7 @@ export const GameFieldPage = () => {
       ),
     );
     changeStartFields(currentPlayer.id, index);
+    winCheck();
     if (item.item && item.item.itemStatus !== 'delete') {
       setAnswer(true);
     }
@@ -261,7 +286,9 @@ export const GameFieldPage = () => {
 
   const nextStepHandler = () => {
     setPopup(false);
+    checkResultBattle(gameField[currentPlayer.numberCell]);
     checkCounter(currentPlayer.count);
+    setStartGame(false);
   };
 
   return (
@@ -273,7 +300,6 @@ export const GameFieldPage = () => {
             <PlayerCard
               key={item.id}
               player={item.player}
-              isActive={item.isActive}
               setapplyBoards={setapplyBoards}
               windowsField={availibleSteps[1]}
             />
@@ -320,6 +346,7 @@ export const GameFieldPage = () => {
               index={index}
               availibleSteps={availibleSteps[0]}
               windowsField={availibleSteps[1]}
+              endFields={endFields}
               onClick={() => fieldHandler(index, item)}
             />
           );
@@ -366,7 +393,10 @@ export const GameFieldPage = () => {
       <MoveCounter step={currentPlayer.count} count={spiner} />
 
       {/* модалка LOSE GAME */}
-      {gameLose && <LosePopUp />}
+      {gameLose && <GameOverPopUp isWin={!gameLose} />}
+
+      {/* модалка LOSE GAME */}
+      {gameWin && <GameOverPopUp isWin={gameWin} />}
     </div>
   );
 };

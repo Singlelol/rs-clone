@@ -213,6 +213,7 @@ export const addItemInBack = (
     player.hero.inventory.push(item);
 };
 
+const typeWeapon = 'weapon';
 export const deleteMonstr = (
   player: PlayerType,
   item: ItemType | undefined,
@@ -220,7 +221,7 @@ export const deleteMonstr = (
   if (
     item &&
     player.hero.inventory.find(
-      (it) => item.type === 'weapon' && it.name === item.name,
+      (it) => item.type === typeWeapon && it.name === item.name,
     ) === undefined
   )
     player.hero.inventory.push(item);

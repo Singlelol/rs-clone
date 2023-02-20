@@ -119,7 +119,9 @@ export const GameFieldPage = () => {
   const checkItem = (item: ArrayFieldType) => {
     if (item.item && item.item?.id < 4) {
       // console.log(`oh noooo, its ${item.item?.name}`);
-      if (!isBattleEnd) setBattlePopup(true);
+      if (!isBattleEnd) {
+        setBattlePopup(true);
+      }
     }
     if (item.item && item.item?.id > 3) {
       if (item.item) item.item.itemStatus = 'delete';
@@ -147,7 +149,9 @@ export const GameFieldPage = () => {
         (el) => el.player.id === currentPlayer.id,
       );
       PlayersStatus.splice(Index, 1);
-      if (PlayersStatus.length === 0) setGameLose(true);
+      if (PlayersStatus.length === 0) {
+        setGameLose(true);
+      }
     }
     if (isHumanWin && !isRunAway) {
       item.item!.itemStatus = 'delete';

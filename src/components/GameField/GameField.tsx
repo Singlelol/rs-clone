@@ -14,6 +14,7 @@ type GameFieldItemProps = {
   onClick: () => void;
   url: string | false;
   windowsField: number[];
+  endFields: number[];
 };
 
 export const GameField = ({
@@ -21,10 +22,12 @@ export const GameField = ({
   index,
   availibleSteps,
   windowsField,
+  endFields,
   onClick,
   url,
 }: GameFieldItemProps) => {
   const attr: GridItemsType = {};
+
   Object.keys(item).forEach((key) => {
     if (key === 'id') attr.id = `${item[key as keyof typeof item]}`;
     if (key !== 'id') {
@@ -40,6 +43,10 @@ export const GameField = ({
     attr.className = 'grid-item--availible';
   } else {
     attr.className = 'grid-item';
+  }
+
+  if (endFields.includes(item.id)) {
+    attr.className = 'grid-item--end';
   }
 
   const checkItemStatus = () => {

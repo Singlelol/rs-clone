@@ -12,7 +12,9 @@ import {
   addHeroHelth,
   getHeroImage,
   closeWindow,
-  // checkWindow,
+  endFields,
+  checkWin,
+  checkAllWin,
 } from '../../utilities/utilities';
 import { Context } from '../../App';
 import '../../components/PlayersCard/PlayerCard.scss';
@@ -33,6 +35,7 @@ import {
   bordersWindowRightIndex,
   bordersWindowTopIndex,
 } from '../../data/border';
+import { GameOverPopUp } from '../../components/LosePopUp/GameOverPopUp';
 
 export const GameFieldPage = () => {
   const { play } = useContext(Context);
@@ -75,6 +78,7 @@ export const GameFieldPage = () => {
   const [currentPlayer, setCurrentPlayer] = useState(current);
   // изменения массива стартовых значений
   const [startArr, setStartArr] = useState(startFields);
+
   // изменение массива текущих шагов
   const [availibleSteps, setAvailibleSteps] = useState(
     checkAvailible(
@@ -84,6 +88,9 @@ export const GameFieldPage = () => {
       currentPlayer.player,
     ),
   );
+
+  // проверка статуса ответа пользователя при попытке воспользоваться досками
+  const [startGame, setStartGame] = useState(true);
 
   // проверка статуса ответа пользователя при попытке воспользоваться досками
   const [applyBoards, setapplyBoards] = useState(false);
@@ -100,11 +107,21 @@ export const GameFieldPage = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isHumanWin, setIsHumanWin] = useState(false);
 
+  const [isRunAway, setIsRunAway] = useState(false);
+
+  const [isBattleEnd, setIsBattleEnd] = useState(false);
+
+  // проверка на выйгрыш/проигрыш
+  const [gameWin, setGameWin] = useState(false);
+  const [gameLose, setGameLose] = useState(false);
+
   // проверить тип карточки и забрать/начать бой
   const checkItem = (item: ArrayFieldType) => {
     if (item.item && item.item?.id < 4) {
-      if (item.item) item.item.itemStatus = 'open';
-      setBattlePopup(true);
+      // console.log(`oh noooo, its ${item.item?.name}`);
+      if (!isBattleEnd) {
+        setBattlePopup(true);
+      }
     }
     if (item.item && item.item?.id > 3) {
       if (item.item) item.item.itemStatus = 'delete';
@@ -124,27 +141,64 @@ export const GameFieldPage = () => {
     setStartArr(startArr);
   };
 
+  const checkResultBattle = (item: ArrayFieldType) => {
+    // удаление пользователя из PlayersStatus
+    if (!isHumanWin && isBattleEnd && !isRunAway) {
+      // checkItem(gameField[currentPlayer.numberCell]);
+      const Index = PlayersStatus.findIndex(
+        (el) => el.player.id === currentPlayer.id,
+      );
+      PlayersStatus.splice(Index, 1);
+      if (PlayersStatus.length === 0) {
+        setGameLose(true);
+      }
+    }
+    if (isHumanWin && !isRunAway) {
+      item.item!.itemStatus = 'delete';
+      setIsHumanWin(false);
+      setIsBattleEnd(false);
+    } else if (!isHumanWin && !isRunAway && isBattleEnd) {
+      // eslint-disable-next-line prettier/prettier
+      item = { ...item, item: currentPlayer.player.hero.inventory[0], pers: undefined};
+      setIsBattleEnd(false);
+    }
+    if (isRunAway) {
+      const openStatus = 'open';
+      currentPlayer.count = spiner;
+      setCurrentPlayer(currentPlayer);
+      item.item!.itemStatus = openStatus;
+      setIsRunAway(false);
+      setIsBattleEnd(false);
+    }
+  };
+
   // проверка состояния счетчика, если 0, то меняем персонажа
   const checkCounter = (counter: number) => {
     if (counter === 0 && PlayersStatus.length === 1) {
-      console.log('new round');
       currentPlayer.count = spiner;
       setCurrentPlayer(currentPlayer);
-    } else if (counter === 0 && PlayersStatus.length !== 1) {
-      console.log('new person');
-      const indexPlayer = PlayersStatus.findIndex(
-        (elem) => elem.player.id === currentPlayer.player.id,
-      );
-      const currentIndex =
-        indexPlayer + 1 < PlayersStatus.length ? indexPlayer + 1 : 0;
-      PlayersStatus[indexPlayer].isActive = false;
-      PlayersStatus[currentIndex].isActive = true;
-      // TODO: переделать
-      currentPlayer.id = PlayersStatus[currentIndex].id;
-      currentPlayer.count = spiner;
-      currentPlayer.isActive = true;
-      currentPlayer.numberCell = PlayersStatus[currentIndex].numberCell;
-      currentPlayer.player = PlayersStatus[currentIndex].player;
+    } else if (
+      counter === 0 &&
+      PlayersStatus.length !== 1 &&
+      PlayersStatus.length > 0
+    ) {
+      if (!startGame) {
+        const indexPlayer = PlayersStatus.findIndex(
+          (elem) => elem.player.id === currentPlayer.player.id,
+        );
+        const currentIndex =
+          indexPlayer + 1 < PlayersStatus.length ? indexPlayer + 1 : 0;
+        PlayersStatus[indexPlayer].isActive = false;
+        PlayersStatus[currentIndex].isActive = true;
+        // TODO: переделать
+        currentPlayer.id = PlayersStatus[currentIndex].id;
+        currentPlayer.count = spiner;
+        currentPlayer.isActive = true;
+        currentPlayer.numberCell = PlayersStatus[currentIndex].numberCell;
+        currentPlayer.player = PlayersStatus[currentIndex].player;
+      } else {
+        currentPlayer.count = spiner;
+      }
       setCurrentPlayer(currentPlayer);
     }
     setAvailibleSteps(
@@ -157,12 +211,23 @@ export const GameFieldPage = () => {
     );
   };
 
+  // проверка на выйгрыш
+  const winCheck = () => {
+    if (PlayersStatus.length > 1 && checkAllWin(PlayersStatus)) {
+      setGameWin(true);
+    }
+    if (PlayersStatus.length === 1 && checkWin(currentPlayer)) {
+      setGameWin(true);
+    }
+  };
+
   // слушатель кнопки(создает массив активных ячеек, меняет массив стартовых ячеек и currentPlayer.numberCell)
   const fieldHandler = (index: number, item: ArrayFieldType) => {
     setPopup(false);
     currentPlayer.count -= 1;
     if (currentPlayer.count === 0) setSpiner(0);
     currentPlayer.numberCell = index;
+    PlayersStatus[currentPlayer.id].numberCell = index;
     setAvailibleSteps(
       checkAvailible(
         gameField,
@@ -172,6 +237,7 @@ export const GameFieldPage = () => {
       ),
     );
     changeStartFields(currentPlayer.id, index);
+    winCheck();
     if (item.item && item.item.itemStatus !== 'delete') {
       setAnswer(true);
     }
@@ -220,23 +286,24 @@ export const GameFieldPage = () => {
 
   const nextStepHandler = () => {
     setPopup(false);
+    checkResultBattle(gameField[currentPlayer.numberCell]);
     checkCounter(currentPlayer.count);
+    setStartGame(false);
   };
-  const stateSpiner = 4;
 
   return (
     <div>
       {/* карточки игроков */}
       <div className='players-card-wrapper'>
-        {PlayersStatus.map((item) => (
-          <PlayerCard
-            key={item.id}
-            player={item.player}
-            isActive={item.isActive}
-            setapplyBoards={setapplyBoards}
-            windowsField={availibleSteps[1]}
-          />
-        ))}
+        {PlayersStatus.length > 0 &&
+          PlayersStatus.map((item) => (
+            <PlayerCard
+              key={item.id}
+              player={item.player}
+              setapplyBoards={setapplyBoards}
+              windowsField={availibleSteps[1]}
+            />
+          ))}
       </div>
 
       {/* модалка на открытие карточек */}
@@ -279,6 +346,7 @@ export const GameFieldPage = () => {
               index={index}
               availibleSteps={availibleSteps[0]}
               windowsField={availibleSteps[1]}
+              endFields={endFields}
               onClick={() => fieldHandler(index, item)}
             />
           );
@@ -292,16 +360,16 @@ export const GameFieldPage = () => {
         )}
       </div>
       {/* поле битвы */}
-      {battlePopup &&
-        currentField.item &&
-        currentField.item.id < stateSpiner && (
-          <BattlePopUp
-            player={currentPlayer.player}
-            item={gameField[currentPlayer.numberCell].item!}
-            setBattlePopup={setBattlePopup}
-            setIsHumanWin={setIsHumanWin}
-          />
-        )}
+      {battlePopup && currentField.item && currentField.item.id < 4 && (
+        <BattlePopUp
+          player={currentPlayer.player}
+          item={gameField[currentPlayer.numberCell].item!}
+          setBattlePopup={setBattlePopup}
+          setIsHumanWin={setIsHumanWin}
+          setIsRunAway={setIsRunAway}
+          setIsBattleEnd={setIsBattleEnd}
+        />
+      )}
 
       {/* спинер */}
       {currentPlayer.count === 0 && !answer && (
@@ -323,6 +391,12 @@ export const GameFieldPage = () => {
         </div>
       )}
       <MoveCounter step={currentPlayer.count} count={spiner} />
+
+      {/* модалка LOSE GAME */}
+      {gameLose && <GameOverPopUp isWin={!gameLose} />}
+
+      {/* модалка LOSE GAME */}
+      {gameWin && <GameOverPopUp isWin={gameWin} />}
     </div>
   );
 };

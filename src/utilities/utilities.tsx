@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable consistent-return */
 /* eslint-disable no-param-reassign */
 import { randomItemField } from '../data/border';
@@ -140,7 +141,6 @@ export const closeWindow = (
   ] = borders;
   const allBorders: number[][] = [];
   if (gameField[id].windowright) {
-    console.log('граница справа');
     changeBorders(
       bordersRightIndex,
       bordersWindowRightIndex,
@@ -151,7 +151,6 @@ export const closeWindow = (
     );
   }
   if (gameField[id].windowleft) {
-    console.log('граница слева');
     changeBorders(
       bordersRightIndex,
       bordersWindowRightIndex,
@@ -162,7 +161,6 @@ export const closeWindow = (
     );
   }
   if (gameField[id].windowtop) {
-    console.log('граница сверху');
     changeBorders(
       bordersTopIndex,
       bordersWindowTopIndex,
@@ -173,7 +171,6 @@ export const closeWindow = (
     );
   }
   if (gameField[id].windowbottom) {
-    console.log('граница снизу');
     changeBorders(
       bordersTopIndex,
       bordersWindowTopIndex,
@@ -193,12 +190,14 @@ export const closeWindow = (
     bordersWindowBottomIndex,
     bordersWindowTopIndex,
   );
-  // console.log(allBorders);
   return allBorders;
 };
 
 // create start field for hero
 export const startFields = [133, 120, 121, 132];
+
+// create start field for hero
+export const endFields = [9, 10, 21, 22];
 
 // подбор предметов в рюкзак
 export const addItemInBack = (
@@ -209,6 +208,20 @@ export const addItemInBack = (
     item &&
     player.hero.inventory.find(
       (it) => item.type === 'weapon' && it.name === item.name,
+    ) === undefined
+  )
+    player.hero.inventory.push(item);
+};
+
+const typeWeapon = 'weapon';
+export const deleteMonstr = (
+  player: PlayerType,
+  item: ItemType | undefined,
+) => {
+  if (
+    item &&
+    player.hero.inventory.find(
+      (it) => item.type === typeWeapon && it.name === item.name,
     ) === undefined
   )
     player.hero.inventory.push(item);
@@ -243,4 +256,34 @@ export const getSpinnerCount = (count: number) => {
     default:
       break;
   }
+};
+
+// проверка на победу в игре
+const checkKeys = (player: PlayerType): boolean => {
+  return !!(player.hero.inventory.findIndex((el) => el.id === 7) !== -1);
+};
+const checkCanister = (player: PlayerType): boolean => {
+  return !!(player.hero.inventory.findIndex((el) => el.id === 6) !== -1);
+};
+
+export const checkWin = (player: StateType): boolean => {
+  return !!(
+    endFields.includes(player.numberCell) &&
+    checkKeys(player.player) &&
+    checkCanister(player.player)
+  );
+};
+
+export const checkAllWin = (PlayerStatus: StateType[]): boolean => {
+  const finalItems: boolean[] = [];
+  PlayerStatus.map((el) => {
+    if (endFields.includes(el.numberCell) && checkKeys(el.player)) {
+      finalItems.push(true);
+    }
+    if (endFields.includes(el.numberCell) && checkCanister(el.player)) {
+      finalItems.push(true);
+    }
+  });
+
+  return finalItems.length === 2;
 };

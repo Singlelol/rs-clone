@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { BattleCard } from './BattleCard';
-// import { heroes } from '../../data/heroes';
 import { PlayerType } from '../playersPage/PlayerSettings-interface';
 import { SpinnerPage } from '../../components/Spiner/SpinnerPage';
 import { doSpinnerAction } from '../../utilities/utilitiesBattle';
 import './battleFied.scss';
 import { ItemType } from '../../data/items';
 import imageSwords from '../../images/oriental.png';
-// import Alex from '../../images/Pers/Alex.png';
 
 type BattlePopUpType = {
   player: PlayerType;
   item: ItemType;
   setBattlePopup: (arg: boolean) => void;
   setIsHumanWin: (arg: boolean) => void;
+  setIsRunAway: (arg: boolean) => void;
+  setIsBattleEnd: (arg: boolean) => void;
 };
 const state = 8;
 
@@ -22,6 +22,8 @@ export const BattlePopUp = ({
   item,
   setIsHumanWin,
   setBattlePopup,
+  setIsRunAway,
+  setIsBattleEnd,
 }: BattlePopUpType) => {
   const [spiner, setSpiner] = useState(state);
 
@@ -37,6 +39,8 @@ export const BattlePopUp = ({
         setBattlePopup,
         setIsHeroeWin,
         setIsMonsterWin,
+        setIsRunAway,
+        setIsBattleEnd,
       );
       setSpiner(8);
     }

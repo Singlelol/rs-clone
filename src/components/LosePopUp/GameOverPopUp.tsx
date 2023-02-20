@@ -1,12 +1,17 @@
 // import { Link } from 'react-router-dom';
 import './losepopup.scss';
 
-const popUpPhase = 'Вы проиграли!';
-const cite =
-  '«Победители никогда не сдаются, а сдавшиеся никогда не побеждают» Винс Ломбарди';
-const btnPhase = 'Попробовать еще раз';
+type GameOverProps = {
+  win: boolean;
+};
 
-export const LosePopUp = () => {
+export const GameOverPopUp = ({ win }: GameOverProps) => {
+  const popUpPhase = win ? 'Вы победили!' : 'Вы проиграли!';
+  const cite = win
+    ? `Пришел, увидел, победил! 
+  Красавчик! `
+    : '«Победители никогда не сдаются, а сдавшиеся никогда не побеждают» Винс Ломбарди';
+  const btnPhase = 'Попробовать еще раз';
   return (
     <div className='lose-popup__wrapper'>
       <div className='lose-popup'>

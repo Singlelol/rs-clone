@@ -25,5 +25,4 @@ export type StateType = {
   player: PlayerType;
   count: number;
   isActive: boolean;
-  isDeleted: boolean;
 };

@@ -66,17 +66,14 @@ export const GameFieldPage = () => {
       player: pl,
       count: spiner,
       isActive: activeStatus,
-      isDeleted: false,
     });
   });
   // const [PlayersStatus, setPlayerStatus] = useState<StateType[]>(Players);
-
   const gameField = createField(borders);
   // при первом старте находит героя у которого isActive
   const current = PlayersStatus.find(
     (elem) => elem.isActive === true,
   ) as StateType;
-
   // изменение текущего игрока
   const [currentPlayer, setCurrentPlayer] = useState(current);
   // изменения массива стартовых значений
@@ -165,13 +162,23 @@ export const GameFieldPage = () => {
     }
   };
 
-  const checkDeletedPlayer = (index: number) =>{
-    return PlayersStatus[index].isDeleted ? index + 1 : index;
-  }
+  const findNextIndex = (indexPlayer: number): number | boolean =>{
+    const prevIndexArray = PlayersStatus.slice(0, indexPlayer+1);
+    const nextIndexArray = PlayersStatus.slice(indexPlayer+1);
 
+    if (nextIndexArray.find(el => el.player.hero.health)){
+      const alivePlayer = nextIndexArray.findIndex(el => el.player.hero.health) as number;
+      const index = alivePlayer + prevIndexArray.length;
+      return index;
+    }
+    if(prevIndexArray.find(el => el.player.hero.health)){
+      return prevIndexArray.findIndex(el => el.player.hero.health) as number;
+    }
+    return false; 
+  }
+  
   // проверка состояния счетчика, если 0, то меняем персонажа
   const checkCounter = (counter: number) => {
-    console.log(PlayersStatus);
     if (counter === 0 && PlayersStatus.length === 1) {
       currentPlayer.count = spiner;
       setCurrentPlayer(currentPlayer);
@@ -180,10 +187,8 @@ export const GameFieldPage = () => {
         const indexPlayer = PlayersStatus.findIndex(
           (elem) => elem.player.id === currentPlayer.player.id,
         );
-
-        // не получается реализовать проверку на наличие следующего индекса в массиве и проверка на isDeleted
-        let currentIndex = checkDeletedPlayer(indexPlayer + 1);
-        currentIndex = currentIndex < PlayersStatus.length ? currentIndex : 0;
+        const index = findNextIndex(indexPlayer);
+        const currentIndex: number = (index !== false ? index : setGameLose(true)) as number;
         PlayersStatus[indexPlayer].isActive = false;
         PlayersStatus[currentIndex].isActive = true;
         // TODO: переделать
@@ -195,7 +200,7 @@ export const GameFieldPage = () => {
       } else {
         currentPlayer.count = spiner;
       }
-      setCurrentPlayer(currentPlayer);
+      setCurrentPlayer( currentPlayer);
     }
     setAvailibleSteps(
       checkAvailible(
@@ -283,22 +288,11 @@ export const GameFieldPage = () => {
   // проверка на поражение
   const loseCheck = () => {
     if (!isHumanWin && isBattleEnd && !isRunAway) {
-      currentPlayer.isDeleted = true;
-      setCurrentPlayer(currentPlayer);
-      if (PlayersStatus.length === 1) {
+      const Index = PlayersStatus.findIndex((el) => el.id === currentPlayer.id);
+      PlayersStatus[Index] = {...currentPlayer}
+      if (PlayersStatus.filter(el => el.player.hero.health).length === 0) {
         setGameLose(true);
       }
-      if (PlayersStatus.length > 1) {
-        const isAlive = PlayersStatus.some((elem) => elem.isDeleted === true);
-        if (!isAlive) {
-          setGameLose(true);
-        }
-      }
-      // const Index = PlayersStatus.findIndex((el) => el.id === currentPlayer.id);
-      // console.log(Index);
-      // PlayersStatus.splice(Index, 1);
-      // console.log(PlayersStatus);
-      // setPlayerStatus(PlayersStatus);
     }
   };
 

@@ -239,8 +239,13 @@ export const GameFieldPage = () => {
     );
     changeStartFields(currentPlayer.id, index);
     winCheck();
-    if (item.item && item.item.itemStatus !== 'delete') {
+    if (item.item && item.item.itemStatus === 'close') {
       setAnswer(true);
+    }
+    if (item.item && item.item.itemStatus === 'open') {
+      setSpiner(0);
+      checkItem(gameField[currentPlayer.numberCell]);
+      currentPlayer.count = 0;
     }
   };
 

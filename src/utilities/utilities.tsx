@@ -235,8 +235,8 @@ export const addHeroHelth = (player: PlayerType) => {
 // картинка героя
 export const getHeroImage = (id: number, PlayersStatus: StateType[]) => {
   const item = PlayersStatus.find((elem) => elem.numberCell === id);
-  if (item) {
-    return item.player.hero ? item.player.hero.image : '';
+  if (item && item.player.hero && item.player.hero.health) {
+    return item.player.hero.image;
   }
   return '';
 };

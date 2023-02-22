@@ -176,7 +176,7 @@ export const GameFieldPage = () => {
     }
     return false; 
   }
-  
+
   // проверка состояния счетчика, если 0, то меняем персонажа
   const checkCounter = (counter: number) => {
     if (counter === 0 && PlayersStatus.length === 1) {
@@ -316,7 +316,8 @@ export const GameFieldPage = () => {
               setapplyBoards={setapplyBoards}
               windowsField={availibleSteps[1]}
             />
-          ))}
+          )
+          )}
       </div>
 
       {/* модалка на открытие карточек */}

@@ -13,7 +13,7 @@ export const PlayerCard = ({
     if (windowsField?.length && board) setapplyBoards(true);
   };
   return (
-    <div className={player ? 'players-card' : 'players-card--hide'}>
+    <div className={player.hero.health ? 'players-card' : 'players-card--hide'}>
       <div className='players-card__main'>
         <div className='players-card__info'>
           <img

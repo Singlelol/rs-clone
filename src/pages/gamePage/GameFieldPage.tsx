@@ -287,19 +287,19 @@ export const GameFieldPage = () => {
 
   // проверка на поражение
   const loseCheck = () => {
-    if (!isHumanWin && isBattleEnd && !isRunAway) {
+    // if (!isHumanWin && isBattleEnd && !isRunAway) {
       const Index = PlayersStatus.findIndex((el) => el.id === currentPlayer.id);
       PlayersStatus[Index] = {...currentPlayer}
       if (PlayersStatus.filter(el => el.player.hero.health).length === 0) {
         setGameLose(true);
       }
-    }
+    // }
   };
 
   const nextStepHandler = () => {
     setPopup(false);
     checkResultBattle(gameField[currentPlayer.numberCell]);
-    loseCheck();
+    // loseCheck();
     checkCounter(currentPlayer.count);
     setStartGame(false);
   };
@@ -382,6 +382,7 @@ export const GameFieldPage = () => {
           setIsHumanWin={setIsHumanWin}
           setIsRunAway={setIsRunAway}
           setIsBattleEnd={setIsBattleEnd}
+          loseCheck={loseCheck}
         />
       )}
 

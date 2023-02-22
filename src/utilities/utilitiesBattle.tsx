@@ -16,6 +16,7 @@ export const doSpinnerAction = (
   setIsMonsterWin: (arg: boolean) => void,
   setIsRunAway: (arg: boolean) => void,
   setIsBattleEnd: (arg: boolean) => void,
+  loseCheck: () => void,
 ) => {
   switch (action) {
     case 1:
@@ -33,6 +34,7 @@ export const doSpinnerAction = (
         setIsHeroeWin(false);
         setTimeout(() => setBattlePopup(false), 3000);
         setIsBattleEnd(true);
+        loseCheck();
       }
       break;
 

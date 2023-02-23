@@ -1,7 +1,32 @@
-.credits {
-  display: flex;
-  flex-direction: column;
-  padding: 20rem 0 20rem 0;
-  align-items: center;
-  justify-content: center;
+.body {
+  background-color: rgba(222, 106, 23, 0.97);
 }
+  .credits {
+    color: #0f3652;
+    display: flex;
+    flex-direction: column;
+    margin: 8% 30% 10% 30%;
+    align-items: center;
+    border: 0.5rem rgba(177, 74, 0, 0.97) inset;
+    background-color: rgb(232, 129, 56);
+
+    .credits_header {
+      text-decoration: underline #0f3652;
+    }
+    .credits_body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    a {
+      text-decoration: none;
+      color: rgb(5 15 46);
+    }
+    button {
+      border-color: #642d03;
+      background-color: #e7721b;
+      color: #0f3652;
+      margin-top: 0.4rem;
+      font-size: 1rem;
+    }
+  }

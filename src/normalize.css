@@ -22,6 +22,7 @@ html {
 
 body {
   margin: 0;
+  background-color: rgba(222, 106, 23, 0.97);
 }
 
 /**
@@ -161,9 +162,9 @@ button,
 input,
 optgroup,
 select,
-textarea {
-  font-family: inherit; /* 1 */
-  font-size: 100%; /* 1 */
+textarea,p {
+  font-family: "Comic Sans MS", "Comic Sans", cursive; /* 1 */
+  font-size: 12rem; /* 1 */
   line-height: 1.15; /* 1 */
   margin: 0; /* 2 */
 }

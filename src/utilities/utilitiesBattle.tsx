@@ -30,7 +30,7 @@ export const doSpinnerAction = (
       setIsRunAway(true);
       setIsText(TextRunPlayer);
       setIsBattle(false);
-      setTimeout(() => setBattlePopup(false), 500);
+      setTimeout(() => setBattlePopup(false), 1500);
       setIsMonsterWin(true);
       setIsHeroeWin(true);
       setIsBattleEnd(true);

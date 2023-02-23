@@ -1,39 +1,33 @@
-div > a {
-  outline: none;
-  text-decoration: none;
-  color: white;
-  text-shadow: 1rem 1rem 2rem black;
+.body {
+  background-color: rgba(222, 106, 23, 0.97);
+}
+  .credits {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 8% 30% 10% 30%;
+    border: 0.5rem rgba(177, 74, 0, 0.97) inset;
+    font-size: 16px;
+    color: #0f3652;
+    background-color: rgb(232, 129, 56);
 
-  &:hover {
-    color: black;
-    text-shadow: 1rem 1rem 2rem white;
+    .credits_header {
+      text-decoration: underline #0f3652;
+    }
+    .credits_body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    a {
+      text-decoration: none;
+      color: rgb(5 15 46);
+    }
+    button {
+      border-color: #642d03;
+      background-color: #e7721b;
+      color: #0f3652;
+      margin-top: 4rem;
+      font-size: 10rem;
+    }
   }
-}
-
-.credits {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20rem 0 20rem 0;
-  color: white;
-  text-shadow: 1rem 1rem 2rem black;
-}
-
-.credits_page {
-  background: #df7c0a;
-}
-
-.button {
-  width: 100%;
-  padding: 10rem;
-  margin-top: 10rem;
-  border: ridge 5rem #a64304;
-  border-radius: 10rem;
-  
-  & > a {
-    outline: none;
-    text-decoration: none;
-    color: black;
-  }
-}

@@ -237,10 +237,12 @@ export const GameFieldPage = () => {
     );
     changeStartFields(currentPlayer.id, index);
     winCheck();
-    if (item.item && item.item.itemStatus === 'close') {
+    const openStatus = 'open';
+    const closeStatus = 'close';
+    if (item.item && item.item.itemStatus === closeStatus) {
       setAnswer(true);
     }
-    if (item.item && item.item.itemStatus === 'open') {
+    if (item.item && item.item.itemStatus === openStatus) {
       setSpiner(0);
       checkItem(gameField[currentPlayer.numberCell]);
       currentPlayer.count = 0;

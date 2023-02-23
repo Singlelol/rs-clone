@@ -2,12 +2,13 @@
   background-color: rgba(222, 106, 23, 0.97);
 }
   .credits {
-    color: #0f3652;
     display: flex;
+    align-items: center;
     flex-direction: column;
     margin: 8% 30% 10% 30%;
-    align-items: center;
     border: 0.5rem rgba(177, 74, 0, 0.97) inset;
+    font-size: 16px;
+    color: #0f3652;
     background-color: rgb(232, 129, 56);
 
     .credits_header {
@@ -26,7 +27,7 @@
       border-color: #642d03;
       background-color: #e7721b;
       color: #0f3652;
-      margin-top: 0.4rem;
-      font-size: 1rem;
+      margin-top: 4rem;
+      font-size: 10rem;
     }
   }

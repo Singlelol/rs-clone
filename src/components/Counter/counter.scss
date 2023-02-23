@@ -8,24 +8,24 @@
 
   .counter__output{
     text-align: center;
-    font-size: 1.8rem;
+    font-size: 18rem;
     font-style: revert;
     font-weight: 600;
-    line-height: 1.8rem;
+    line-height: 18rem;
   }
 
   .control__btn{
     cursor: pointer;
     background: transparent;
     border: none;
-    padding: 0 4rem;
+    padding: 0 40rem;
 
     .control__btn-next{
-      width: 2rem;
+      width: 20rem;
     }
 
     .control__btn-prev{
-      width: 2rem;
+      width: 20rem;
       transform: rotate(180deg);
     }
   }

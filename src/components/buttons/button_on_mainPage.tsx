@@ -55,6 +55,6 @@ export const Button: React.FC<Props> = ({
 
 Button.defaultProps = {
   background: '#241005ef',
-  height: '2.3rem',
-  width: '13rem',
+  height: '23rem',
+  width: '130rem',
 };

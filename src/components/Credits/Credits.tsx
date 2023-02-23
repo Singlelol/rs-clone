@@ -16,6 +16,7 @@ const chiefDesignerH2 = 'Главный дизайнер:';
 const testerH2 = 'Тестировщик:';
 const mentorH2 = 'Ментор:';
 const buttonText = 'Назад';
+const returnBack = '/';
 
 export const Credits = () => {
   return (
@@ -52,7 +53,9 @@ export const Credits = () => {
         <div className='credits_body_text'>
           <a href={programmerFourLink}>{programmerFour}</a>
         </div>
-        <button type='button'>{buttonText}</button>
+        <button type='button' className='button'>
+          <a href={returnBack}>{buttonText}</a>
+        </button>
       </div>
     </section>
   );

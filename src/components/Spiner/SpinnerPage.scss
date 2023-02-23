@@ -5,15 +5,16 @@
 .spinner-page{
   position: absolute;
   top: 0;
-  right:0;
+  left:80%;
   width: 15rem;
   height: 15rem;
+  z-index: 100;
 }
 
 .deal-wheel {
   display: grid;
   place-items: center;
-  --size: clamp(25rem, 35rem, 45rem);
+  --size: clamp(250rem, 350rem, 450rem);
   --lg-hs: 0 3%;
   --lg-stop: 50%;
   --lg: linear-gradient(
@@ -21,7 +22,6 @@
       hsl(var(--lg-hs) 20%) var(--lg-stop) 100%
     );
   position: relative;
-  display: grid;
   grid-gap: calc(var(--size) / 20);
   align-items: center;
   grid-template-areas:
@@ -49,7 +49,6 @@
   }
 
   .ticker {
-    // margin-right: 20rem;
     position: relative;
     left: calc(var(--size) / -5);
     width: calc(var(--size) / 30);
@@ -64,9 +63,9 @@
     color: white;
     background: black;
     border: none;
-    font-size: 1rem;
-    padding: 0.9rem 2rem 1rem;
-    border-radius: 0.5rem;
+    font-size: 10rem;
+    padding: 9rem 20rem 10rem;
+    border-radius: 5rem;
     cursor: pointer;
   }
   
@@ -136,5 +135,5 @@
   }
 }
 .image_backround {
-  width: 10rem;
+  width: 100rem;
 }

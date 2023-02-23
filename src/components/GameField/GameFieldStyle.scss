@@ -1,16 +1,15 @@
 body {
   margin: 0;
-  min-width: 490px;
+  min-width: 490rem;
 }
 
 .grid-container {
   position: relative;
   display: grid;
   width: 40%;
-  margin: 1rem auto;
-  // border: 5px green solid;
-  grid-template-columns: repeat(12, minmax(1rem, 1fr));
-  grid-template-rows: repeat(12, minmax(1rem, 1fr));
+  margin: 10rem auto;
+  grid-template-columns: repeat(12, minmax(10rem, 1fr));
+  grid-template-rows: repeat(12, minmax(10rem, 1fr));
   background: #81a740 center url("../../images/grid.png") no-repeat;
   background-size: contain;
 }

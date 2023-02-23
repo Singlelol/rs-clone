@@ -17,50 +17,50 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-width: 50rem;
+    min-width: 500rem;
     background-color: antiquewhite;
     opacity: 0.9;
-    border: 0.1rem solid #B95A27;
+    border: 1rem solid #B95A27;
     border-radius: 5%;
-    box-shadow: 0 0 4rem rgb(185 90 39 / 20%);
+    box-shadow: 0 0 40rem rgb(185 90 39 / 20%);
 
     &__title{
-        margin: 1rem 0;
+        margin: 10rem 0;
         text-align: center;
-        font-size: 1.8rem;
+        font-size: 18rem;
         font-style: revert;
         font-weight: 600;
-        line-height: 1.8rem;
+        line-height: 18rem;
     }
 
     &__cite{
-        margin: 1rem 0;
+        margin: 10rem 0;
         text-align: center;
-        font-size: 1.2rem;
+        font-size: 12rem;
         font-style: revert;
         font-weight: 400;
-        line-height: 1.6rem;
+        line-height: 16rem;
     }
 
     &__btn{
-        margin: 0.2rem auto 0.5rem;
-        padding: 0.4rem;
+        margin: 2rem auto 5rem;
+        padding: 4rem;
         width: 20%;
         text-align: center;
-        border: 0.05rem solid #B95A27;
+        border: 0.5rem solid #B95A27;
         background-color: #a64304;
         color: antiquewhite;
         border-radius: 10%;
-        box-shadow: 0 0 4rem rgb(185 90 39 / 20%);
+        box-shadow: 0 0 40rem rgb(185 90 39 / 20%);
         cursor: pointer;
 
         .btn-link{
             color: white;
             text-decoration: none;
-            font-size: 0.8rem;
+            font-size: 8rem;
             font-style: revert;
             font-weight: 600;
-            line-height: 1.2rem;
+            line-height: 12rem;
         }
     }
 

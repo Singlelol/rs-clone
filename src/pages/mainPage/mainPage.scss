@@ -8,9 +8,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: calc(10rem + 2vmin);
+    font-size: calc(100rem + 2vmin);
     color: white;
-    height: 30rem;
+    height: 300rem;
     position: relative;
 
     .App-logo {
@@ -21,10 +21,10 @@
       position: absolute;
       text-transform: uppercase;
       background-color: #241005ef;
-      border: ridge 0.5rem #a64304;
-      border-radius: 1.5rem;
-      padding: 1rem;
-      font: bold 1.8rem/1rem Helvetica, Sans-Serif;
+      border: ridge 5rem #a64304;
+      border-radius: 15rem;
+      padding: 10rem;
+      font: bold 18rem/10rem Helvetica, Sans-Serif;
 
       .list_li {
         list-style-type:none;

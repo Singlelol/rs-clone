@@ -6,15 +6,15 @@
 .popup-wrapper{
   display: none;
   position: absolute;
-  right: -15rem;
-  top: -10rem;
+  right: -150rem;
+  top: -100rem;
   z-index: 3;
 }
 
 .slider {
   position: relative;
-  width: 3rem;
-  height: 5rem;
+  width: 30rem;
+  height: 50rem;
   margin: auto;
   box-sizing: border-box;
   display: flex;
@@ -28,7 +28,7 @@
   
 .slider__img {
   position: absolute;
-  width: 3rem;
+  width: 30rem;
   transition: all 0.2s;
 }
   
@@ -46,22 +46,22 @@
   border: none;
 
   .next{
-    width: 1.5rem;
+    width: 15rem;
   }
 
   .prev{
-    width: 1.5rem;
+    width: 15rem;
     transform: rotate(180deg);
   }
 }
 
 .icon{
-  width: 2.8rem;
-  height: 2.8rem;
-  box-shadow: 0 0 .4rem rgb(0 0 0 / 25%);
-  border: .1rem solid black;
+  width: 28rem;
+  height: 28rem;
+  box-shadow: 0 0 4rem rgb(0 0 0 / 25%);
+  border: 1rem solid black;
 
   &:hover{
-    box-shadow: 0 0 1rem #b23808;
+    box-shadow: 0 0 10rem #b23808;
   }
 }

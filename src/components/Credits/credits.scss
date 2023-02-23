@@ -1,7 +1,39 @@
+div > a {
+  outline: none;
+  text-decoration: none;
+  color: white;
+  text-shadow: 1rem 1rem 2rem black;
+
+  &:hover {
+    color: black;
+    text-shadow: 1rem 1rem 2rem white;
+  }
+}
+
 .credits {
   display: flex;
   flex-direction: column;
-  padding: 20rem 0 20rem 0;
   align-items: center;
   justify-content: center;
+  padding: 20rem 0 20rem 0;
+  color: white;
+  text-shadow: 1rem 1rem 2rem black;
+}
+
+.credits_page {
+  background: #df7c0a;
+}
+
+.button {
+  width: 100%;
+  padding: 10rem;
+  margin-top: 10rem;
+  border: ridge 5rem #a64304;
+  border-radius: 10rem;
+  
+  & > a {
+    outline: none;
+    text-decoration: none;
+    color: black;
+  }
 }

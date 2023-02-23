@@ -13,56 +13,56 @@
   z-index: 15;
 }
 .player_cards {
-  margin-top: 20rem;
+  margin-top: 200rem;
 
   .battle-card__name {
-    font-size: 1.5rem;
-    padding-top: 3rem;
-    padding-left: 4rem;
+    font-size: 15rem;
+    padding-top: 30rem;
+    padding-left: 40rem;
   }
   .battle-card__img {
-    width: 15rem;
+    width: 150rem;
   }
 }
 .monster_cards {
-  margin-top: 20rem;
+  margin-top: 200rem;
 
   .battle-card__img {
-    width: 15rem;
+    width: 150rem;
   }
   .battle-card__name {
-    padding-top: 3rem;
-    font-size: 1.5rem;
+    padding-top: 30rem;
+    font-size: 15rem;
   }
 }
 .battle_card {
-  width: 20rem;
-  height: 25rem;
+  width: 200rem;
+  height: 250rem;
   background-color: aqua;
-  border: 2mm ridge rgba(26, 70, 158, 0.6);
+  border: 2rem ridge rgba(26, 70, 158, 0.6);
 }
 .battle-card__name {
   margin: 0;
   color: #102f72;
-  width: 14rem;
-  height: 2rem;
-  padding-left: 2.5rem;
-  padding-top: 1.5rem;
+  width: 140rem;
+  height: 20rem;
+  padding-left: 25rem;
+  padding-top: 15rem;
 }
 .battle_card--hide {
-  width: 20rem;
-  height: 25rem;
+  width: 200rem;
+  height: 250rem;
   background-color: rgb(197, 123, 121);
-  border: 2mm ridge red;
+  border: 2rem ridge red;
   
   .battle-card__img {
     display: none;
   }
 }
 .battle_card--hide::before {
-  margin-top: 5rem;
+  margin-top: 50rem;
   color: black;
-  font-size: 3rem;
+  font-size: 30rem;
   display: flex;
   justify-content: space-around;
   content: "Проиграл:";
@@ -73,9 +73,9 @@
   align-items: center;
 }
 .swords{
-  padding-left: 4rem;
-  padding-top: 7rem;
-  width: 17rem;
+  padding-left: 40rem;
+  padding-top: 70rem;
+  width: 170rem;
 }
 
 

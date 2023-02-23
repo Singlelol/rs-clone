@@ -1,3 +1,5 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable prettier/prettier */
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/no-cycle */
 import { useCallback, useContext, useEffect, useState } from 'react';
@@ -56,7 +58,7 @@ export const GameFieldPage = () => {
 
   // создание массива игроков для отслеживания номера ячейки, кол-во ходов, статуса активности
   const PlayersStatus: StateType[] = [];
-  // eslint-disable-next-line array-callback-return
+
   play.map((pl, i) => {
     const activeStatus = i === 0;
     PlayersStatus.push({
@@ -73,7 +75,6 @@ export const GameFieldPage = () => {
   const current = PlayersStatus.find(
     (elem) => elem.isActive === true,
   ) as StateType;
-
   // изменение текущего игрока
   const [currentPlayer, setCurrentPlayer] = useState(current);
   // изменения массива стартовых значений
@@ -104,7 +105,6 @@ export const GameFieldPage = () => {
   // изменение видимости попапа боя с монстром
   const [battlePopup, setBattlePopup] = useState(false);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isHumanWin, setIsHumanWin] = useState(false);
 
   const [isRunAway, setIsRunAway] = useState(false);
@@ -118,7 +118,6 @@ export const GameFieldPage = () => {
   // проверить тип карточки и забрать/начать бой
   const checkItem = (item: ArrayFieldType) => {
     if (item.item && item.item?.id < 4) {
-      // console.log(`oh noooo, its ${item.item?.name}`);
       if (!isBattleEnd) {
         setBattlePopup(true);
       }
@@ -142,23 +141,12 @@ export const GameFieldPage = () => {
   };
 
   const checkResultBattle = (item: ArrayFieldType) => {
-    // удаление пользователя из PlayersStatus
-    if (!isHumanWin && isBattleEnd && !isRunAway) {
-      // checkItem(gameField[currentPlayer.numberCell]);
-      const Index = PlayersStatus.findIndex(
-        (el) => el.player.id === currentPlayer.id,
-      );
-      PlayersStatus.splice(Index, 1);
-      if (PlayersStatus.length === 0) {
-        setGameLose(true);
-      }
-    }
     if (isHumanWin && !isRunAway) {
-      item.item!.itemStatus = 'delete';
+      const deleteStatus = 'delete';
+      item.item!.itemStatus = deleteStatus;
       setIsHumanWin(false);
       setIsBattleEnd(false);
     } else if (!isHumanWin && !isRunAway && isBattleEnd) {
-      // eslint-disable-next-line prettier/prettier
       item = { ...item, item: currentPlayer.player.hero.inventory[0], pers: undefined};
       setIsBattleEnd(false);
     }
@@ -172,22 +160,33 @@ export const GameFieldPage = () => {
     }
   };
 
+  const findNextIndex = (indexPlayer: number): number | boolean =>{
+    const prevIndexArray = PlayersStatus.slice(0, indexPlayer+1);
+    const nextIndexArray = PlayersStatus.slice(indexPlayer+1);
+
+    if (nextIndexArray.find(el => el.player.hero.health)){
+      const alivePlayer = nextIndexArray.findIndex(el => el.player.hero.health) as number;
+      const index = alivePlayer + prevIndexArray.length;
+      return index;
+    }
+    if(prevIndexArray.find(el => el.player.hero.health)){
+      return prevIndexArray.findIndex(el => el.player.hero.health) as number;
+    }
+    return false; 
+  }
+
   // проверка состояния счетчика, если 0, то меняем персонажа
   const checkCounter = (counter: number) => {
     if (counter === 0 && PlayersStatus.length === 1) {
       currentPlayer.count = spiner;
       setCurrentPlayer(currentPlayer);
-    } else if (
-      counter === 0 &&
-      PlayersStatus.length !== 1 &&
-      PlayersStatus.length > 0
-    ) {
+    } else if (counter === 0 && PlayersStatus.length > 1) {
       if (!startGame) {
         const indexPlayer = PlayersStatus.findIndex(
           (elem) => elem.player.id === currentPlayer.player.id,
         );
-        const currentIndex =
-          indexPlayer + 1 < PlayersStatus.length ? indexPlayer + 1 : 0;
+        const index = findNextIndex(indexPlayer);
+        const currentIndex: number = (index !== false ? index : setGameLose(true)) as number;
         PlayersStatus[indexPlayer].isActive = false;
         PlayersStatus[currentIndex].isActive = true;
         // TODO: переделать
@@ -211,7 +210,7 @@ export const GameFieldPage = () => {
     );
   };
 
-  // проверка на выйгрыш
+  // проверка на победу в игре
   const winCheck = () => {
     if (PlayersStatus.length > 1 && checkAllWin(PlayersStatus)) {
       setGameWin(true);
@@ -284,6 +283,15 @@ export const GameFieldPage = () => {
     setapplyBoards(false);
   };
 
+  // проверка на поражение
+  const loseCheck = () => {
+      const Index = PlayersStatus.findIndex((el) => el.id === currentPlayer.id);
+      PlayersStatus[Index] = {...currentPlayer}
+      if (PlayersStatus.filter(el => el.player.hero.health).length === 0) {
+        setGameLose(true);
+      }
+  };
+
   const nextStepHandler = () => {
     setPopup(false);
     checkResultBattle(gameField[currentPlayer.numberCell]);
@@ -303,7 +311,8 @@ export const GameFieldPage = () => {
               setapplyBoards={setapplyBoards}
               windowsField={availibleSteps[1]}
             />
-          ))}
+          )
+          )}
       </div>
 
       {/* модалка на открытие карточек */}
@@ -368,6 +377,7 @@ export const GameFieldPage = () => {
           setIsHumanWin={setIsHumanWin}
           setIsRunAway={setIsRunAway}
           setIsBattleEnd={setIsBattleEnd}
+          loseCheck={loseCheck}
         />
       )}
 

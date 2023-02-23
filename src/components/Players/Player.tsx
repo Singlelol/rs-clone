@@ -6,7 +6,7 @@ export const Player = ({ player, decrease }: PlayerProps) => {
   return (
     <div className='player'>
       <span className='player__id'>{player.id}</span>
-      <input type='text' placeholder={player.name} className='player__name' />
+      <h3 className='player__name'>{player.name}</h3>
       <div className='player__toogle'>
         <span>AI</span>
         <input type='checkbox' defaultChecked={player.isHuman} />

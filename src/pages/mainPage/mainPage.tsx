@@ -7,7 +7,7 @@ import '../../components/buttons/button_style_mainPage.scss';
 import image from '../../images/main-background.png';
 
 // eslint-disable-next-line import/prefer-default-export, react/function-component-definition
-const btnName: string[] = ['New Game', 'Load', 'Statistic', 'Credits'];
+const btnName: string[] = ['New Game', 'Load', 'Credits'];
 export const MainPage = () => {
   return (
     <div className='App'>
@@ -17,10 +17,7 @@ export const MainPage = () => {
           <ul className='list_li'>
             {btnName.map((btn) => (
               <li key={btn}>
-                <Button
-                  children={btn}
-                  disabled={btn === 'Statistic' || btn === 'Credits'}
-                />
+                <Button children={btn} disabled={btn === 'Load'} />
               </li>
             ))}
           </ul>

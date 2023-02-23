@@ -1,4 +1,5 @@
 /* eslint-disable no-param-reassign */
+// import { useState } from 'react';
 import { ItemType } from '../data/items';
 import { PlayerType } from '../pages/playersPage/PlayerSettings-interface';
 
@@ -16,22 +17,33 @@ export const doSpinnerAction = (
   setIsMonsterWin: (arg: boolean) => void,
   setIsRunAway: (arg: boolean) => void,
   setIsBattleEnd: (arg: boolean) => void,
+  setIsBattle: (arg: boolean) => void,
+  setIsText: (arg: string) => void,
+  setAudio: () => void,
+  setAudio2: () => void,
 ) => {
+  // const audio1 = new Audio('ZombieWin.wav');
   switch (action) {
     case 1:
       setIsRunAway(true);
-      setBattlePopup(false);
+      setIsText('Вы можете убежать. Бегите');
+      setIsBattle(false);
+      setTimeout(() => setBattlePopup(false), 500);
       setIsMonsterWin(true);
       setIsHeroeWin(true);
       setIsBattleEnd(true);
       break;
     case 2:
       player.hero.health -= 1;
+      setIsText('-1 жизнь. Крути рулетку еще раз!');
       if (player.hero.health <= 0) {
         setIsHumanWin(false);
         setIsMonsterWin(true);
         setIsHeroeWin(false);
-        setTimeout(() => setBattlePopup(false), 3000);
+        setIsText(`${player.name} был повержен!`);
+        setAudio2();
+        setIsBattle(false);
+        setTimeout(() => setBattlePopup(false), 10000);
         setIsBattleEnd(true);
       }
       break;
@@ -46,8 +58,13 @@ export const doSpinnerAction = (
         setIsHumanWin(true);
         setIsHeroeWin(true);
         setIsMonsterWin(false);
-        setTimeout(() => setBattlePopup(false), 3000);
+        setIsText(`${player.name} победил!`);
+        setAudio();
+        setIsBattle(false);
+        setTimeout(() => setBattlePopup(false), 10000);
         setIsBattleEnd(true);
+      } else {
+        setIsText('Крути рулетку ещё раз!');
       }
       break;
 
@@ -61,8 +78,13 @@ export const doSpinnerAction = (
         setIsHumanWin(true);
         setIsHeroeWin(true);
         setIsMonsterWin(false);
-        setTimeout(() => setBattlePopup(false), 3000);
+        setIsText(`${player.name} победил!`);
+        setAudio();
+        setIsBattle(false);
+        setTimeout(() => setBattlePopup(false), 10000);
         setIsBattleEnd(true);
+      } else {
+        setIsText('Крути рулетку ещё раз!');
       }
       break;
     default:

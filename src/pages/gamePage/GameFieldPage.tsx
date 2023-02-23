@@ -39,6 +39,10 @@ import {
 } from '../../data/border';
 import { GameOverPopUp } from '../../components/LosePopUp/GameOverPopUp';
 
+const OPEN_STATUS = 'open';
+const CLOSE_STATUS = 'close';
+const DELETE_STATUS = 'delete';
+
 export const GameFieldPage = () => {
   const { play } = useContext(Context);
   // границы и окна/двери
@@ -123,7 +127,7 @@ export const GameFieldPage = () => {
       }
     }
     if (item.item && item.item?.id > 3) {
-      if (item.item) item.item.itemStatus = 'delete';
+      if (item.item) item.item.itemStatus = DELETE_STATUS;
       if (item.item && item.item.id === 4) {
         addHeroHelth(currentPlayer.player);
       } else {
@@ -142,8 +146,7 @@ export const GameFieldPage = () => {
 
   const checkResultBattle = (item: ArrayFieldType) => {
     if (isHumanWin && !isRunAway) {
-      const deleteStatus = 'delete';
-      item.item!.itemStatus = deleteStatus;
+      item.item!.itemStatus = DELETE_STATUS;
       setIsHumanWin(false);
       setIsBattleEnd(false);
     } else if (!isHumanWin && !isRunAway && isBattleEnd) {
@@ -151,10 +154,9 @@ export const GameFieldPage = () => {
       setIsBattleEnd(false);
     }
     if (isRunAway) {
-      const openStatus = 'open';
       currentPlayer.count = spiner;
       setCurrentPlayer(currentPlayer);
-      item.item!.itemStatus = openStatus;
+      item.item!.itemStatus = OPEN_STATUS;
       setIsRunAway(false);
       setIsBattleEnd(false);
     }
@@ -237,12 +239,10 @@ export const GameFieldPage = () => {
     );
     changeStartFields(currentPlayer.id, index);
     winCheck();
-    const openStatus = 'open';
-    const closeStatus = 'close';
-    if (item.item && item.item.itemStatus === closeStatus) {
+    if (item.item && item.item.itemStatus === CLOSE_STATUS) {
       setAnswer(true);
     }
-    if (item.item && item.item.itemStatus === openStatus) {
+    if (item.item && item.item.itemStatus === OPEN_STATUS) {
       setSpiner(0);
       checkItem(gameField[currentPlayer.numberCell]);
       currentPlayer.count = 0;

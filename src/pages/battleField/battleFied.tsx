@@ -17,6 +17,7 @@ type BattlePopUpType = {
   setIsHumanWin: (arg: boolean) => void;
   setIsRunAway: (arg: boolean) => void;
   setIsBattleEnd: (arg: boolean) => void;
+  loseCheck: () => void;
 };
 const state = 8;
 
@@ -27,6 +28,7 @@ export const BattlePopUp = ({
   setBattlePopup,
   setIsRunAway,
   setIsBattleEnd,
+  loseCheck,
 }: BattlePopUpType) => {
   const [spiner, setSpiner] = useState(state);
   const [audio] = useState(new Audio(playerWinSound));
@@ -57,6 +59,7 @@ export const BattlePopUp = ({
         setIsMonsterWin,
         setIsRunAway,
         setIsBattleEnd,
+        loseCheck,
         setIsBattle,
         setIsText,
         setAudio,

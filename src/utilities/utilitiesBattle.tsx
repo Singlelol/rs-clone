@@ -17,6 +17,7 @@ export const doSpinnerAction = (
   setIsMonsterWin: (arg: boolean) => void,
   setIsRunAway: (arg: boolean) => void,
   setIsBattleEnd: (arg: boolean) => void,
+  loseCheck: () => void,
   setIsBattle: (arg: boolean) => void,
   setIsText: (arg: string) => void,
   setAudio: () => void,
@@ -45,6 +46,7 @@ export const doSpinnerAction = (
         setIsBattle(false);
         setTimeout(() => setBattlePopup(false), 10000);
         setIsBattleEnd(true);
+        loseCheck();
       }
       break;
 

@@ -1,11 +1,13 @@
 /* eslint-disable no-param-reassign */
-// import { useState } from 'react';
 import { ItemType } from '../data/items';
 import { PlayerType } from '../pages/playersPage/PlayerSettings-interface';
 
 const coldWeapon = [11, 12, 13, 14];
 const shooter = [8, 9, 10, 14];
 const shooterBoss = 15;
+const TextRunPlayer = 'Вы можете убежать. Бегите';
+const TextLoseHealth = '-1 жизнь. Крути рулетку еще раз!';
+const TextSpinerAgain = 'Крути рулетку ещё раз!';
 // eslint-disable-next-line consistent-return
 export const doSpinnerAction = (
   action: number,
@@ -23,11 +25,10 @@ export const doSpinnerAction = (
   setAudio: () => void,
   setAudio2: () => void,
 ) => {
-  // const audio1 = new Audio('ZombieWin.wav');
   switch (action) {
     case 1:
       setIsRunAway(true);
-      setIsText('Вы можете убежать. Бегите');
+      setIsText(TextRunPlayer);
       setIsBattle(false);
       setTimeout(() => setBattlePopup(false), 500);
       setIsMonsterWin(true);
@@ -36,7 +37,7 @@ export const doSpinnerAction = (
       break;
     case 2:
       player.hero.health -= 1;
-      setIsText('-1 жизнь. Крути рулетку еще раз!');
+      setIsText(TextLoseHealth);
       if (player.hero.health <= 0) {
         setIsHumanWin(false);
         setIsMonsterWin(true);
@@ -66,7 +67,7 @@ export const doSpinnerAction = (
         setTimeout(() => setBattlePopup(false), 10000);
         setIsBattleEnd(true);
       } else {
-        setIsText('Крути рулетку ещё раз!');
+        setIsText(TextSpinerAgain);
       }
       break;
 
@@ -86,7 +87,7 @@ export const doSpinnerAction = (
         setTimeout(() => setBattlePopup(false), 10000);
         setIsBattleEnd(true);
       } else {
-        setIsText('Крути рулетку ещё раз!');
+        setIsText(TextSpinerAgain);
       }
       break;
     default:

@@ -31,20 +31,20 @@ export const BattlePopUp = ({
   loseCheck,
 }: BattlePopUpType) => {
   const [spiner, setSpiner] = useState(state);
-  const [audio] = useState(new Audio(playerWinSound));
-  const [audio2] = useState(new Audio(monsterWinSound));
+  const [audioPlayerWin] = useState(new Audio(playerWinSound));
+  const [audioMonsterWin] = useState(new Audio(monsterWinSound));
   const [isHeroe, setIsHeroeWin] = useState(true);
   const [isMonster, setIsMonsterWin] = useState(true);
   const [isBattle, setIsBattle] = useState(true);
-  const [istext, setIsText] = useState('');
+  const [isText, setIsText] = useState('');
 
   const setAudio = () => {
-    audio.currentTime = 0;
-    audio.play();
+    audioPlayerWin.currentTime = 0;
+    audioPlayerWin.play();
   };
   const setAudio2 = () => {
-    audio2.currentTime = 0;
-    audio2.play();
+    audioMonsterWin.currentTime = 0;
+    audioMonsterWin.play();
   };
 
   useEffect(() => {
@@ -68,7 +68,9 @@ export const BattlePopUp = ({
       setSpiner(8);
     }
   }, [spiner]);
-  const spinerNone = isBattle ? 'spiner_block' : 'spinerNone';
+  const spinerBlock = 'spiner_block';
+  const spinerNone = 'spinerNone';
+  const BlockSpiner = isBattle ? spinerBlock : spinerNone;
   return (
     <div className='battleField'>
       <div id='div' className='player_cards'>
@@ -79,11 +81,11 @@ export const BattlePopUp = ({
         />
       </div>
       <div className='block_Spinner-Swords'>
-        <div className={spinerNone}>
+        <div className={BlockSpiner}>
           <SpinnerPage setSpiner={setSpiner} />
         </div>
         <img src={imageSwords} className='swords' alt='Swords' />
-        <p className='text_swords'>{istext}</p>
+        <p className='text_swords'>{isText}</p>
       </div>
       <div className='monster_cards'>
         <BattleCard name={item!.name} image={item!.image} win={isMonster} />

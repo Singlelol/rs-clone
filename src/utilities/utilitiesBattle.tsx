@@ -30,7 +30,7 @@ export const doSpinnerAction = (
       setIsRunAway(true);
       setIsText(TextRunPlayer);
       setIsBattle(false);
-      setTimeout(() => setBattlePopup(false), 500);
+      setTimeout(() => setBattlePopup(false), 1500);
       setIsMonsterWin(true);
       setIsHeroeWin(true);
       setIsBattleEnd(true);
@@ -45,7 +45,7 @@ export const doSpinnerAction = (
         setIsText(`${player.name} был повержен!`);
         setAudio2();
         setIsBattle(false);
-        setTimeout(() => setBattlePopup(false), 10000);
+        setTimeout(() => setBattlePopup(false), 3000);
         setIsBattleEnd(true);
         loseCheck();
       }
@@ -64,7 +64,7 @@ export const doSpinnerAction = (
         setIsText(`${player.name} победил!`);
         setAudio();
         setIsBattle(false);
-        setTimeout(() => setBattlePopup(false), 10000);
+        setTimeout(() => setBattlePopup(false), 3000);
         setIsBattleEnd(true);
       } else {
         setIsText(TextSpinerAgain);
@@ -84,7 +84,7 @@ export const doSpinnerAction = (
         setIsText(`${player.name} победил!`);
         setAudio();
         setIsBattle(false);
-        setTimeout(() => setBattlePopup(false), 10000);
+        setTimeout(() => setBattlePopup(false), 3000);
         setIsBattleEnd(true);
       } else {
         setIsText(TextSpinerAgain);

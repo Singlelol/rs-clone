@@ -8,17 +8,15 @@
 
   .counter__output{
     text-align: center;
-    font-size: 18rem;
+    font: 600 18rem/1 "Comic Sans MS", "Comic Sans", cursive;
     font-style: revert;
-    font-weight: 600;
-    line-height: 18rem;
   }
 
   .control__btn{
-    cursor: pointer;
-    background: transparent;
-    border: none;
     padding: 0 40rem;
+    border: none;
+    background: transparent;
+    cursor: pointer;
 
     .control__btn-next{
       width: 20rem;

@@ -1,37 +1,49 @@
 .modal-wheel{
-    z-index: 15;
-    position: fixed;
+    position: absolute;
     top: 0;
-    left: 30%;
-    width: 40%;
-    margin: 1rem auto;
-    background: rgba(13,13,13,.8);
+    left: 0;
+    //position: fixed;    
+    //left: 27.5%;
+    //width: 45%;
+    display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 10rem;
-    color:antiquewhite;
+    width: 100%;
     padding: 2rem;
+    margin: 1rem auto;
+    background: rgba(13,13,13,.8);
+    font-size: 10rem;
+    color:#faebd7;
+    z-index: 15;
 }
 
 .step-button{
 
+    position: fixed;
+    top: 45%;
+    z-index: 100;
+    width: 100%;
     display: flex;
     justify-content: center;
     padding: 10rem 20rem;
+    font-size: 16rem;    
 
     .btn-spin{
-        color: white;
-        background: black;
-        border: none;
-        font-size: inherit;
-        padding: 9rem 20rem 10rem;
+        padding: 5rem 10rem 5rem;
+        color: #fff;
+        background: #000;
+        border: none;        
         border-radius: 5rem;
+        font-size: 12rem;
         cursor: pointer;
     }
 }
 #takeItem {
     
     button {
-        font-size: 1.5rem;
+
+        &:last-child {
+            margin-left: 10rem;
+        }
     }
 }

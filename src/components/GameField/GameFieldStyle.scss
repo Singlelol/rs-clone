@@ -6,8 +6,8 @@ body {
 .grid-container {
   position: relative;
   display: grid;
-  width: 40%;
-  margin: 10rem auto;
+  width: 45%;
+  margin: 1rem auto;
   grid-template-columns: repeat(12, minmax(10rem, 1fr));
   grid-template-rows: repeat(12, minmax(10rem, 1fr));
   background: #81a740 center url("../../images/grid.png") no-repeat;
@@ -23,7 +23,7 @@ body {
   opacity: 1;
 
   .item-style{
-    opacity: 0.5;
+    opacity: .5;
   }
 }
 
@@ -32,7 +32,7 @@ body {
   opacity: 1;
 
   .item-style{
-    opacity: 0.5;
+    opacity: .5;
   }
 }
 
@@ -41,6 +41,6 @@ body {
   opacity: .5;
 
   .item-style{
-    opacity: 0.5;
+    opacity: .5;
   }
 }

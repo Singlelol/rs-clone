@@ -12,13 +12,15 @@ type BroadPopupType = {
 export const CheckBroadPopup = ({ getBroadAnswer }: BroadPopupType) => {
   return (
     <div id='takeItem'>
-      <p>{popUpPhase}</p>
-      <button type='button' onClick={() => getBroadAnswer(true)}>
-        {yes}
-      </button>
-      <button type='button' onClick={() => getBroadAnswer(false)}>
-        {no}
-      </button>
+      <div>
+        <p>{popUpPhase}</p>
+        <button type='button' onClick={() => getBroadAnswer(true)}>
+          {yes}
+        </button>
+        <button type='button' onClick={() => getBroadAnswer(false)}>
+          {no}
+        </button>
+      </div>
     </div>
   );
 };

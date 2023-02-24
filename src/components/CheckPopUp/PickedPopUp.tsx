@@ -17,13 +17,15 @@ export const PickedPopUp = ({ getAnswer }: PopupType) => {
   };
   return (
     <div id='takeItem'>
-      <p>{popUpPhase}</p>
-      <button type='button' onClick={() => popUpHandler()}>
-        {yes}
-      </button>
-      <button type='button' onClick={() => popUpClosed()}>
-        {no}
-      </button>
+      <div>
+        <p>{popUpPhase}</p>
+        <button type='button' onClick={() => popUpHandler()}>
+          {yes}
+        </button>
+        <button type='button' onClick={() => popUpClosed()}>
+          {no}
+        </button>
+      </div>
     </div>
   );
 };

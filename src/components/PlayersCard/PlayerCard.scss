@@ -1,9 +1,9 @@
 .players-card{
   display: flex;
   flex-direction: column;
-  background-color: #FEDAA1;
   width: 100rem;
   margin: 5rem 0;
+  background-color: #FEDAA1;
   border: 1rem solid #B95A27;
   border-radius: 5%;
   box-shadow: 0 2rem 4rem rgba(185, 90, 39, .2);
@@ -31,10 +31,8 @@
   &__name{
     margin: 0;
     color: #B95A27;
-    font-size: 8rem;
+    font: 600 8rem/1.5 "Comic Sans MS", "Comic Sans", cursive;
     font-style: revert;
-    font-weight: 600;
-    line-height: 12rem;
   }
 
   &__heart{
@@ -43,11 +41,10 @@
   }
 
   &__heart-image{
-    width: 10rem;
-    height: 10rem;
-    background: url('../../images/Heart.png');
+    width: 15rem;
+    height: 15rem;
+    background: url('../../images/Heart.png') no-repeat;
     background-size: contain;
-    background-repeat: no-repeat;
   }
 
   &__items{
@@ -59,11 +56,11 @@
       display: flex;
       align-items: flex-start;
       flex-wrap: wrap;
+      width: 95rem;
+      min-height: 17rem;
       gap: 1rem;
       padding: 2rem;
       background-color: #B95A27;
-      width: 95rem;
-      min-height: 17rem;
 
       .item{
         width: 17rem;

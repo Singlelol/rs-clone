@@ -3,8 +3,8 @@
   flex-direction: column;
   padding: 10rem;
   width: 150rem;
-  background-color: antiquewhite;
-  border: 1rem solid black;
+  background-color: #faebd7;
+  border: 1rem solid #000;
   border-radius: 5rem;
   box-shadow: 0 0 4rem #a64304;
 
@@ -19,13 +19,11 @@
   &__image{
     width: 30rem;
     height: 30rem;
-    border: 1rem solid black;
-    box-shadow: 0 0 4rem rgb(0 0 0 / 25%);
+    border: 1rem solid #000;
+    box-shadow: 0 0 4rem rgb(0 0 0 / .25);
   }
   
   &__subtitle{
-    margin: 0;
-    padding: 0;
     padding-bottom: 5rem;   
   }
 
@@ -35,23 +33,19 @@
   }
 
   &__heart-image{
-    margin: 0;
-    padding: 0;
     background-image: url('https://img.icons8.com/emoji/24/null/heart-suit.png');
-    width: 15rem;
-    height: 15rem;  
+    width: 12rem;
+    height: 12rem;  
   }
 
   &__description{
     margin: 0;
-    text-align: justify;
     padding: 7rem;
-    border: 1rem solid black;
-    border-radius: 5rem;
-    box-shadow: 0 0 4rem rgb(0 0 0 / 25%);
-    font-size: 8rem;
+    text-align: justify;
+    font: 400 8rem/1.5 "Comic Sans MS", "Comic Sans", cursive;
     font-style: revert;
-    font-weight: 400;
-    line-height: 12rem;
+    border: 1rem solid #000;
+    border-radius: 5rem;
+    box-shadow: 0 0 4rem rgb(0 0 0 / .25);
   }
 }

@@ -1,10 +1,6 @@
 .testmap{
     position: absolute;
-    background: url('./images/map.png');
     height: 100%;
     width: 100%;
-    background-size: 85% 120%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: #666D2C;
+    background: center / 85% 120% #666D2C url('./images/map.png') no-repeat;
 }

@@ -1,37 +1,37 @@
 body {
   font-family: "Comic Sans MS", "Comic Sans", cursive;
-  background-color: rgba(222, 106, 23, 0.97);;
+  background-color: rgba(222, 106, 23, .97);;
 }
 .App {
   text-align: center;
   .App-header {
-    background-color: #df7c0a;
-    min-height: 100vh;
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: calc(100rem + 2vmin);
-    color: white;
     height: 300rem;
-    position: relative;
+    min-height: 100vh;
+    font-size: calc(100rem + 2vmin);
+    color: #fff;
+    background-color: #df7c0a;    
 
     .App-logo {
        height: 100%;
     }
     .list_link {
-      left: 43%;
       position: absolute;
+      left: 43%;
+      padding: 10rem;
+      font: bold 18rem/10rem Helvetica, Sans-Serif;
       text-transform: uppercase;
       background-color: #241005ef;
       border: ridge 5rem #a64304;
       border-radius: 15rem;
-      padding: 10rem;
-      font: bold 18rem/10rem Helvetica, Sans-Serif;
 
       .list_li {
-        list-style-type:none;
         padding: 0;
+        list-style-type:none;        
       }
     }
   }

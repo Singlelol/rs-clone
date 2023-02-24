@@ -8,7 +8,7 @@
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
 
-html {
+ html {
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
 }
@@ -22,7 +22,6 @@ html {
 
 body {
   margin: 0;
-  background-color: rgba(222, 106, 23, 0.97);
 }
 
 /**
@@ -162,9 +161,9 @@ button,
 input,
 optgroup,
 select,
-textarea,p {
-  font-family: "Comic Sans MS", "Comic Sans", cursive; /* 1 */
-  font-size: 12rem; /* 1 */
+textarea {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
   line-height: 1.15; /* 1 */
   margin: 0; /* 2 */
 }

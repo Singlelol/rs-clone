@@ -29,19 +29,18 @@
     font-size: 16rem;    
 
     .btn-spin{
-        padding: 9rem 20rem 10rem;
-        color: white;
-        font-size: inherit;
-        background: black;
-        border: none;
+        padding: 5rem 10rem 5rem;
+        color: #fff;
+        background: #000;
+        border: none;        
         border-radius: 5rem;
+        font-size: 12rem;
         cursor: pointer;
     }
 }
 #takeItem {
     
     button {
-        font-size: 15rem;
 
         &:last-child {
             margin-left: 10rem;

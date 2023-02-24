@@ -2,6 +2,11 @@ body {
   font-family: "Comic Sans MS", "Comic Sans", cursive;
   background-color: rgba(222, 106, 23, .97);;
 }
+
+a {
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
 .App {
   text-align: center;
   .App-header {
@@ -23,7 +28,7 @@ body {
       position: absolute;
       left: 43%;
       padding: 10rem;
-      font: bold 18rem/10rem Helvetica, Sans-Serif;
+      font: bold 18rem/.56 Helvetica, Sans-Serif;
       text-transform: uppercase;
       background-color: #241005ef;
       border: ridge 5rem #a64304;
@@ -31,7 +36,10 @@ body {
 
       .list_li {
         padding: 0;
-        list-style-type:none;        
+
+        button {
+          font-size: 18rem;
+        }
       }
     }
   }

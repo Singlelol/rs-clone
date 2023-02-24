@@ -1,7 +1,12 @@
 body {
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
-  background-color: rgba(222, 106, 23, 0.97);;
+  background-color: rgba(222, 106, 23, 0.97);
+  font-family: "Comic Sans MS", "Comic Sans", cursive; /* 1 */
 }
+
+a {
+  font-family: "Comic Sans MS", "Comic Sans", cursive; /* 1 */
+}
+
 .App {
   text-align: center;
   .App-header {
@@ -32,6 +37,10 @@ body {
       .list_li {
         list-style-type:none;
         padding: 0;
+
+        button {
+          font-size: 18rem;
+        }
       }
     }
   }

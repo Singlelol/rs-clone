@@ -61,18 +61,23 @@ export const GameFieldPage = () => {
   const [spiner, setSpiner] = useState(0);
 
   // создание массива игроков для отслеживания номера ячейки, кол-во ходов, статуса активности
-  const PlayersStatus: StateType[] = [];
+  let PlayersStatus: StateType[];
+  if(localStorage.getItem('PlayersStatus')){
+    PlayersStatus = JSON.parse(localStorage.getItem('PlayersStatus') as string)
+  } else{
+    PlayersStatus = [];
 
-  play.map((pl, i) => {
-    const activeStatus = i === 0;
-    PlayersStatus.push({
-      id: i,
-      numberCell: startFields[i],
-      player: pl,
-      count: spiner,
-      isActive: activeStatus,
+    play.map((pl, i) => {
+      const activeStatus = i === 0;
+      PlayersStatus.push({
+        id: i,
+        numberCell: startFields[i],
+        player: pl,
+        count: spiner,
+        isActive: activeStatus,
+      });
     });
-  });
+  }
 
   const gameField = createField(borders);
   // при первом старте находит героя у которого isActive
@@ -82,7 +87,9 @@ export const GameFieldPage = () => {
   // изменение текущего игрока
   const [currentPlayer, setCurrentPlayer] = useState(current);
   // изменения массива стартовых значений
-  const [startArr, setStartArr] = useState(startFields);
+  const startArrfields = localStorage.getItem('startArr') ? JSON.parse(localStorage.getItem('startArr') as string) : startFields;
+  const [startArr, setStartArr] = useState(startArrfields);
+  console.log(startArr);
 
   // изменение массива текущих шагов
   const [availibleSteps, setAvailibleSteps] = useState(
@@ -176,6 +183,21 @@ export const GameFieldPage = () => {
     }
     return false; 
   }
+  // сохранение в local storage
+  const saveData = () => {
+    // localStorage.setItem('borders', JSON.stringify(borders));
+    localStorage.setItem('PlayersStatus', JSON.stringify(PlayersStatus));
+    localStorage.setItem('startArr', JSON.stringify(startArr));
+    // localStorage.setItem('gameField', JSON.stringify(gameField));
+  }
+
+  useEffect(() =>{
+    return () => {
+      saveData();
+      console.log('22222');
+    };
+  },[]
+);
 
   // проверка состояния счетчика, если 0, то меняем персонажа
   const checkCounter = (counter: number) => {
@@ -210,6 +232,7 @@ export const GameFieldPage = () => {
         currentPlayer.player,
       ),
     );
+    PlayersStatus[currentPlayer.id] = currentPlayer;
   };
 
   // проверка на победу в игре

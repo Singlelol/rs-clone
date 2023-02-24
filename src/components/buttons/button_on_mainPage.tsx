@@ -1,8 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable import/no-cycle */
 /* eslint-disable react/require-default-props */
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/function-component-definition */
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { Context } from '../../App';
 
 interface Props {
   background?: string;
@@ -27,16 +30,32 @@ export const Button: React.FC<Props> = ({
     case 'New Game':
       mainLink = '/players';
       break;
-    case 'Load':
-      mainLink = '/load';
-      break;
-    case 'Statistic':
-      mainLink = '/statistic';
+    case 'Continue':
+      mainLink = '/game';
       break;
     case 'Credits':
       mainLink = '/credits';
       break;
   }
+
+  const { play, changePlayers } = useContext(Context);
+
+  const checkContinueGame = () => {
+    // if (children === 'Continue') {
+    //   const savePlayerStatus = JSON.parse(
+    //     localStorage.getItem('PlayersStatus') as string,
+    //   );
+    //   console.log(savePlayerStatus);
+    //   changePlayers(savePlayerStatus);
+    // }
+    if (children === 'New Game') {
+      localStorage.setItem('borders', '');
+      localStorage.setItem('startArr', '');
+      localStorage.setItem('PlayersStatus', '');
+      localStorage.setItem('gameField', '');
+    }
+  };
+
   return (
     <button
       disabled={disabled}
@@ -45,6 +64,7 @@ export const Button: React.FC<Props> = ({
         height,
         width,
       }}
+      onClick={() => checkContinueGame()}
     >
       <Link to={mainLink} className='main-link'>
         {children}

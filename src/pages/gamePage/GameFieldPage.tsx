@@ -252,8 +252,8 @@ export const GameFieldPage = () => {
 
   const getAnswer = (isYes: boolean) => {
     setAnswer(false);
-    setSpiner(0);
     if (isYes) {
+      setSpiner(0);
       checkItem(gameField[currentPlayer.numberCell]);
       currentPlayer.count = 0;
     }

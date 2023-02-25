@@ -64,7 +64,10 @@ export const GameFieldPage = () => {
   let PlayersStatus: StateType[];
   if(localStorage.getItem('PlayersStatus')){
     PlayersStatus = JSON.parse(localStorage.getItem('PlayersStatus') as string)
+    localStorage.setItem('PlayersStatus','');
+    console.log(1);
   } else{
+    console.log(2);
     PlayersStatus = [];
 
     play.map((pl, i) => {

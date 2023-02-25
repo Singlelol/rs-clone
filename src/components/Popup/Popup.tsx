@@ -4,7 +4,6 @@ import './popup.scss';
 export const Popup = ({ hero }: PopupProps) => {
   const health = 'Здоровье:';
   const description = 'Описание:';
-  console.log(hero);
   return (
     <div className='popup'>
       <div className='popup__section'>

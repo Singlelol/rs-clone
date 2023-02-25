@@ -1,6 +1,6 @@
 body {
   font-family: "Comic Sans MS", "Comic Sans", cursive;
-  background-color: rgba(222, 106, 23, .97);;
+  background-color: #de6a17f7;;
 }
 
 a {
@@ -36,6 +36,7 @@ a {
 
       .list_li {
         padding: 0;
+        list-style: none;
 
         button {
           font-size: 18rem;

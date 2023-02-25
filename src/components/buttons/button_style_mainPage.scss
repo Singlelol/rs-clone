@@ -1,14 +1,14 @@
 button {
     font: bold 18rem/1 "Comic Sans MS", "Comic Sans", cursive !important;
-    color: rgba(222, 106, 23, 0.97);
+    color: #de6a17f7;
 }
 
 .main-link{
-    color: white;
+    color: #fff;
     text-decoration: none;
     
     &:hover{
-        color: rgba(222, 106, 23, .97);
+        color: #de6a17f7;
     }
     
     &:disabled{

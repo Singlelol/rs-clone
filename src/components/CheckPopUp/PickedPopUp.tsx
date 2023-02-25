@@ -1,4 +1,4 @@
-import { POPUPPHASE, YES, NO } from './PopUpConst';
+import { POPUP_PHASE, YES, NO } from './PopUpConst';
 import './checkUp.scss';
 
 type PopupType = {
@@ -15,7 +15,7 @@ export const PickedPopUp = ({ getAnswer }: PopupType) => {
   return (
     <div id='takeItem'>
       <div>
-        <p>{POPUPPHASE}</p>
+        <p>{POPUP_PHASE}</p>
         <button type='button' onClick={() => popUpHandler()}>
           {YES}
         </button>

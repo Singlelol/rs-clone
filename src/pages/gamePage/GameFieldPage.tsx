@@ -57,6 +57,7 @@ export const GameFieldPage = () => {
     bordersWindowTopIndex,
   ];
   const [borders, setBorders] = useState(bordersArray);
+  console.log(bordersArray);
   // спинер
   const [spiner, setSpiner] = useState(0);
 
@@ -305,6 +306,7 @@ export const GameFieldPage = () => {
     checkCounter(currentPlayer.count);
     setStartGame(false);
   };
+  console.log(applyBoards);
 
   return (
     <div>

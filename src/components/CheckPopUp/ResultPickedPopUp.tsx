@@ -2,7 +2,7 @@ import { items } from '../../data/items';
 import { PlayerType } from '../../pages/playersPage/PlayerSettings-interface';
 import './checkUp.scss';
 
-const GOTEXT = 'Вперед!';
+const GO_TEXT = 'Вперед!';
 
 type Ids = {
   persone: PlayerType;
@@ -11,14 +11,14 @@ type Ids = {
 };
 
 export const ResultPickedPopUp = ({ persone, item, setPopup }: Ids) => {
-  const PERSONNAME = persone.name;
-  const ITEMNAME = item ? items[item].name : '';
-  const PHASE = `Персонаж ${PERSONNAME} кладет ${ITEMNAME} в свой инвентарь`;
+  const personeName = persone.name;
+  const itemName = item ? items[item].name : '';
+  const phase = `Персонаж ${personeName} кладет ${itemName} в свой инвентарь`;
   return (
     <div id='pickUpItem'>
-      <p>{`${PHASE}`}</p>
+      <p>{`${phase}`}</p>
       <button type='button' onClick={() => setPopup(false)}>
-        {GOTEXT}
+        {GO_TEXT}
       </button>
     </div>
   );

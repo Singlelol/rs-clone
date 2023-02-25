@@ -1,4 +1,4 @@
-import { POPUPPHASE, YES, NO } from './PopUpConst';
+import { POPUP_PHASE, YES, NO } from './PopUpConst';
 import './checkUp.scss';
 
 type BroadPopupType = {
@@ -9,7 +9,7 @@ export const CheckBroadPopup = ({ getBroadAnswer }: BroadPopupType) => {
   return (
     <div id='takeItem'>
       <div>
-        <p>{POPUPPHASE}</p>
+        <p>{POPUP_PHASE}</p>
         <button type='button' onClick={() => getBroadAnswer(true)}>
           {YES}
         </button>

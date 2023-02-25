@@ -24,7 +24,7 @@ import { ResultPickedPopUp } from '../../components/CheckPopUp/ResultPickedPopUp
 import { SpinnerPage } from '../../components/Spiner/SpinnerPage';
 import { MoveCounter } from '../../components/MoveCounter/MoveCounter';
 import { CheckBroadPopup } from '../../components/CheckPopUp/CheckBroadPopup';
-import { BattlePopUp } from '../battleField/battleField';
+import { BattlePopUp } from '../../components/battleField/battleField';
 import {
   bordersBottomIndex,
   bordersLeftIndex,
@@ -57,7 +57,7 @@ export const GameFieldPage = () => {
     bordersWindowTopIndex,
   ];
   const [borders, setBorders] = useState(bordersArray);
-  console.log(bordersArray);
+
   // спинер
   const [spiner, setSpiner] = useState(0);
 
@@ -306,7 +306,6 @@ export const GameFieldPage = () => {
     checkCounter(currentPlayer.count);
     setStartGame(false);
   };
-  console.log(applyBoards);
 
   return (
     <div>

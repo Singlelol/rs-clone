@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BattleCard } from './BattleCard';
-import { PlayerType } from '../playersPage/PlayerSettings-interface';
-import { SpinnerPage } from '../../components/Spiner/SpinnerPage';
+import { PlayerType } from '../../pages/playersPage/PlayerSettings-interface';
+import { SpinnerPage } from '../Spiner/SpinnerPage';
 import { doSpinnerAction } from '../../utilities/utilitiesBattle';
 import './battleField.scss';
 import { ItemType } from '../../data/items';

@@ -3,16 +3,21 @@ import { PlayerType } from '../../pages/playersPage/PlayerSettings-interface';
 import './checkUp.scss';
 
 const GO_TEXT = 'Вперед!';
+const EMPTY_STRING = '';
 
-type Ids = {
+type PickedPopUpProps = {
   persone: PlayerType;
   item: number | undefined;
   setPopup: (arg: boolean) => void;
 };
 
-export const ResultPickedPopUp = ({ persone, item, setPopup }: Ids) => {
+export const ResultPickedPopUp = ({
+  persone,
+  item,
+  setPopup,
+}: PickedPopUpProps) => {
   const personeName = persone.name;
-  const itemName = item ? items[item].name : '';
+  const itemName = item ? items[item].name : EMPTY_STRING;
   const phase = `Персонаж ${personeName} кладет ${itemName} в свой инвентарь`;
   return (
     <div id='pickUpItem'>

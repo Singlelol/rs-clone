@@ -1,7 +1,5 @@
-/* eslint-disable react/no-children-prop */
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import { Button } from '../../components/buttons/button_on_mainPage';
+import { Button } from '../../components/buttons/Button_on_mainPage';
 import './mainPage.scss';
 import '../../components/buttons/button_style_mainPage.scss';
 import image from '../../images/main-background.png';
@@ -17,7 +15,7 @@ export const MainPage = () => {
           <ul className='list_li'>
             {btnName.map((btn) => (
               <li key={btn}>
-                <Button children={btn} disabled={btn === 'Load'} />
+                <Button disabled={btn === 'Load'}>{btn}</Button>
               </li>
             ))}
           </ul>

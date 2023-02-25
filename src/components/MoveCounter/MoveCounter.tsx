@@ -5,6 +5,6 @@ type Props = {
   count: number;
 };
 
-export const MoveCounter = ({ step, count }: Props) => {
-  return <div id='counter'>{`${step} for ${count}`}</div>;
-};
+export const MoveCounter = ({ step, count }: Props) => (
+  <div id='counter'>{`${step} for ${count}`}</div>
+);

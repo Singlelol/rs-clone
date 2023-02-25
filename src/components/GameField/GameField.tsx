@@ -17,6 +17,10 @@ type GameFieldItemProps = {
   endFields: number[];
 };
 
+const OPEN_STATUS = 'open';
+const CLOSE_STATUS = 'close';
+const DELETE_STATUS = 'delete';
+
 export const GameField = ({
   item,
   index,
@@ -50,10 +54,10 @@ export const GameField = ({
   }
 
   const checkItemStatus = () => {
-    if (item.item && item.item?.itemStatus === 'open') {
+    if (item.item && item.item?.itemStatus === OPEN_STATUS) {
       return item.item?.image;
     }
-    if (item.item && item.item?.itemStatus === 'close') {
+    if (item.item && item.item?.itemStatus === CLOSE_STATUS) {
       return CoverImage;
     }
     return '';
@@ -67,7 +71,7 @@ export const GameField = ({
       {...attr}
       onClick={() => availibleSteps.includes(item.id) && onClick()}
     >
-      {item.item?.itemStatus !== 'delete' ? (
+      {item.item?.itemStatus !== DELETE_STATUS ? (
         !url ? (
           <div
             className='item-style'

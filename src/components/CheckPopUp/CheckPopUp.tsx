@@ -1,3 +1,1 @@
-export const checkId = (item: number) => {
-  return item > 3;
-};
+export const checkId = (item: number) => item > 3;

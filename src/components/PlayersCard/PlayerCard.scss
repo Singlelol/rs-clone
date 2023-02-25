@@ -6,7 +6,7 @@
   background-color: #FEDAA1;
   border: 1rem solid #B95A27;
   border-radius: 5%;
-  box-shadow: 0 2rem 4rem rgba(185, 90, 39, .2);
+  box-shadow: 0 2rem 4rem #b95a2733;
 
   &__main{
     display: flex;
@@ -23,14 +23,14 @@
 
   &__img{
     width: 30rem;
-    border: .5rem solid #B95A27;
+    border: .5rem solid #b95a27;
     border-radius: 10%;
-    box-shadow: 0 2rem 4rem rgba(185, 90, 39, .7);
+    box-shadow: 0 2rem 4rem #b95a27b3;
   }
 
   &__name{
     margin: 0;
-    color: #B95A27;
+    color: #b95a27;
     font: 600 8rem/1.5 "Comic Sans MS", "Comic Sans", cursive;
     font-style: revert;
   }
@@ -60,12 +60,12 @@
       min-height: 17rem;
       gap: 1rem;
       padding: 2rem;
-      background-color: #B95A27;
+      background-color: #b95a27;
 
       .item{
         width: 17rem;
         height: 17rem;
-        background-color: #E8912E;
+        background-color: #e8912e;
       }
     }
   }

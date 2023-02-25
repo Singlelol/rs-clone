@@ -11,6 +11,10 @@
   z-index: 100;
 }
 
+.battleField + .spinner-page {
+  display: none;
+}
+
 .deal-wheel {
   position: relative;
   display: grid;
@@ -110,22 +114,22 @@
 }
 
 .prize.selected .text {
-  color: white;
+  color: #fff;
   animation: selected 800ms ease;
 }
 
 @keyframes selected {
   25% {
     transform: scale(1.25);
-    text-shadow: 1vmin 1vmin 0 hsla(0 0% 0% / .1);
+    text-shadow: 1vmin 1vmin 0 #0000001a;
   }
   40% {
     transform: scale(0.92);
-    text-shadow: 0 0 0 hsla(0 0% 0% / .2);
+    text-shadow: 0 0 0 #00000033;
   }
   60% {
     transform: scale(1.02);
-    text-shadow: .5vmin .5vmin 0 hsla(0 0% 0% / .1);
+    text-shadow: .5vmin .5vmin 0 #0000001a;
   }
   75% {
     transform: scale(.98);

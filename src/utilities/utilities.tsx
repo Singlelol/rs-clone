@@ -6,6 +6,17 @@ import { items, ItemType } from '../data/items';
 import { PlayerType } from '../pages/playersPage/PlayerSettings-interface';
 import { ArrayFieldType, StateType } from '../types/types';
 
+/*
+const shuffleArray = (array: any) => {
+  for (let i = array.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+};
+*/
+
 const BroadID = 5;
 const includeBroads = (player: PlayerType) => {
   return player.hero.inventory.find((el) => el.id === BroadID);
@@ -14,7 +25,7 @@ const includeBroads = (player: PlayerType) => {
 export const ItemsArr: ItemType[][] = [];
 items
   .map((item) => ItemsArr.push(Array(item.count).fill(item)))
-  .sort(() => Math.round(Math.random() * 100) - 50);
+  .sort(() => 0.5 - Math.random());
 
 // обьединяет и перемешивает айтемы
 export const ShuffleItemsArr = () => {

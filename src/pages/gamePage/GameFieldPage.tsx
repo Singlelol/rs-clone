@@ -19,8 +19,6 @@ import {
   checkAllWin,
 } from '../../utilities/utilities';
 import { Context } from '../../App';
-import '../../components/PlayersCard/PlayerCard.scss';
-import './gamePage.scss';
 import { PickedPopUp } from '../../components/CheckPopUp/PickedPopUp';
 import { ResultPickedPopUp } from '../../components/CheckPopUp/ResultPickedPopUp';
 import { SpinnerPage } from '../../components/Spiner/SpinnerPage';
@@ -38,6 +36,8 @@ import {
   bordersWindowTopIndex,
 } from '../../data/border';
 import { GameOverPopUp } from '../../components/LosePopUp/GameOverPopUp';
+import '../../components/PlayersCard/PlayerCard.scss';
+import './gamePage.scss';
 
 const OPEN_STATUS = 'open';
 const CLOSE_STATUS = 'close';
@@ -57,6 +57,7 @@ export const GameFieldPage = () => {
     bordersWindowTopIndex,
   ];
   const [borders, setBorders] = useState(bordersArray);
+  console.log(bordersArray);
   // спинер
   const [spiner, setSpiner] = useState(0);
 
@@ -305,6 +306,7 @@ export const GameFieldPage = () => {
     checkCounter(currentPlayer.count);
     setStartGame(false);
   };
+  console.log(applyBoards);
 
   return (
     <div>

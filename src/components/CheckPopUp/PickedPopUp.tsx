@@ -1,8 +1,5 @@
+import { POPUP_PHASE, YES, NO } from './PopUpConst';
 import './checkUp.scss';
-
-const popUpPhase = 'Выхотите поднять предмет?';
-const yes = 'Да';
-const no = 'Нет';
 
 type PopupType = {
   getAnswer: (isYes: boolean) => void;
@@ -18,12 +15,12 @@ export const PickedPopUp = ({ getAnswer }: PopupType) => {
   return (
     <div id='takeItem'>
       <div>
-        <p>{popUpPhase}</p>
+        <p>{POPUP_PHASE}</p>
         <button type='button' onClick={() => popUpHandler()}>
-          {yes}
+          {YES}
         </button>
         <button type='button' onClick={() => popUpClosed()}>
-          {no}
+          {NO}
         </button>
       </div>
     </div>

@@ -1,9 +1,5 @@
+import { POPUP_PHASE, YES, NO } from './PopUpConst';
 import './checkUp.scss';
-
-const popUpPhase =
-  ' Вы можете забить этот проход(дверь/окно). Хотите использовать доски?';
-const yes = 'Да';
-const no = 'Нет';
 
 type BroadPopupType = {
   getBroadAnswer: (arg: boolean) => void;
@@ -13,12 +9,12 @@ export const CheckBroadPopup = ({ getBroadAnswer }: BroadPopupType) => {
   return (
     <div id='takeItem'>
       <div>
-        <p>{popUpPhase}</p>
+        <p>{POPUP_PHASE}</p>
         <button type='button' onClick={() => getBroadAnswer(true)}>
-          {yes}
+          {YES}
         </button>
         <button type='button' onClick={() => getBroadAnswer(false)}>
-          {no}
+          {NO}
         </button>
       </div>
     </div>

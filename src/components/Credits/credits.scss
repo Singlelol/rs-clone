@@ -1,15 +1,15 @@
 .body {
-  background-color: rgba(222, 106, 23, .97);
+  background-color: #de6a17f7;
 }
   .credits {
     display: flex;
     align-items: center;
     flex-direction: column;
     margin: 5% 30% 5%;
-    border: 3rem rgba(177, 74, 0, .97) inset;
+    border: 3rem #b14a00f7 inset;
     font-size: 12rem;
     color: #0f3652;
-    background-color: rgb(232, 129, 56);
+    background-color: #e88138;
 
     .credits_header {
       text-decoration: underline #0f3652;
@@ -20,7 +20,7 @@
       align-items: center;
     }
     a {
-      color: rgb(5 15 46);
+      color: #050f2e;
       text-decoration: none;
     }
     button {

@@ -20,11 +20,11 @@
     justify-content: center;
     align-items: center;
     min-width: 500rem;
-    background-color: antiquewhite;
+    background-color: #faebd7;
     opacity: .9;
     border: 1rem solid #B95A27;
     border-radius: 5%;
-    box-shadow: 0 0 40rem rgb(185 90 39 / .2);
+    box-shadow: 0 0 40rem #b95a2733;
 
     &__title{
         margin: 10rem 0;
@@ -47,13 +47,13 @@
         text-align: center;
         border: .5rem solid #B95A27;
         background-color: #a64304;
-        color: antiquewhite;
+        color: #faebd7;
         border-radius: 10%;
-        box-shadow: 0 0 40rem rgb(185 90 39 / .2);
+        box-shadow: 0 0 40rem #b95a2733;
         cursor: pointer;
 
         .btn-link{
-            color: white;
+            color: #fff;
             text-decoration: none;
             font: 600 8rem/1.5 "Comic Sans MS", "Comic Sans", cursive;
             font-style: revert;

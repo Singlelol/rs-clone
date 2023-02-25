@@ -30,7 +30,7 @@ export const GameField = ({
 
   Object.keys(item).forEach((key) => {
     if (key === 'id') attr.id = `${item[key as keyof typeof item]}`;
-    if (key !== 'id') {
+    if (key !== 'id' && key !== 'item') {
       attr[`data-${key}`] = `${item[key as keyof typeof item]}`;
     }
 
@@ -63,9 +63,6 @@ export const GameField = ({
     <div
       style={{
         backgroundImage: `url(${url || ''})`,
-        backgroundSize: 'cover',
-        border: '.05rem solid #B95A27',
-        zIndex: 10,
       }}
       {...attr}
       onClick={() => availibleSteps.includes(item.id) && onClick()}
@@ -76,17 +73,10 @@ export const GameField = ({
             className='item-style'
             style={{
               backgroundImage: `url(${checkItemStatus()})`,
-              backgroundSize: 'cover',
-              height: '-webkit-fill-available',
-              zIndex: 1,
             }}
           />
         ) : (
-          <div
-            style={{
-              backgroundImage: "url($'')",
-            }}
-          />
+          <div />
         )
       ) : (
         <></>

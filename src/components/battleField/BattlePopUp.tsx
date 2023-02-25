@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { BattleCard } from './BattleCard';
-import { PlayerType } from '../../pages/playersPage/PlayerSettings-interface';
 import { SpinnerPage } from '../Spiner/SpinnerPage';
+import { PlayerType } from '../../pages/playersPage/PlayerSettings-interface';
 import { doSpinnerAction } from '../../utilities/utilitiesBattle';
-import './battleField.scss';
 import { ItemType } from '../../data/items';
 import imageSwords from '../../images/oriental.png';
+import './battleField.scss';
 
 const playerWinSound = require('../../sounds/PlayerWin.mp3');
 const monsterWinSound = require('../../sounds/ZombieWin.wav');

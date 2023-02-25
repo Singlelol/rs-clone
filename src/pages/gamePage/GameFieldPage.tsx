@@ -1,5 +1,4 @@
 /* eslint-disable array-callback-return */
-/* eslint-disable prettier/prettier */
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/no-cycle */
 import { useCallback, useContext, useEffect, useState } from 'react';
@@ -35,7 +34,7 @@ import {
   bordersWindowRightIndex,
   bordersWindowTopIndex,
 } from '../../data/border';
-import { GameOverPopUp } from '../../components/LosePopUp/GameOverPopUp';
+import { GameOverPopUp } from '../../components/GameOverPopUp/GameOverPopUp';
 import '../../components/PlayersCard/PlayerCard.scss';
 import './gamePage.scss';
 
@@ -151,7 +150,11 @@ export const GameFieldPage = () => {
       setIsHumanWin(false);
       setIsBattleEnd(false);
     } else if (!isHumanWin && !isRunAway && isBattleEnd) {
-      item = { ...item, item: currentPlayer.player.hero.inventory[0], pers: undefined};
+      item = {
+        ...item,
+        item: currentPlayer.player.hero.inventory[0],
+        pers: undefined,
+      };
       setIsBattleEnd(false);
     }
     if (isRunAway) {
@@ -163,20 +166,22 @@ export const GameFieldPage = () => {
     }
   };
 
-  const findNextIndex = (indexPlayer: number): number | boolean =>{
-    const prevIndexArray = PlayersStatus.slice(0, indexPlayer+1);
-    const nextIndexArray = PlayersStatus.slice(indexPlayer+1);
+  const findNextIndex = (indexPlayer: number): number | boolean => {
+    const prevIndexArray = PlayersStatus.slice(0, indexPlayer + 1);
+    const nextIndexArray = PlayersStatus.slice(indexPlayer + 1);
 
-    if (nextIndexArray.find(el => el.player.hero.health)){
-      const alivePlayer = nextIndexArray.findIndex(el => el.player.hero.health) as number;
+    if (nextIndexArray.find((el) => el.player.hero.health)) {
+      const alivePlayer = nextIndexArray.findIndex(
+        (el) => el.player.hero.health,
+      ) as number;
       const index = alivePlayer + prevIndexArray.length;
       return index;
     }
-    if(prevIndexArray.find(el => el.player.hero.health)){
-      return prevIndexArray.findIndex(el => el.player.hero.health) as number;
+    if (prevIndexArray.find((el) => el.player.hero.health)) {
+      return prevIndexArray.findIndex((el) => el.player.hero.health) as number;
     }
-    return false; 
-  }
+    return false;
+  };
 
   // проверка состояния счетчика, если 0, то меняем персонажа
   const checkCounter = (counter: number) => {
@@ -189,7 +194,9 @@ export const GameFieldPage = () => {
           (elem) => elem.player.id === currentPlayer.player.id,
         );
         const index = findNextIndex(indexPlayer);
-        const currentIndex: number = (index !== false ? index : setGameLose(true)) as number;
+        const currentIndex: number = (
+          index !== false ? index : setGameLose(true)
+        ) as number;
         PlayersStatus[indexPlayer].isActive = false;
         PlayersStatus[currentIndex].isActive = true;
         // TODO: переделать
@@ -293,11 +300,11 @@ export const GameFieldPage = () => {
 
   // проверка на поражение
   const loseCheck = () => {
-      const Index = PlayersStatus.findIndex((el) => el.id === currentPlayer.id);
-      PlayersStatus[Index] = {...currentPlayer}
-      if (PlayersStatus.filter(el => el.player.hero.health).length === 0) {
-        setGameLose(true);
-      }
+    const Index = PlayersStatus.findIndex((el) => el.id === currentPlayer.id);
+    PlayersStatus[Index] = { ...currentPlayer };
+    if (PlayersStatus.filter((el) => el.player.hero.health).length === 0) {
+      setGameLose(true);
+    }
   };
 
   const nextStepHandler = () => {
@@ -319,8 +326,7 @@ export const GameFieldPage = () => {
               setapplyBoards={setapplyBoards}
               windowsField={availibleSteps[1]}
             />
-          )
-          )}
+          ))}
       </div>
 
       {/* модалка на открытие карточек */}

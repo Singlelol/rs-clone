@@ -1,6 +1,4 @@
 /* eslint-disable no-nested-ternary */
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable react/jsx-no-useless-fragment */
 import { GridItemsType } from './GameFieldTypes';
 import { ArrayFieldType } from '../../types/types';
 import './GameFieldStyle.scss';
@@ -83,7 +81,7 @@ export const GameField = ({
           <div />
         )
       ) : (
-        <></>
+        <> </>
       )}
     </div>
   );

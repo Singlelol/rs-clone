@@ -4,7 +4,6 @@ import './mainPage.scss';
 import '../../components/buttons/button_style_mainPage.scss';
 import image from '../../images/main-background.png';
 
-// eslint-disable-next-line import/prefer-default-export, react/function-component-definition
 const btnName: string[] = ['New Game', 'Load', 'Credits'];
 export const MainPage = () => {
   return (

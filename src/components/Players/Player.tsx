@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { PlayerProps } from '../../pages/playersPage/PlayerSettings-interface';
 import { Slyder } from '../Slider/Slyder';
+import { PlayerProps } from '../../pages/playersPage/PlayerSettings-interface';
 import './players.scss';
 
 export const Player = ({ player, decrease, setNewName }: PlayerProps) => {

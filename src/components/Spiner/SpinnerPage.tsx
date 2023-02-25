@@ -4,13 +4,13 @@ import image from '../../images/Wheel.png';
 import { getSpinnerCount } from '../../utilities/utilities';
 
 type SpinerType = {
-  // eslint-disable-next-line react/require-default-props
   setSpiner: (arg: number) => void;
 };
 
 const circle = 360;
 const allCountSteps = 6;
 const rotation = 30;
+const btnText = 'Покрутить колесо';
 
 export const SpinnerPage = ({ setSpiner }: SpinerType) => {
   const [springs, api] = useSpring(() => ({
@@ -36,7 +36,7 @@ export const SpinnerPage = ({ setSpiner }: SpinerType) => {
       </animated.div>
       <div className='ticker' />
       <button type='button' className='btn-spin' onClick={handleClick}>
-        Покрутить колесо
+        {btnText}
       </button>
     </div>
   );

@@ -5,7 +5,6 @@ const HEALTH = 'Здоровье:';
 const DESCRIPTION = 'Описание:';
 
 export const Popup = ({ hero }: PopupProps) => {
-  console.log(hero);
   return (
     <div className='popup'>
       <div className='popup__section'>

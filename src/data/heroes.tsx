@@ -16,7 +16,7 @@ export const heroes: HeroType[] = [
     image: img1,
     inventory: [items[11]],
     skill: 1,
-    profession: 'кунгфу мастер',
+    profession: 'Кунг-фу мастер',
   },
   {
     id: 2,
@@ -27,7 +27,7 @@ export const heroes: HeroType[] = [
     image: img2,
     inventory: [items[4], items[10]],
     skill: 1,
-    profession: 'полицейский',
+    profession: 'Полицейский',
   },
   {
     id: 3,
@@ -38,7 +38,7 @@ export const heroes: HeroType[] = [
     image: img3,
     inventory: [],
     skill: 1,
-    profession: '',
+    profession: 'Студент',
   },
   {
     id: 4,
@@ -49,7 +49,7 @@ export const heroes: HeroType[] = [
     image: img4,
     inventory: [items[9]],
     skill: 1,
-    profession: 'медсестра',
+    profession: 'Медсестра',
   },
   {
     id: 5,
@@ -60,6 +60,6 @@ export const heroes: HeroType[] = [
     image: img5,
     inventory: [items[5]],
     skill: 1,
-    profession: '',
+    profession: 'Вышибала',
   },
 ];

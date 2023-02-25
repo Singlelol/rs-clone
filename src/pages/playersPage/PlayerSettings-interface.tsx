@@ -1,7 +1,6 @@
 import { ItemType } from '../../data/items';
 
 export type PlayerType = {
-  // [x: string]: any;
   id: number;
   name: string;
   isHuman?: boolean;

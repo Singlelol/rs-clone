@@ -1,9 +1,10 @@
 import { PopupProps } from '../../pages/playersPage/PlayerSettings-interface';
 import './popup.scss';
 
+const HEALTH = 'Здоровье:';
+const DESCRIPTION = 'Описание:';
+
 export const Popup = ({ hero }: PopupProps) => {
-  const health = 'Здоровье:';
-  const description = 'Описание:';
   console.log(hero);
   return (
     <div className='popup'>
@@ -12,14 +13,14 @@ export const Popup = ({ hero }: PopupProps) => {
         <h3 className='popup__name'>{hero.name}</h3>
       </div>
       <div className='popup__health'>
-        <span>{health}</span>
+        <span>{HEALTH}</span>
         {Array(hero?.health)
           .fill(0)
           .map((_, i) => (
             <div className='popup__heart-image' key={i} />
           ))}
       </div>
-      <span className='popup__subtitle'>{description}</span>
+      <span className='popup__subtitle'>{DESCRIPTION}</span>
       <p className='popup__description'>{hero.description}</p>
     </div>
   );

@@ -389,13 +389,6 @@ export const GameFieldPage = () => {
         />
       )}
 
-      {/* спинер */}
-      {currentPlayer.count === 0 && !answer && (
-        <div className='spinner-page'>
-          <SpinnerPage setSpiner={setSpiner} />
-        </div>
-      )}
-
       {/* кнопка начать ход */}
       {currentPlayer.count === 0 && !answer && spiner && (
         <div className='step-button'>
@@ -406,6 +399,12 @@ export const GameFieldPage = () => {
           >
             Начать ход
           </button>
+        </div>
+      )}
+      {/* спинер */}
+      {currentPlayer.count === 0 && !answer && (
+        <div className='spinner-page'>
+          <SpinnerPage setSpiner={setSpiner} />
         </div>
       )}
       <MoveCounter step={currentPlayer.count} count={spiner} />

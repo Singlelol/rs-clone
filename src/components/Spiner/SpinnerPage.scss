@@ -11,6 +11,10 @@
   z-index: 100;
 }
 
+.battleField + .spinner-page {
+  display: none;
+}
+
 .deal-wheel {
   position: relative;
   display: grid;

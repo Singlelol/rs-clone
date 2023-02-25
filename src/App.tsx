@@ -5,7 +5,6 @@ import { GameFieldPage } from './pages/gamePage/GameFieldPage';
 import { PlayerSettings } from './pages/playersPage/PlayerSettings';
 import { MainPage } from './pages/mainPage/mainPage';
 import { CreditPage } from './pages/creditPage/CreditsPage';
-// import { ErrorPage } from './pages/errorPage/ErrorPage';
 
 import { PlayerType } from './pages/playersPage/PlayerSettings-interface';
 import { heroes } from './data/heroes';

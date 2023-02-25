@@ -17,7 +17,7 @@ export const Music = () => {
   );
 };
 */
-
+/*
 export const Music = () => {
   const audio = new Audio(track);
   audio.loop = true;
@@ -29,3 +29,4 @@ export const Music = () => {
     </div>
   );
 };
+*/

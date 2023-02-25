@@ -40,6 +40,15 @@ export const PlayerSettings = () => {
     }
   };
 
+  const setNewName = (id: number, name: string) => {
+    const newPlayers = players.map((player) =>
+      player.id === id
+        ? { ...player, name: name === '' ? `Player${id}` : name }
+        : player,
+    );
+    setPlayers(newPlayers);
+  };
+
   return (
     <div className='wrapper'>
       <div className='settings-menu'>
@@ -52,7 +61,12 @@ export const PlayerSettings = () => {
         <div className='players'>
           <h3 className='players__subtitle'>{list}</h3>
           {players.map((player) => (
-            <Player key={player.id} player={player} decrease={decrease} />
+            <Player
+              key={player.id}
+              player={player}
+              setNewName={setNewName}
+              decrease={decrease}
+            />
           ))}
         </div>
         <button

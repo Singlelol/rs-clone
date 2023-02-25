@@ -1,4 +1,4 @@
-import './battleFied.scss';
+import './battleField.scss';
 
 type BattleCardProps = {
   image: string | undefined;

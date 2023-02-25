@@ -3,7 +3,7 @@ import { BattleCard } from './BattleCard';
 import { PlayerType } from '../playersPage/PlayerSettings-interface';
 import { SpinnerPage } from '../../components/Spiner/SpinnerPage';
 import { doSpinnerAction } from '../../utilities/utilitiesBattle';
-import './battleFied.scss';
+import './battleField.scss';
 import { ItemType } from '../../data/items';
 import imageSwords from '../../images/oriental.png';
 

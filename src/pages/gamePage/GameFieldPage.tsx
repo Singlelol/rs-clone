@@ -24,7 +24,7 @@ import { ResultPickedPopUp } from '../../components/CheckPopUp/ResultPickedPopUp
 import { SpinnerPage } from '../../components/Spiner/SpinnerPage';
 import { MoveCounter } from '../../components/MoveCounter/MoveCounter';
 import { CheckBroadPopup } from '../../components/CheckPopUp/CheckBroadPopup';
-import { BattlePopUp } from '../battleField/battleFied';
+import { BattlePopUp } from '../battleField/battleField';
 import {
   bordersBottomIndex,
   bordersLeftIndex,

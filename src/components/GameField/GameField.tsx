@@ -1,6 +1,4 @@
 /* eslint-disable no-nested-ternary */
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable react/jsx-no-useless-fragment */
 import { GridItemsType } from './GameFieldTypes';
 import { ArrayFieldType } from '../../types/types';
 import './GameFieldStyle.scss';
@@ -16,6 +14,10 @@ type GameFieldItemProps = {
   windowsField: number[];
   endFields: number[];
 };
+
+const OPEN_STATUS = 'open';
+const CLOSE_STATUS = 'close';
+const DELETE_STATUS = 'delete';
 
 export const GameField = ({
   item,
@@ -50,10 +52,10 @@ export const GameField = ({
   }
 
   const checkItemStatus = () => {
-    if (item.item && item.item?.itemStatus === 'open') {
+    if (item.item && item.item?.itemStatus === OPEN_STATUS) {
       return item.item?.image;
     }
-    if (item.item && item.item?.itemStatus === 'close') {
+    if (item.item && item.item?.itemStatus === CLOSE_STATUS) {
       return CoverImage;
     }
     return '';
@@ -67,7 +69,7 @@ export const GameField = ({
       {...attr}
       onClick={() => availibleSteps.includes(item.id) && onClick()}
     >
-      {item.item?.itemStatus !== 'delete' ? (
+      {item.item?.itemStatus !== DELETE_STATUS ? (
         !url ? (
           <div
             className='item-style'
@@ -79,7 +81,7 @@ export const GameField = ({
           <div />
         )
       ) : (
-        <></>
+        <> </>
       )}
     </div>
   );

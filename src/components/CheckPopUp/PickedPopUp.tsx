@@ -16,10 +16,10 @@ export const PickedPopUp = ({ getAnswer }: PopupType) => {
     <div id='takeItem'>
       <div>
         <p>{POPUP_PHASE}</p>
-        <button type='button' onClick={() => popUpHandler()}>
+        <button type='button' onClick={popUpHandler}>
           {YES}
         </button>
-        <button type='button' onClick={() => popUpClosed()}>
+        <button type='button' onClick={popUpClosed}>
           {NO}
         </button>
       </div>

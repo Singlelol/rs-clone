@@ -1,7 +1,7 @@
-.lose-popup__wrapper{
+.game-over__wrapper{
     position: absolute;
     top: 0;
-    z-index: 15;
+    z-index: 200;
 
     width: 100%;
     height: 100%;
@@ -14,7 +14,7 @@
     background-position: center;
 }
 
-.lose-popup{
+.game-over{
     display: flex;
     flex-direction: column;
     justify-content: center;

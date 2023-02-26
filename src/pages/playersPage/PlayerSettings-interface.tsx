@@ -10,6 +10,7 @@ export type PlayerType = {
 export type PlayerProps = {
   player: PlayerType;
   decrease: () => void;
+  setNewName: (id: number, currentName: string) => void;
 };
 
 export type CounterProps = {

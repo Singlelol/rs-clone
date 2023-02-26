@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import { PlayerType } from './PlayerSettings-interface';
 import { Counter } from '../../components/Counter/Counter';
 import { Player } from '../../components/Players/Player';
-import './player-settings.scss';
 import { Context } from '../../App';
 import { heroes } from '../../data/heroes';
+import './player-settings.scss';
 
 const maxPlayers = 4;
 const title = 'Выберите количество игроков:';
@@ -14,8 +14,7 @@ const list = 'Список игроков';
 const startText = 'Начать игру';
 
 export const PlayerSettings = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { play, changePlayers } = useContext(Context);
+  const { changePlayers } = useContext(Context);
   const startplayers: PlayerType[] = [
     { id: 1, name: 'Player1', isHuman: true, hero: heroes[0] },
   ];
@@ -40,6 +39,15 @@ export const PlayerSettings = () => {
     }
   };
 
+  const setNewName = (id: number, name: string) => {
+    const newPlayers = players.map((player) =>
+      player.id === id
+        ? { ...player, name: name === '' ? `Player${id}` : name }
+        : player,
+    );
+    setPlayers(newPlayers);
+  };
+
   return (
     <div className='wrapper'>
       <div className='settings-menu'>
@@ -52,7 +60,12 @@ export const PlayerSettings = () => {
         <div className='players'>
           <h3 className='players__subtitle'>{list}</h3>
           {players.map((player) => (
-            <Player key={player.id} player={player} decrease={decrease} />
+            <Player
+              key={player.id}
+              player={player}
+              setNewName={setNewName}
+              decrease={decrease}
+            />
           ))}
         </div>
         <button

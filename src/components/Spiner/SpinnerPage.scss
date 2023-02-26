@@ -31,7 +31,6 @@
   grid-template-areas:
     "spinner"
     "trigger";
-  font-size: calc(var(--size) / 21);
 
   .btn-spin {
     grid-area: trigger;

@@ -5,10 +5,9 @@ import { PlayerType } from '../../pages/playersPage/PlayerSettings-interface';
 import { doSpinnerAction } from '../../utilities/utilitiesBattle';
 import { ItemType } from '../../data/items';
 import imageSwords from '../../images/oriental.png';
+import playerWinSound from '../../sounds/PlayerWin.mp3';
+import monsterWinSound from '../../sounds/ZombiWin.mp3';
 import './battleField.scss';
-
-const playerWinSound = require('../../sounds/PlayerWin.mp3');
-const monsterWinSound = require('../../sounds/ZombieWin.wav');
 
 type BattlePopUpType = {
   player: PlayerType;
@@ -20,7 +19,8 @@ type BattlePopUpType = {
   loseCheck: () => void;
 };
 const state = 8;
-
+const spinerBlock = 'spiner_block';
+const spinerNone = 'spinerNone';
 export const BattlePopUp = ({
   player,
   item,
@@ -36,14 +36,16 @@ export const BattlePopUp = ({
   const [isHeroe, setIsHeroeWin] = useState(true);
   const [isMonster, setIsMonsterWin] = useState(true);
   const [isBattle, setIsBattle] = useState(true);
-  const [isText, setIsText] = useState('');
-
-  const setAudio = () => {
+  const [spinnerBattleText, setSpinerBattleText] = useState('');
+  const BlockSpiner = isBattle ? spinerBlock : spinerNone;
+  const AudioPlayerWin = () => {
     audioPlayerWin.currentTime = 0;
+    audioPlayerWin.volume = 0.2;
     audioPlayerWin.play();
   };
-  const setAudio2 = () => {
+  const AudioMonsterWin = () => {
     audioMonsterWin.currentTime = 0;
+    audioMonsterWin.volume = 0.2;
     audioMonsterWin.play();
   };
 
@@ -61,16 +63,13 @@ export const BattlePopUp = ({
         setIsBattleEnd,
         loseCheck,
         setIsBattle,
-        setIsText,
-        setAudio,
-        setAudio2,
+        setSpinerBattleText,
+        AudioPlayerWin,
+        AudioMonsterWin,
       );
       setSpiner(8);
     }
   }, [spiner]);
-  const spinerBlock = 'spiner_block';
-  const spinerNone = 'spinerNone';
-  const BlockSpiner = isBattle ? spinerBlock : spinerNone;
   return (
     <div className='battleField'>
       <div id='div' className='player_cards'>
@@ -85,7 +84,7 @@ export const BattlePopUp = ({
           <SpinnerPage setSpiner={setSpiner} />
         </div>
         <img src={imageSwords} className='swords' alt='Swords' />
-        <p className='text_swords'>{isText}</p>
+        <p className='text_swords'>{spinnerBattleText}</p>
       </div>
       <div className='monster_cards'>
         <BattleCard name={item!.name} image={item!.image} win={isMonster} />

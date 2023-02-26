@@ -21,14 +21,14 @@ export const doSpinnerAction = (
   setIsBattleEnd: (arg: boolean) => void,
   loseCheck: () => void,
   setIsBattle: (arg: boolean) => void,
-  setIsText: (arg: string) => void,
-  setAudio: () => void,
-  setAudio2: () => void,
+  setSpinerBattleText: (arg: string) => void,
+  AudioPlayerWin: () => void,
+  AudioMonsterWin: () => void,
 ) => {
   switch (action) {
     case 1:
       setIsRunAway(true);
-      setIsText(TextRunPlayer);
+      setSpinerBattleText(TextRunPlayer);
       setIsBattle(false);
       setTimeout(() => setBattlePopup(false), 1500);
       setIsMonsterWin(true);
@@ -37,13 +37,13 @@ export const doSpinnerAction = (
       break;
     case 2:
       player.hero.health -= 1;
-      setIsText(TextLoseHealth);
+      setSpinerBattleText(TextLoseHealth);
       if (player.hero.health <= 0) {
         setIsHumanWin(false);
         setIsMonsterWin(true);
         setIsHeroeWin(false);
-        setIsText(`${player.name} был повержен!`);
-        setAudio2();
+        setSpinerBattleText(`${player.name} был повержен!`);
+        AudioMonsterWin();
         setIsBattle(false);
         setTimeout(() => setBattlePopup(false), 3000);
         setIsBattleEnd(true);
@@ -61,13 +61,13 @@ export const doSpinnerAction = (
         setIsHumanWin(true);
         setIsHeroeWin(true);
         setIsMonsterWin(false);
-        setIsText(`${player.name} победил!`);
-        setAudio();
+        setSpinerBattleText(`${player.name} победил!`);
+        AudioPlayerWin();
         setIsBattle(false);
         setTimeout(() => setBattlePopup(false), 3000);
         setIsBattleEnd(true);
       } else {
-        setIsText(TextSpinerAgain);
+        setSpinerBattleText(TextSpinerAgain);
       }
       break;
 
@@ -81,13 +81,13 @@ export const doSpinnerAction = (
         setIsHumanWin(true);
         setIsHeroeWin(true);
         setIsMonsterWin(false);
-        setIsText(`${player.name} победил!`);
-        setAudio();
+        setSpinerBattleText(`${player.name} победил!`);
+        AudioPlayerWin();
         setIsBattle(false);
         setTimeout(() => setBattlePopup(false), 3000);
         setIsBattleEnd(true);
       } else {
-        setIsText(TextSpinerAgain);
+        setSpinerBattleText(TextSpinerAgain);
       }
       break;
     default:

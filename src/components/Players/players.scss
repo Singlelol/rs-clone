@@ -4,7 +4,7 @@
     align-items: center;
     font-size: 10rem;
     padding: 5rem 0 0;
-
+    
     &__toogle{
         display: flex;
         align-items: center;
@@ -92,7 +92,7 @@ input[type="checkbox"] {
 
   input[type="text"] {
     height: 15rem;
-    width: 30%;
+    min-width: 10rem;
     border: 1rem solid #ccc;
     outline: none;
  }

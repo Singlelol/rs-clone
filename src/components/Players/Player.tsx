@@ -16,6 +16,7 @@ export const Player = ({ player, decrease, setNewName }: PlayerProps) => {
     <div className='player'>
       <span className='player__id'>{player.id}</span>
       <input
+        type='text'
         className='player__name'
         defaultValue={currentName}
         onChange={handleChange}

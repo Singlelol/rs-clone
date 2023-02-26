@@ -57,7 +57,6 @@ export const GameFieldPage = () => {
     bordersWindowTopIndex,
   ];
   const [borders, setBorders] = useState(bordersArray);
-  console.log(bordersArray);
   // спинер
   const [spiner, setSpiner] = useState(0);
 

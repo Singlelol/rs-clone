@@ -14,18 +14,17 @@ const phrase = [
   'Игрок вращает стрелку до тех пор, пока не убъет монстра, не сбежит или не закончаться жизни. Убить Болотного ужаса можно только гранатометом.',
 ];
 
-type RulesType = {
-  getRulesAnswer: (arg: boolean) => void;
-};
+const buttonText = 'Назад';
+const returnBack = '/';
 
-export const Rules = ({ getRulesAnswer }: RulesType) => {
+export const Rules = () => {
   return (
     <div className='rules_modal'>
       {phrase.map((text) => (
         <div className='rules_text'>{text}</div>
       ))}
-      <button type='button' onClick={() => getRulesAnswer(false)}>
-        Закрыть
+      <button type='button' className='button'>
+        <a href={returnBack}>{buttonText}</a>
       </button>
     </div>
   );

@@ -33,6 +33,9 @@ export const Button: React.FC<Props> = ({
     case 'Load':
       mainLink = '/load';
       break;
+    case 'Rules':
+      mainLink = '/rules';
+      break;
     case 'Statistic':
       mainLink = '/statistic';
       break;

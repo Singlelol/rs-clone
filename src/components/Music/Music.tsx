@@ -1,13 +1,11 @@
-import { Howl } from 'howler';
+import track from '../../sounds/Iron_Maiden-Fear_of_the_Dark.mp3';
 
-export const Sound = new Howl({
-  src: ['../../sounds/Iron_Maiden-Fear_of_the_Dark.mp3'],
-  preload: true,
-  loop: true,
-  volume: 0.5,
-  onplayerror: () => {
-    Sound.once('unlock', () => {
-      Sound.play();
-    });
-  },
-});
+export const Music = () => {
+  return (
+    <div>
+      <audio id='sound' autoPlay loop src={track} preload='auto'>
+        <track kind='captions' />
+      </audio>
+    </div>
+  );
+};

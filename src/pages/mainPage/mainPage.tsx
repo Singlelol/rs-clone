@@ -4,7 +4,7 @@ import './mainPage.scss';
 import '../../components/Buttons/button_style_mainPage.scss';
 import image from '../../images/main-background.png';
 
-const btnName: string[] = ['New Game', 'Load', 'Credits'];
+const btnName: string[] = ['New Game', 'Load', 'Rules', 'Credits'];
 export const MainPage = () => {
   return (
     <div className='App'>

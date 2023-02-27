@@ -4,7 +4,7 @@
 import React from 'react';
 import useSound from 'use-sound';
 import { Link } from 'react-router-dom';
-import soundSFX from '../../sounds/Zombie-Aggressive-Attack-A1.mp3';
+import sound_zombie_SFX from '../../sounds/Zombie-Aggressive-Attack-A1.mp3';
 
 interface Props {
   background?: string;
@@ -23,7 +23,7 @@ export const Button: React.FC<Props> = ({
   disabled,
 }) => {
   let mainLink: string = '';
-  const [play] = useSound(soundSFX);
+  const [play] = useSound(sound_zombie_SFX);
 
   // eslint-disable-next-line default-case
   switch (children) {

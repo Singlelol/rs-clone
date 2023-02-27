@@ -18,14 +18,12 @@
   }
 }
 .player_cards {
-  margin-top: 20rem;
 
   .battle-card__name {
     font-size: 15rem;
   }
 }
 .monster_cards {
-  margin-top: 20rem;
 
   .battle-card__name {
     font-size: 15rem;
@@ -89,8 +87,8 @@
 }
 .swords{
   padding-left: 4rem;
-  padding-top: 7rem;
-  width: 50rem;
+  padding-top: 50rem;
+  width: 80rem;
 }
 .text_swords {
   padding-left: 35.5rem;
@@ -104,5 +102,14 @@ p {
   font-family: "Comic Sans MS", "Comic Sans", cursive;
   font-size: 12rem;
 }
-
-
+.cards {
+  margin-top: 100rem;
+}
+.spiner_block {
+  button {
+    font: 1rem;
+  }
+  .deal-wheel .btn-spin {
+    padding: 0;
+  }
+}

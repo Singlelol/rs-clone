@@ -29,5 +29,18 @@
       font-size: 10rem;
       border-color: #642d03;
       background-color: #e7721b;
+    }    
+    .block_rs-school {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .credits_rs_text {
+        padding: 0;
+      }
+      .image_rs-school {
+        width: 80rem;
+        border: 3rem #b14a00f7 inset;
+      }
     }
   }

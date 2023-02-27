@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '../../components/buttons/ButtonOnMainPage';
+import { Button } from '../../components/Buttons/ButtonOnMainPage';
 import './mainPage.scss';
 import '../../components/buttons/button_style_mainPage.scss';
 import image from '../../images/main-background.png';

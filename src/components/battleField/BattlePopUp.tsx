@@ -72,7 +72,7 @@ export const BattlePopUp = ({
   }, [spiner]);
   return (
     <div className='battleField'>
-      <div id='div' className='player_cards'>
+      <div id='div' className='player_cards cards'>
         <BattleCard
           name={player.name}
           image={player.hero?.image}
@@ -86,7 +86,7 @@ export const BattlePopUp = ({
         <img src={imageSwords} className='swords' alt='Swords' />
         <p className='text_swords'>{spinnerBattleText}</p>
       </div>
-      <div className='monster_cards'>
+      <div className='monster_cards cards'>
         <BattleCard name={item!.name} image={item!.image} win={isMonster} />
       </div>
     </div>

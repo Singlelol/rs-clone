@@ -3,7 +3,7 @@ import React, { createContext, useMemo, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { GameFieldPage } from './pages/gamePage/GameFieldPage';
 import { PlayerSettings } from './pages/playersPage/PlayerSettings';
-import { MainPage } from './pages/mainPage/MainPage';
+import { MainPage } from './pages/mainPage/mainPage';
 import { CreditPage } from './pages/creditPage/CreditsPage';
 
 import { PlayerType } from './pages/playersPage/PlayerSettings-interface';

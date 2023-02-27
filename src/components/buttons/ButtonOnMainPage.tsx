@@ -2,7 +2,9 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/function-component-definition */
 import React from 'react';
+import useSound from 'use-sound';
 import { Link } from 'react-router-dom';
+import sound_zombie_SFX from '../../sounds/Zombie-Aggressive-Attack-A1.mp3';
 
 interface Props {
   background?: string;
@@ -21,6 +23,7 @@ export const Button: React.FC<Props> = ({
   disabled,
 }) => {
   let mainLink: string = '';
+  const [play] = useSound(sound_zombie_SFX);
 
   // eslint-disable-next-line default-case
   switch (children) {
@@ -44,6 +47,9 @@ export const Button: React.FC<Props> = ({
         backgroundColor: background,
         height,
         width,
+      }}
+      onClick={() => {
+        play();
       }}
     >
       <Link to={mainLink} className='main-link'>

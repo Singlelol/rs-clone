@@ -20,6 +20,11 @@
   border-radius: 5%;
   box-shadow: 0 2rem 4rem #b95a2733;
   transform: translate(0, -50%);
+
+  @media (max-width: 980px) and (min-width: 641px), (max-width: 490px) {
+    width: 95%;
+    margin: 105rem auto 0;
+  }
   }
   
   #pickUpItem {
@@ -39,4 +44,11 @@
     box-shadow: 0 2rem 4rem #b95a2733;
     border-radius: 5%;    
     transform: translate(-50%, -50%);
+
+    @media (max-width: 980px) and (min-width: 641px), (max-width: 490px) {
+      width: 95%;
+      margin: 105rem auto 0;
+      left: 30%;
+      transform: translate(0, -50%);
+    }
   }

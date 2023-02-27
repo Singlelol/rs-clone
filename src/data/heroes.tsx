@@ -25,9 +25,9 @@ export const heroes: HeroType[] = [
     description:
       'Работает медсестрой, а значит, что ее аптечка дает не 1 дополнительную жизнь, а сразу две.',
     image: img2,
-    inventory: [items[4], items[10]],
+    inventory: [items[4]],
     skill: 1,
-    profession: 'Полицейский',
+    profession: 'Медсестра',
   },
   {
     id: 3,
@@ -49,16 +49,16 @@ export const heroes: HeroType[] = [
     image: img4,
     inventory: [items[9]],
     skill: 1,
-    profession: 'Медсестра',
+    profession: 'Полицейский',
   },
   {
     id: 5,
     name: 'Борис',
-    health: 8,
+    health: 5,
     description:
       'Невероятно здоровый и выносливый. В начале игры у него на две жизни большеб чем у остальных',
     image: img5,
-    inventory: [items[5]],
+    inventory: [],
     skill: 1,
     profession: 'Вышибала',
   },

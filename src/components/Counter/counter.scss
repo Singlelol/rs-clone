@@ -1,0 +1,30 @@
+.counter{
+  display: flex;
+  justify-content: center;
+  
+  .btn__container{
+    display: flex;
+  }
+
+  .counter__output{
+    text-align: center;
+    font: 600 18rem/1 "Comic Sans MS", "Comic Sans", cursive;
+    font-style: revert;
+  }
+
+  .control__btn{
+    padding: 0 40rem;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+
+    .control__btn-next{
+      width: 20rem;
+    }
+
+    .control__btn-prev{
+      width: 20rem;
+      transform: rotate(180deg);
+    }
+  }
+}

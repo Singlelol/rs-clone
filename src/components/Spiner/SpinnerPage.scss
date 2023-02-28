@@ -1,0 +1,163 @@
+* {
+  box-sizing: border-box;
+}
+
+.spinner-page{
+  position: absolute;
+  top: 0;
+  left:79%;
+  width: 15rem;
+  height: 15rem;
+  z-index: 100;
+
+  @media (max-width: 980px) and (min-width: 641px), (max-width: 640px) {
+    left:35%;
+  }
+}
+
+.battleField + .spinner-page {
+  display: none;
+}
+
+.block_Spinner-Swords .deal-wheel {
+  @media (max-width: 980px) and (min-width: 641px), (max-width: 640px) {
+    grid-template-areas:
+    "spinner"
+    "trigger";
+  }
+}
+
+.deal-wheel {
+  position: relative;
+  display: grid;
+  place-items: center;
+  --size: clamp(250rem, 350rem, 450rem);
+  --lg-hs: 0 3%;
+  --lg-stop: 50%;
+  --lg: linear-gradient(
+      hsl(var(--lg-hs) 0%) 0 var(--lg-stop),
+      hsl(var(--lg-hs) 20%) var(--lg-stop) 100%
+    );
+  grid-gap: calc(var(--size) / 20);
+  align-items: center;
+  grid-template-areas:
+    "spinner"
+    "trigger";
+
+  @media (max-width: 980px) and (min-width: 641px), (max-width: 640px) {
+    grid-template-areas:
+    "trigger spinner";
+  }
+
+  .btn-spin {
+    grid-area: trigger;
+    justify-self: center;
+  }
+
+  .spinner {
+    padding: 0;
+    margin: 0;
+    display: grid;
+    align-items: center;
+    grid-template-areas: "spinner";
+    transform: rotate(calc(var(--rotate, 0) * 1deg));
+    border-radius: 50%;
+  }
+  
+  .spinner * {
+    grid-area: spinner;
+  }
+
+  .ticker {
+    position: relative;
+    left: calc(var(--size) / -5);
+    width: calc(var(--size) / 30);
+    height: calc(var(--size) / 20);
+    background: var(--lg);
+    z-index: 1;
+    clip-path: polygon(20% 0, 100% 50%, 20% 100%, 0% 50%);
+    transform-origin: center left;
+
+    @media (max-width: 980px) and (min-width: 641px), (max-width: 640px) {
+      left: calc(var(--size) / -6);
+    }
+  }
+  
+  .btn-spin {
+    padding: 9rem 20rem 10rem;
+    font-size: 10rem;
+    color: #fff;
+    background: #000;
+    border: none;
+    border-radius: 5rem;
+    cursor: pointer;
+  }
+  
+  .btn-spin:disabled {
+    cursor: progress;
+    opacity: .25;
+  }
+}
+
+.deal-wheel > * {
+  grid-area: spinner;
+}
+
+.prize {
+  display: flex;
+  align-items: center;
+  padding: 0 calc(var(--size) / 6) 0 calc(var(--size) / 20);
+  width: 50%;
+  height: 50%;
+  transform-origin: center right;
+  transform: rotate(var(--rotate));
+  user-select: none;
+}
+
+.is-spinning .spinner {
+  transition: transform 8s cubic-bezier(.1, -.01, 0, 1);
+}
+
+
+.is-spinning .ticker {
+  animation: tick 700ms cubic-bezier(.34, 1.56, .64, 1);
+}
+
+
+@keyframes tick {
+  40% {
+    transform: rotate(-12deg);
+  }
+}
+.text {
+  transform:rotateZ(90deg);
+}
+
+.prize.selected .text {
+  color: #fff;
+  animation: selected 800ms ease;
+}
+
+@keyframes selected {
+  25% {
+    transform: scale(1.25);
+    text-shadow: 1vmin 1vmin 0 #0000001a;
+  }
+  40% {
+    transform: scale(0.92);
+    text-shadow: 0 0 0 #00000033;
+  }
+  60% {
+    transform: scale(1.02);
+    text-shadow: .5vmin .5vmin 0 #0000001a;
+  }
+  75% {
+    transform: scale(.98);
+  }
+  85% {
+    transform: scale(1);
+  }
+}
+.image_backround {
+  width: 100rem;
+}

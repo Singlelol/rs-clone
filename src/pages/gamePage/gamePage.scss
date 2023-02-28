@@ -1,0 +1,52 @@
+.modal-wheel{
+    position: absolute;
+    top: 0;
+    left: 0;
+    //position: fixed;    
+    //left: 27.5%;
+    //width: 45%;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 2rem;
+    margin: 1rem auto;
+    background: #0d0d0dcc;
+    font-size: 10rem;
+    color:#faebd7;
+    z-index: 15;
+}
+
+.step-button + .spinner-page {
+    display: none;
+}
+
+.step-button{
+
+    position: fixed;
+    top: 45%;
+    z-index: 100;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10rem 20rem;
+    font-size: 16rem;    
+
+    .btn-spin{
+        padding: 5rem 10rem 5rem;
+        color: #fff;
+        background: #000;
+        border: none;        
+        border-radius: 5rem;
+        font-size: 12rem;
+        cursor: pointer;
+    }
+}
+#takeItem {
+    
+    button {
+
+        &:last-child {
+            margin-left: 10rem;
+        }
+    }
+}

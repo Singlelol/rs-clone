@@ -1,0 +1,115 @@
+.block_Spinner-Swords {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.battleField {
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 100%;  
+  background: #0d0d0dcc;
+  z-index: 15;
+  @media (max-width: 980px) and (min-width: 641px), (max-width: 490px) {
+    width: max-content;
+    height: auto;
+  }
+}
+.player_cards {
+
+  .battle-card__name {
+    font-size: 15rem;
+  }
+}
+.monster_cards {
+
+  .battle-card__name {
+    font-size: 15rem;
+  }
+}
+.battle_card {
+  width: 200rem;
+  height: 250rem;
+  background-color: #0ff;
+  border: 2rem ridge #1a469e99;
+
+  @media (max-width: 980px) and (min-width: 641px), (max-width: 490px) {
+    width: 130rem;
+  }
+}
+.battle-card__name {
+  margin: 0;
+  width: 140rem;
+  height: 20rem;
+  padding-left: 25rem;
+  padding-top: 15rem;
+  color: #102f72;
+
+  @media (max-width: 980px) and (min-width: 641px), (max-width: 490px) {
+    width: -moz-fit-content;
+    width: fit-content;
+    padding-left: 5rem;
+  }
+}
+.battle-card__img {
+  width: 150rem;
+  @media (max-width: 980px) and (min-width: 641px), (max-width: 580px) {
+    width: calc( (100vw - 490rem)/(580 - 490) * (150 - 80) + 80rem);
+  }
+  @media (max-width: 490px) {
+    width: 80rem;
+  }
+}
+.battle_card--hide {
+  width: 200rem;
+  height: 250rem;
+  background-color: #c57b79;
+  border: 2rem ridge #f00;
+  
+  .battle-card__img {
+    display: none;
+  }
+}
+.battle_card--hide::before {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50rem;
+  color: #000;
+  font-size: 30rem;
+  content: "Проиграл:";
+}
+.battle_info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.swords{
+  padding-left: 4rem;
+  padding-top: 50rem;
+  width: 80rem;
+}
+.text_swords {
+  padding-left: 35.5rem;
+  padding-top: 5rem;
+  color: #bcdede;
+}
+.spinerNone {
+  display: none;
+}
+p {
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-size: 12rem;
+}
+.cards {
+  margin-top: 100rem;
+}
+.spiner_block {
+  button {
+    font: 1rem;
+  }
+  .deal-wheel .btn-spin {
+    padding: 0;
+  }
+}

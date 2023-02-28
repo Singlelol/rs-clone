@@ -1,0 +1,20 @@
+.rules_modal{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 5rem solid;
+  text-align: start;
+
+  button {
+    width: fit-content;
+    margin: 0 auto 5rem;
+    padding: 5rem;
+    border-radius: 3rem;
+  }
+}
+
+.rules_text {
+  padding: 7rem;
+  text-indent: 10rem;
+  font-size: 10rem;
+}

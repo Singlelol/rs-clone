@@ -6,16 +6,24 @@ import { items, ItemType } from '../data/items';
 import { PlayerType } from '../pages/playersPage/PlayerSettings-interface';
 import { ArrayFieldType, StateType } from '../types/types';
 
-/*
-const shuffleArray = (array: any) => {
-  for (let i = array.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(Math.random() * (i + 1));
-    const temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
+function randomItemFieldAll(
+  min: number,
+  max: number,
+  length: number,
+): number[] {
+  const arr: number[] = [];
+  const exclude: number[] = [133, 134, 121, 122];
+  while (arr.length < length) {
+    const randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
+
+    if (!arr.includes(randomNum) && !exclude.includes(randomNum)) {
+      arr.push(randomNum);
+    }
   }
-};
-*/
+  return arr;
+}
+
+const randomField = randomItemFieldAll(0, 143, randomItemField.length);
 
 const BroadID = 5;
 const includeBroads = (player: PlayerType) => {
@@ -31,7 +39,7 @@ items
 export const ShuffleItemsArr = () => {
   const AllItems = ItemsArr.flat(2);
   return AllItems.map((item, i) => {
-    return { ...item, field: randomItemField[i] };
+    return { ...item, field: randomField[i] };
   });
 };
 
@@ -54,7 +62,7 @@ export const createField = (borders: number[][]) => {
     const field: ArrayFieldType = {
       id: i,
       availible: false,
-      item: randomItemField.includes(i) ? arr.shift() : undefined,
+      item: randomField.includes(i) ? arr.shift() : undefined,
     };
     // границы поля
     if (i % 12 === 11) field.right = true;
